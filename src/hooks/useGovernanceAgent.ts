@@ -3,6 +3,7 @@ import { supabase, GovernanceProcess, ProcessStep, UserProgress, ChatMessage } f
 import { normalizeTerms, fuzzyMatch, calculateSimilarity } from '../utils/fuzzyMatch';
 import { extractKeywords, calculateRelevance, suggestRelatedTopics, knowledgeBase } from '../utils/keywordExtraction';
 import { buildContext, applyContext, isFollowUpQuestion, needsSystemContext, needsPhaseContext } from '../utils/conversationContext';
+import { generateProactiveQuestions, shouldAskClarifyingQuestions, enrichResponseWithQuestions, detectTopicFromMessage, generateContextualFollowUp } from '../utils/proactiveQuestions';
 
 const USER_ID_KEY = 'governance_agent_user_id';
 
@@ -570,7 +571,7 @@ export function useGovernanceAgent() {
     const relevanceScore = calculateRelevance(normalizedMessage, keywords);
 
     if (!selectedProcess || processSteps.length === 0) {
-      return "Hi! I'm Sophia, your EHR governance assistant. I'm still loading the process information. Please try again in a moment.";
+      return "Hi! I'm Sophia, your SPM Governance Assistant. I'm still loading the process information. Please try again in a moment.";
     }
 
     if (!userProgress) {
@@ -605,11 +606,29 @@ export function useGovernanceAgent() {
     const directAnswer = provideDirectAnswer(enrichedMessage);
     if (directAnswer) {
       setClarificationAttempts(0); // Reset counter on successful answer
-      const suggestions = suggestRelatedTopics(keywords);
-      const suggestionText = suggestions.length > 0
-        ? `\n\n**Related questions you might have:**\n${suggestions.map((s, i) => `${i + 1}. ${s}`).join('\n')}`
-        : '';
-      return directAnswer + contextHint + suggestionText;
+
+      // Generate proactive clarifying questions
+      const topic = detectTopicFromMessage(userMessage);
+      const proactiveQuestions = generateProactiveQuestions(userMessage, keywords);
+      const contextualFollowUp = generateContextualFollowUp(topic);
+
+      let response = directAnswer + contextHint;
+
+      // Add proactive questions if appropriate
+      if (proactiveQuestions.length > 0 && !lowerMessage.includes('yes') && !lowerMessage.includes('no')) {
+        response = enrichResponseWithQuestions(response, proactiveQuestions);
+      } else {
+        // Otherwise add contextual follow-up suggestions
+        const suggestions = suggestRelatedTopics(keywords);
+        const followUpText = contextualFollowUp.length > 0
+          ? `\n\n**Would it help if I explained:**\n${contextualFollowUp.slice(0, 3).map((s, i) => `${i + 1}. ${s}`).join('\n')}`
+          : suggestions.length > 0
+          ? `\n\n**Related questions you might have:**\n${suggestions.map((s, i) => `${i + 1}. ${s}`).join('\n')}`
+          : '';
+        response += followUpText;
+      }
+
+      return response;
     }
 
     // STEP 2: Try to infer from context clues (only if not a specific question)

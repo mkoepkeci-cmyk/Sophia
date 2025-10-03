@@ -9,14 +9,23 @@ Sophia is your friendly, professional assistant with a modern, clean interface f
 - **Profile Image**: Professional avatar with personality
 - **Outline Icons**: Clean, professional Lucide React icons throughout
 - **Professional Branding**: Purple-to-blue gradient header with consistent design
+- **Proactive Engagement**: Asks thoughtful clarifying questions to provide better answers
 
-### 🤖 Intelligent Chat Assistant
-- Natural language Q&A about the governance process
-- Enhanced search with fuzzy matching for typos and abbreviations
-- Context-aware responses that remember conversation history
-- Smart "I don't know" handling with helpful suggestions
-- Related topic suggestions after each answer
-- Clear chat functionality to start fresh
+### 🤖 Intelligent Chat Assistant with Proactive Questioning
+- **Natural Language Q&A**: Ask questions in plain English about the governance process
+- **Proactive Clarification**: Sophia asks 1-3 targeted questions to provide more relevant answers
+- **Context-Aware**: Remembers conversation history and provides personalized responses
+- **Fuzzy Matching**: Handles typos and abbreviations (e.g., "periscope" → "PeriSCOPE")
+- **Smart Suggestions**: Offers relevant follow-up questions based on the current topic
+- **Adaptive Responses**: Tailors questions to your situation rather than generic prompts
+- **Clear Chat**: Start fresh anytime with the clear chat button
+
+**Example Proactive Interactions:**
+- You: "Tell me about design"
+- Sophia: [Provides design overview] "**To help you better:** Which EHR system is your request for? *The design process differs between systems* • Epic | Cerner | Both"
+
+- You: "I need help with intake"
+- Sophia: [Explains intake] "**To help you better:** Are you submitting a new request, or tracking an existing one? • Submitting new | Tracking existing | Just learning the process"
 
 ### 📊 Multiple Views
 - **Chat Assistant**: Interactive Q&A interface with Sophia
