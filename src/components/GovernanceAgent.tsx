@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Send, Book, Users, GitBranch, HelpCircle } from 'lucide-react';
+import { Send, Book, Users, GitBranch, HelpCircle, Trash2 } from 'lucide-react';
 import { useGovernanceAgent } from '../hooks/useGovernanceAgent';
 
 export function GovernanceAgent() {
@@ -265,7 +265,17 @@ export function GovernanceAgent() {
               <p className="text-sm opacity-90">Your guide through the enhancement process</p>
             </div>
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-2 items-center">
+            {chatHistory.length > 0 && (
+              <button
+                onClick={clearChat}
+                className="flex items-center gap-2 px-3 py-1 text-sm font-medium text-white bg-white bg-opacity-20 hover:bg-opacity-30 rounded transition-colors"
+                title="Clear chat history"
+              >
+                <Trash2 size={16} />
+                Clear Chat
+              </button>
+            )}
             <select
               value={systemFilter}
               onChange={(e) => setSystemFilter(e.target.value)}
