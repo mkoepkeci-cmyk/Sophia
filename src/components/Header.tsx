@@ -33,18 +33,26 @@ export function Header({ selectedRole, onRoleChange, searchQuery, onSearchChange
         {/* Bottom Row: Search and Role Selector */}
         <div className="flex flex-col sm:flex-row gap-4">
           {/* Search Bar */}
-          <div className="flex-1 relative">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <Search size={20} className="text-white opacity-75" />
+          <div className="flex-1 flex gap-2">
+            <div className="flex-1 relative">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <Search size={20} className="text-white opacity-75" />
+              </div>
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => onSearchChange(e.target.value)}
+                onKeyDown={handleKeyDown}
+                placeholder="Search guide (e.g., 'who updates prioritization', 'how am I notified')"
+                className="w-full pl-10 pr-4 py-2 bg-white bg-opacity-20 border border-white border-opacity-30 rounded-lg text-white placeholder-white placeholder-opacity-75 focus:outline-none focus:ring-2 focus:ring-white focus:bg-opacity-30 transition-colors"
+              />
             </div>
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => onSearchChange(e.target.value)}
-              onKeyDown={handleKeyDown}
-              placeholder="Search guide (e.g., 'who updates prioritization', 'how am I notified')"
-              className="w-full pl-10 pr-4 py-2 bg-white bg-opacity-20 border border-white border-opacity-30 rounded-lg text-white placeholder-white placeholder-opacity-75 focus:outline-none focus:ring-2 focus:ring-white focus:bg-opacity-30 transition-colors"
-            />
+            <button
+              onClick={onSearchSubmit}
+              className="px-6 py-2 bg-white text-purple-600 font-semibold rounded-lg hover:bg-opacity-90 transition-colors focus:outline-none focus:ring-2 focus:ring-white"
+            >
+              Search
+            </button>
           </div>
 
           {/* Role Selector */}

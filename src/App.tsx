@@ -8,6 +8,7 @@ function App() {
   const [selectedRole, setSelectedRole] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedPhaseId, setSelectedPhaseId] = useState('intake');
+  const [searchResultMessage, setSearchResultMessage] = useState('');
 
   // Convert phases object to array and sort by order
   const phases = useMemo(() => {
@@ -27,7 +28,10 @@ function App() {
   // Search execution - called on Enter or button click
   const executeSearch = () => {
     const query = searchQuery.trim();
-    if (!query) return;
+    if (!query) {
+      setSearchResultMessage('');
+      return;
+    }
 
     const lowerQuery = query.toLowerCase();
 
@@ -37,6 +41,7 @@ function App() {
       if (phase.name.toLowerCase().includes(lowerQuery) ||
           phase.description.toLowerCase().includes(lowerQuery)) {
         setSelectedPhaseId(phase.id);
+        setSearchResultMessage(`Found in ${phase.name} phase`);
         return;
       }
 
@@ -44,6 +49,7 @@ function App() {
       for (const actions of Object.values(phase.actions)) {
         if (actions.some(action => action.toLowerCase().includes(lowerQuery))) {
           setSelectedPhaseId(phase.id);
+          setSearchResultMessage(`Found in ${phase.name} phase (Actions)`);
           return;
         }
       }
@@ -54,6 +60,7 @@ function App() {
         outcome.meaning.toLowerCase().includes(lowerQuery)
       )) {
         setSelectedPhaseId(phase.id);
+        setSearchResultMessage(`Found in ${phase.name} phase (Outcomes)`);
         return;
       }
 
@@ -63,6 +70,7 @@ function App() {
         resp.actions.some(action => action.toLowerCase().includes(lowerQuery))
       )) {
         setSelectedPhaseId(phase.id);
+        setSearchResultMessage(`Found in ${phase.name} phase (Responsibilities)`);
         return;
       }
 
@@ -72,9 +80,13 @@ function App() {
         item.solution.toLowerCase().includes(lowerQuery)
       )) {
         setSelectedPhaseId(phase.id);
+        setSearchResultMessage(`Found in ${phase.name} phase (Troubleshooting)`);
         return;
       }
     }
+
+    // No results found
+    setSearchResultMessage(`No results found for "${query}"`);
   };
 
   return (
@@ -90,8 +102,26 @@ function App() {
       <PhaseTimeline
         phases={phases}
         selectedPhaseId={selectedPhaseId}
-        onPhaseSelect={setSelectedPhaseId}
+        onPhaseSelect={(id) => {
+          setSelectedPhaseId(id);
+          setSearchResultMessage('');
+        }}
       />
+
+      {/* Search Result Banner */}
+      {searchResultMessage && (
+        <div className="bg-blue-50 border-b border-blue-200 px-4 py-3">
+          <div className="max-w-7xl mx-auto flex items-center justify-between">
+            <p className="text-blue-800 font-medium">{searchResultMessage}</p>
+            <button
+              onClick={() => setSearchResultMessage('')}
+              className="text-blue-600 hover:text-blue-800 font-semibold text-sm"
+            >
+              Clear
+            </button>
+          </div>
+        </div>
+      )}
 
       <main className="flex-1">
         <PhaseDashboard
