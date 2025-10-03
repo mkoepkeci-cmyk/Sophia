@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 import { supabase, GovernanceProcess, ProcessStep, UserProgress, ChatMessage } from '../lib/supabase';
+import { normalizeTerms, fuzzyMatch, calculateSimilarity } from '../utils/fuzzyMatch';
+import { extractKeywords, calculateRelevance, suggestRelatedTopics, knowledgeBase } from '../utils/keywordExtraction';
+import { buildContext, applyContext, isFollowUpQuestion, needsSystemContext, needsPhaseContext } from '../utils/conversationContext';
 
 const USER_ID_KEY = 'governance_agent_user_id';
 
@@ -555,7 +558,16 @@ export function useGovernanceAgent() {
   }
 
   async function generateResponse(userMessage: string): Promise<string> {
-    const lowerMessage = userMessage.toLowerCase();
+    // ENHANCED SEARCH: Normalize and enrich the query
+    const normalizedMessage = normalizeTerms(userMessage);
+    const lowerMessage = normalizedMessage.toLowerCase();
+
+    // Build conversation context
+    const context = buildContext(chatHistory);
+
+    // Extract keywords for relevance scoring
+    const keywords = extractKeywords(normalizedMessage);
+    const relevanceScore = calculateRelevance(normalizedMessage, keywords);
 
     if (!selectedProcess || processSteps.length === 0) {
       return "Hi! I'm Sophia, your EHR governance assistant. I'm still loading the process information. Please try again in a moment.";
@@ -565,20 +577,52 @@ export function useGovernanceAgent() {
       return `Hi! I'm Sophia. I'm here to help you navigate the ${selectedProcess.name}. Let me get your progress loaded first.`;
     }
 
+    // CONTEXT AWARENESS: Apply context for follow-up questions
+    let enrichedMessage = lowerMessage;
+    if (isFollowUpQuestion(userMessage) && context.lastTopic) {
+      enrichedMessage = applyContext(lowerMessage, context);
+    }
+
+    // CONTEXT HINTS: Add system or phase context if needed
+    let contextHint = '';
+    if (needsSystemContext(lowerMessage, context)) {
+      contextHint = `\n\n💡 *Based on our discussion about ${context.recentSystems[0]}, I'm providing ${context.recentSystems[0]}-specific guidance.*`;
+    } else if (needsPhaseContext(lowerMessage, context)) {
+      contextHint = `\n\n💡 *Continuing from our discussion about ${context.recentPhases[0]} phase.*`;
+    }
+
+    // FUZZY MATCHING: Try to match meeting names, roles, and statuses
+    const meetingMatch = fuzzyMatch(lowerMessage, knowledgeBase.meetings, 0.7);
+    const roleMatch = fuzzyMatch(lowerMessage, knowledgeBase.roles, 0.7);
+    const statusMatch = fuzzyMatch(lowerMessage, knowledgeBase.statuses, 0.65);
+
+    // If we found a fuzzy match, enhance the query
+    if (meetingMatch) {
+      enrichedMessage = enrichedMessage.replace(new RegExp(meetingMatch.match, 'gi'), meetingMatch.match);
+    }
+
     // STEP 1: Check if we can provide a direct answer first (unambiguous query with specific question)
-    const directAnswer = provideDirectAnswer(lowerMessage);
+    const directAnswer = provideDirectAnswer(enrichedMessage);
     if (directAnswer) {
       setClarificationAttempts(0); // Reset counter on successful answer
-      return directAnswer;
+      const suggestions = suggestRelatedTopics(keywords);
+      const suggestionText = suggestions.length > 0
+        ? `\n\n**Related questions you might have:**\n${suggestions.map((s, i) => `${i + 1}. ${s}`).join('\n')}`
+        : '';
+      return directAnswer + contextHint + suggestionText;
     }
 
     // STEP 2: Try to infer from context clues (only if not a specific question)
-    const inference = inferPhaseFromContext(lowerMessage);
+    const inference = inferPhaseFromContext(enrichedMessage);
     if (inference) {
-      const contextualResponse = generateContextualResponse(lowerMessage, inference);
+      const contextualResponse = generateContextualResponse(enrichedMessage, inference);
       if (contextualResponse) {
         setClarificationAttempts(prev => prev + 1);
-        return contextualResponse;
+        const suggestions = suggestRelatedTopics(keywords);
+        const suggestionText = suggestions.length > 0
+          ? `\n\n**You might also want to know:**\n${suggestions.map((s, i) => `${i + 1}. ${s}`).join('\n')}`
+          : '';
+        return contextualResponse + contextHint + suggestionText;
       }
     }
 
@@ -943,7 +987,53 @@ export function useGovernanceAgent() {
       return `**EHR Governance Process Overview:**\n\n**Full Governance Path** (Most requests):\n1. **Intake** - Draft documentation, get System Leader approval\n2. **Vetting** (PeriSCOPE) - CM PgM reviews for completeness\n3. **Prioritization** (SCOPE) - Effort scoring, ranked priority\n4. **Define** (Optional) - Clinical Service Line approval if needed\n5. **Design** - Technical design sessions (Cerner/Epic specific)\n6. **Develop** - IT builds + validates in non-prod\n7. **Deploy** - Release to prod + validate\n\n**Governance Templated Path** (Expedited):\n• Skips Vetting, Prioritization, Define\n• Goes: Intake → Design → Develop → Deploy\n• Eligible: Pharmacy requests, CSH Triage Guidelines (Cerner), EPSR list (Epic)\n\n**Key Meetings**:\n• PeriSCOPE = Vetting\n• SCOPE = Prioritization\n• Design Review Call = Cerner Design approval\n• Epic Refinement = Epic Design planning\n\nWhich phase do you want to know more about?`;
     }
 
-    return `I'm here to help you with the ${selectedProcess.name}.\n\n**You can ask me about**:\n• Any phase: "Tell me about Intake", "What's Vetting?", "How does Design work?"\n• Specific topics: "Who schedules design sessions?", "How do I select validators?"\n• Tools: "Tell me about SPW", "What's the DMND number?"\n• Paths: "What's governance templated?", "Show me the full process"\n• Details: "Required intake fields", "Status transitions", "Change communication"\n\n**Try the quick buttons** on the left for common questions!\n\nWhat would you like to know?`;
+    // FALLBACK: "I don't know" handling with helpful suggestions
+    const suggestions = suggestRelatedTopics(keywords);
+
+    // Check if we have any relevant keywords at all
+    if (relevanceScore < 1) {
+      // Very vague query - provide general help
+      return `I'm not quite sure what you're asking about. Could you be more specific?\n\n**I can help with**:\n• Any phase: "Tell me about Intake", "What's Vetting?", "How does Design work?"\n• Specific topics: "Who schedules design sessions?", "How do I select validators?"\n• Tools: "Tell me about SPW", "What's the DMND number?"\n• Paths: "What's governance templated?", "Show me the full process"\n• Details: "Required intake fields", "Status transitions", "Change communication"\n\n**Try the quick buttons** on the left for common questions!`;
+    }
+
+    // We have some keywords but couldn't match to a specific answer
+    let fallbackResponse = `I'm not sure I have specific information about that. `;
+
+    // Provide disambiguation based on what we detected
+    if (keywords.phases.length > 0) {
+      fallbackResponse += `I see you mentioned **${keywords.phases[0]}** phase. `;
+    }
+    if (keywords.meetings.length > 0) {
+      fallbackResponse += `I see you mentioned **${keywords.meetings[0]}** meeting. `;
+    }
+    if (keywords.statuses.length > 0) {
+      fallbackResponse += `I see you mentioned **${keywords.statuses[0]}** status. `;
+    }
+
+    fallbackResponse += `\n\nCould you clarify what you'd like to know? For example:\n`;
+
+    if (keywords.phases.length > 0) {
+      fallbackResponse += `• What happens during ${keywords.phases[0]} phase?\n`;
+      fallbackResponse += `• Who is responsible for ${keywords.phases[0]} tasks?\n`;
+      fallbackResponse += `• What are the status transitions in ${keywords.phases[0]}?\n`;
+    } else if (keywords.meetings.length > 0) {
+      fallbackResponse += `• What happens at ${keywords.meetings[0]}?\n`;
+      fallbackResponse += `• Who attends ${keywords.meetings[0]}?\n`;
+      fallbackResponse += `• How do I prepare for ${keywords.meetings[0]}?\n`;
+    } else if (keywords.roles.length > 0) {
+      fallbackResponse += `• What are the responsibilities of ${keywords.roles[0]}?\n`;
+      fallbackResponse += `• What phases does ${keywords.roles[0]} work in?\n`;
+      fallbackResponse += `• What decisions does ${keywords.roles[0]} make?\n`;
+    } else if (suggestions.length > 0) {
+      fallbackResponse += suggestions.map((s, i) => `${i + 1}. ${s}`).join('\n');
+    } else {
+      // Generic fallback
+      fallbackResponse += `• Ask about a specific phase (Intake, Vetting, Design, etc.)\n`;
+      fallbackResponse += `• Ask about meetings (PeriSCOPE, SCOPE, etc.)\n`;
+      fallbackResponse += `• Ask about roles and responsibilities\n`;
+    }
+
+    return fallbackResponse;
   }
 
   async function markStepComplete() {
