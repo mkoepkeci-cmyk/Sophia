@@ -2,7 +2,6 @@ import { useState, useMemo } from 'react';
 import { Header } from './components/Header';
 import { PhaseTimeline } from './components/PhaseTimeline';
 import { PhaseDashboard } from './components/PhaseDashboard';
-import { QuickActions } from './components/QuickActions';
 import { phasesData } from './data/phasesData';
 
 function App() {
@@ -20,11 +19,15 @@ function App() {
     return phases.find(p => p.id === selectedPhaseId) || phases[0];
   }, [phases, selectedPhaseId]);
 
-  // Search functionality
-  const handleSearch = (query: string) => {
+  // Search functionality - only update query, don't navigate on every keystroke
+  const handleSearchChange = (query: string) => {
     setSearchQuery(query);
+  };
 
-    if (!query.trim()) return;
+  // Search execution - called on Enter or button click
+  const executeSearch = () => {
+    const query = searchQuery.trim();
+    if (!query) return;
 
     const lowerQuery = query.toLowerCase();
 
@@ -80,7 +83,8 @@ function App() {
         selectedRole={selectedRole}
         onRoleChange={setSelectedRole}
         searchQuery={searchQuery}
-        onSearchChange={handleSearch}
+        onSearchChange={handleSearchChange}
+        onSearchSubmit={executeSearch}
       />
 
       <PhaseTimeline
@@ -89,16 +93,13 @@ function App() {
         onPhaseSelect={setSelectedPhaseId}
       />
 
-      <main className="flex-1 pb-20">
+      <main className="flex-1">
         <PhaseDashboard
           phase={selectedPhase}
           selectedRole={selectedRole}
         />
       </main>
 
-      <div className="fixed bottom-0 left-0 right-0">
-        <QuickActions />
-      </div>
     </div>
   );
 }

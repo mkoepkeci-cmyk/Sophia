@@ -1,40 +1,33 @@
-import { Search, ExternalLink } from 'lucide-react';
+import { Search } from 'lucide-react';
 
 interface HeaderProps {
   selectedRole: string;
   onRoleChange: (role: string) => void;
   searchQuery: string;
   onSearchChange: (query: string) => void;
+  onSearchSubmit: () => void;
 }
 
-export function Header({ selectedRole, onRoleChange, searchQuery, onSearchChange }: HeaderProps) {
+export function Header({ selectedRole, onRoleChange, searchQuery, onSearchChange, onSearchSubmit }: HeaderProps) {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      onSearchSubmit();
+    }
+  };
   return (
     <header className="bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         {/* Top Row: Branding */}
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-3">
-            <img
-              src="/Cheerful Woman with Voluminous Curls.png"
-              alt="Sophia"
-              className="w-12 h-12 rounded-full border-2 border-white shadow-lg"
-            />
-            <div>
-              <h1 className="text-2xl font-bold">EHR Process Navigator</h1>
-              <p className="text-sm opacity-90">Reference Guide - CommonSpirit Health</p>
-            </div>
+        <div className="flex items-center gap-3 mb-4">
+          <img
+            src="/Cheerful Woman with Voluminous Curls.png"
+            alt="Sophia"
+            className="w-12 h-12 rounded-full border-2 border-white shadow-lg"
+          />
+          <div>
+            <h1 className="text-2xl font-bold">EHR Process Navigator</h1>
+            <p className="text-sm opacity-90">Reference Guide - CommonSpirit Health</p>
           </div>
-
-          {/* External Link to SPW */}
-          <a
-            href="https://commonspirit.service-now.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-lg transition-colors text-sm font-medium"
-          >
-            <ExternalLink size={16} />
-            Open SPW
-          </a>
         </div>
 
         {/* Bottom Row: Search and Role Selector */}
@@ -48,6 +41,7 @@ export function Header({ selectedRole, onRoleChange, searchQuery, onSearchChange
               type="text"
               value={searchQuery}
               onChange={(e) => onSearchChange(e.target.value)}
+              onKeyDown={handleKeyDown}
               placeholder="Search guide (e.g., 'who updates prioritization', 'how am I notified')"
               className="w-full pl-10 pr-4 py-2 bg-white bg-opacity-20 border border-white border-opacity-30 rounded-lg text-white placeholder-white placeholder-opacity-75 focus:outline-none focus:ring-2 focus:ring-white focus:bg-opacity-30 transition-colors"
             />
