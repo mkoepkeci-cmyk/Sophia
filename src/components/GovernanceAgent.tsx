@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Send, Book, Users, GitBranch, HelpCircle, Trash2 } from 'lucide-react';
+import { Send, BookOpen, Users, GitBranch, Trash2, Calendar, ClipboardList } from 'lucide-react';
 import { useGovernanceAgent } from '../hooks/useGovernanceAgent';
 
 export function GovernanceAgent() {
@@ -39,12 +39,12 @@ export function GovernanceAgent() {
   };
 
   const quickActions = [
-    { text: "What happens at PeriSCOPE?", icon: "📅" },
-    { text: "What happens at SCOPE?", icon: "📅" },
-    { text: "My status is Further Review Needed", icon: "📊" },
-    { text: "Explain the Design phase", icon: "🔄" },
-    { text: "What's the difference between Epic and Cerner?", icon: "🔀" },
-    { text: "When does FETR open?", icon: "❓" }
+    { text: "What happens at PeriSCOPE?", icon: Calendar },
+    { text: "What happens at SCOPE?", icon: Calendar },
+    { text: "My status is Further Review Needed", icon: ClipboardList },
+    { text: "Explain the Design phase", icon: GitBranch },
+    { text: "What's the difference between Epic and Cerner?", icon: GitBranch },
+    { text: "When does FETR open?", icon: BookOpen }
   ];
 
   const phases = [
@@ -161,16 +161,19 @@ export function GovernanceAgent() {
     <div className="p-4 border-t border-gray-200 bg-gray-50">
       <p className="text-sm font-medium text-gray-700 mb-2">Quick Actions:</p>
       <div className="grid grid-cols-2 gap-2">
-        {quickActions.map((action, idx) => (
-          <button
-            key={idx}
-            onClick={() => handleQuickAction(action.text)}
-            className="text-left p-2 bg-white border border-gray-200 rounded hover:bg-blue-50 text-sm transition-colors"
-          >
-            <span className="mr-1">{action.icon}</span>
-            {action.text.length > 25 ? action.text.substring(0, 25) + '...' : action.text}
-          </button>
-        ))}
+        {quickActions.map((action, idx) => {
+          const IconComponent = action.icon;
+          return (
+            <button
+              key={idx}
+              onClick={() => handleQuickAction(action.text)}
+              className="text-left p-2 bg-white border border-gray-200 rounded hover:bg-blue-50 text-sm transition-colors flex items-start gap-2"
+            >
+              <IconComponent size={16} className="mt-0.5 flex-shrink-0 text-gray-600" />
+              <span className="flex-1">{action.text.length > 25 ? action.text.substring(0, 25) + '...' : action.text}</span>
+            </button>
+          );
+        })}
       </div>
     </div>
   );
@@ -259,10 +262,14 @@ export function GovernanceAgent() {
       <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white p-4 shadow-lg">
         <div className="flex items-center justify-between max-w-6xl mx-auto">
           <div className="flex items-center gap-3">
-            <HelpCircle size={32} />
+            <img
+              src="/Cheerful Woman with Voluminous Curls.png"
+              alt="Sophia"
+              className="w-12 h-12 rounded-full border-2 border-white shadow-lg"
+            />
             <div>
-              <h1 className="text-2xl font-bold">SPM Governance Assistant</h1>
-              <p className="text-sm opacity-90">Your guide through the enhancement process</p>
+              <h1 className="text-2xl font-bold">Sophia</h1>
+              <p className="text-sm opacity-90">Your SPM Governance Assistant</p>
             </div>
           </div>
           <div className="flex gap-2 items-center">
@@ -323,7 +330,7 @@ export function GovernanceAgent() {
                 activeView === 'meetings' ? 'bg-blue-50 border-l-4 border-blue-600 text-blue-600' : 'hover:bg-gray-50 text-gray-700'
               }`}
             >
-              <Book size={20} />
+              <Calendar size={20} />
               <span>Meeting Guide</span>
             </button>
 
@@ -349,8 +356,13 @@ export function GovernanceAgent() {
               <div className="flex-1 overflow-y-auto p-4 space-y-4">
                 {chatHistory.length === 0 ? (
                   <div className="flex flex-col items-center justify-center h-full text-center py-12">
+                    <img
+                      src="/Cheerful Woman with Voluminous Curls.png"
+                      alt="Sophia"
+                      className="w-32 h-32 rounded-full border-4 border-purple-200 shadow-xl mb-6"
+                    />
                     <h2 className="text-3xl font-bold text-purple-600 mb-4">
-                      Hi! I'm your SPM Governance Assistant 👋
+                      Hi! I'm Sophia, your SPM Governance Assistant
                     </h2>
                     <p className="text-lg text-gray-700 max-w-2xl mb-6">
                       Ask me anything about the enhancement request process:

@@ -1,8 +1,14 @@
-# SPM Governance Process Assistant
+# Sophia - SPM Governance Assistant
 
-An interactive chatbot assistant that guides users through the SPM governance process for enhancement requests. Built with React, TypeScript, Vite, and Supabase.
+Meet **Sophia**, your intelligent SPM Governance Assistant that guides users through the enhancement request process. Built with React, TypeScript, Vite, and Supabase.
 
 ## Features
+
+### 💬 Meet Sophia
+Sophia is your friendly, professional assistant with a modern, clean interface featuring:
+- **Profile Image**: Professional avatar with personality
+- **Outline Icons**: Clean, professional Lucide React icons throughout
+- **Professional Branding**: Purple-to-blue gradient header with consistent design
 
 ### 🤖 Intelligent Chat Assistant
 - Natural language Q&A about the governance process
@@ -10,9 +16,10 @@ An interactive chatbot assistant that guides users through the SPM governance pr
 - Context-aware responses that remember conversation history
 - Smart "I don't know" handling with helpful suggestions
 - Related topic suggestions after each answer
+- Clear chat functionality to start fresh
 
 ### 📊 Multiple Views
-- **Chat Assistant**: Interactive Q&A interface
+- **Chat Assistant**: Interactive Q&A interface with Sophia
 - **Process Overview**: Visual guide to all phases (Intake, Vetting, Define, Design, Develop & Deploy)
 - **Meeting Guide**: Details about all governance meetings (PeriSCOPE, SCOPE, etc.)
 - **Role Guide**: Responsibilities for each role (CI, Change Mgmt, IT Process Owner, IT Analyst)
