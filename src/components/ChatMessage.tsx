@@ -26,7 +26,7 @@ export function ChatMessage({ message }: ChatMessageProps) {
             ? 'bg-slate-700 text-white'
             : 'bg-white border border-slate-200 text-slate-800'
         }`}>
-          <div className="text-sm leading-relaxed whitespace-pre-wrap">{message.message}</div>
+          <div className={`text-sm leading-relaxed whitespace-pre-wrap ${!isUser ? 'font-semibold' : ''}`}>{message.message}</div>
         </div>
       </div>
     </div>
