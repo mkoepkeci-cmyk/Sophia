@@ -56,7 +56,6 @@ export function PhaseDashboard({ phase, selectedRole }: PhaseDashboardProps) {
           </div>
           <div>
             <h2 className="text-3xl font-bold text-gray-900">{phase.name}</h2>
-            <p className="text-gray-600 mt-1">{phase.description}</p>
           </div>
         </div>
       </div>
