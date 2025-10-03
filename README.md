@@ -1,159 +1,336 @@
-# Sophia - SPM Governance Assistant
+# EHR Process Navigator
 
-Meet **Sophia**, your intelligent SPM Governance Assistant that guides users through the enhancement request process. Built with React, TypeScript, Vite, and Supabase.
+A comprehensive **static reference guide** that helps CommonSpirit Health users navigate the complex EHR governance process. Built with React, TypeScript, Vite, and Tailwind CSS.
 
-## Features
+## 🎯 What This Application Does
 
-### 💬 Meet Sophia
-Sophia is your friendly, professional assistant with a modern, clean interface featuring:
-- **Profile Image**: Professional avatar with personality
-- **Outline Icons**: Clean, professional Lucide React icons throughout
-- **Professional Branding**: Purple-to-blue gradient header with consistent design
-- **Proactive Engagement**: Asks thoughtful clarifying questions to provide better answers
+The EHR Process Navigator answers critical questions users have at each phase:
 
-### 🤖 Intelligent Chat Assistant with Proactive Questioning
-- **Natural Language Q&A**: Ask questions in plain English about the governance process
-- **Proactive Clarification**: Sophia asks 1-3 targeted questions to provide more relevant answers
-- **Context-Aware**: Remembers conversation history and provides personalized responses
-- **Fuzzy Matching**: Handles typos and abbreviations (e.g., "periscope" → "PeriSCOPE")
-- **Smart Suggestions**: Offers relevant follow-up questions based on the current topic
-- **Adaptive Responses**: Tailors questions to your situation rather than generic prompts
-- **Clear Chat**: Start fresh anytime with the clear chat button
+- ❓ "How do I know when my request has been prioritized?"
+- ❓ "Who updates the ticket status?"
+- ❓ "What happens if my request is dismissed?"
+- ❓ "How am I notified that further review is needed?"
+- ❓ "What does this status mean?"
 
-**Example Proactive Interactions:**
-- You: "Tell me about design"
-- Sophia: [Provides design overview] "**To help you better:** Which EHR system is your request for? *The design process differs between systems* • Epic | Cerner | Both"
+### ✅ This App IS:
+- A **reference guide** for the EHR governance process
+- A tool to understand **who does what** and **when**
+- A way to learn **how you'll be notified** at each step
+- A **searchable knowledge base** of the entire process
 
-- You: "I need help with intake"
-- Sophia: [Explains intake] "**To help you better:** Are you submitting a new request, or tracking an existing one? • Submitting new | Tracking existing | Just learning the process"
+### ❌ This App IS NOT:
+- A status tracker (users check SPW for that)
+- Connected to live systems
+- A replacement for SPW
+- A notification system
 
-### 📊 Multiple Views
-- **Chat Assistant**: Interactive Q&A interface with Sophia
-- **Process Overview**: Visual guide to all phases (Intake, Vetting, Define, Design, Develop & Deploy)
-- **Meeting Guide**: Details about all governance meetings (PeriSCOPE, SCOPE, etc.)
-- **Role Guide**: Responsibilities for each role (CI, Change Mgmt, IT Process Owner, IT Analyst)
+---
 
-### 🎨 Phase-Based Color Coding
-- **Intake**: Pink/Magenta (#C71585)
-- **Vetting & Prioritization**: Blue (#4169E1)
-- **Define**: Purple (#800080)
-- **Design**: Orange (#FF8C00)
-- **Develop & Deploy**: Teal (#008B8B)
+## 🌟 Key Features
 
-### 🔍 Enhanced Search Capabilities
-- **Fuzzy Matching**: Handles typos (e.g., "periscope" → "PeriSCOPE")
-- **Abbreviation Expansion**: Recognizes "CI", "SCI", "CM PgM", "RFA"
-- **Keyword Extraction**: Identifies phases, meetings, roles, statuses
-- **Context Awareness**: Remembers recent conversation topics
-- **Follow-up Detection**: Understands "What about...", "And then..."
+### 🔍 Powerful Search
+- Search across all phases, actions, statuses, and roles
+- Real-time results that auto-navigate to relevant phase
+- Find answers in seconds
+
+### 🎭 Role-Based Filtering
+- Select your role (CI, CM PgM, IT, System Leader, Validator)
+- See only actions relevant to your role
+- Cleaner, more focused guidance
+
+### 📊 7-Phase Coverage
+1. **Intake** (Pink) - Request creation and internal review
+2. **Vetting** (Blue) - PeriSCOPE meeting review
+3. **Prioritization** (Orange) - SCOPE meeting prioritization
+4. **Define** (Purple) - Clinical Service Line approval
+5. **Design** (Indigo) - Design sessions and approvals
+6. **Build & Test** (Teal) - Development and validation
+7. **Deploy & Close** (Green) - Production deployment and close-out
+
+### 📑 4-Tab Dashboard
+Each phase includes:
+- **📋 Overview**: Action items, outcomes, meetings
+- **🔔 Notifications**: How you'll be notified at each step
+- **👥 Responsibilities**: Who does what (role-based)
+- **❓ Troubleshooting**: Common problems and solutions
+
+### 🎨 Visual Timeline
+- Sticky phase navigation
+- Click any phase to view details
+- Color-coded for easy recognition
+- Mobile-friendly horizontal scroll
 
 ### ⚡ Quick Actions
-- What happens at PeriSCOPE?
-- What happens at SCOPE?
-- My status is Further Review Needed
-- Explain the Design phase
-- What's the difference between Epic and Cerner?
-- When does FETR open?
+- External link to SPW
+- Download/Print guide
+- Contact help
+- Access resources
 
-## Example Questions
+---
 
-**Meeting Questions:**
-- "What happens at PeriSCOPE?"
-- "Who takes items to SCOPE?"
-- "Tell me about the Design Review Call"
+## 🚀 Getting Started
 
-**Phase Questions:**
-- "Walk me through the Design phase"
-- "What's the Intake process?"
-- "Explain Develop & Deploy"
+### Prerequisites
+- Node.js 18+
+- npm or yarn
 
-**Status Questions:**
-- "My status is Further Review Needed"
-- "What does Resources Needed mean?"
-- "When does FETR open?"
+### Installation
+```bash
+# Install dependencies
+npm install
 
-**Role Questions:**
-- "What does a Clinical Informaticist do?"
-- "Who is responsible for IT Analyst tasks?"
-- "Tell me about the Change Mgmt Program Manager"
+# Run development server
+npm run dev
 
-**System Differences:**
-- "What's the difference between Epic and Cerner?"
-- "How does Epic validation work?"
-- "Tell me about Cerner design process"
-
-## Tech Stack
-
-- **Frontend**: React 18 + TypeScript
-- **Build Tool**: Vite
-- **Styling**: Tailwind CSS
-- **Database**: Supabase (PostgreSQL)
-- **Icons**: Lucide React
-- **Deployment**: Static hosting ready
-
-## Search Enhancements
-
-### Fuzzy Matching
-Handles common typos and variations:
-- "periscope" / "peroscope" → "PeriSCOPE"
-- "CI" / "SCI" → "Clinical Informaticist"
-- "RFA" → "Ready for Agenda"
-- "CM PgM" → "Change Management Program Manager"
-
-### Context Awareness
-Remembers conversation history:
-```
-You: "Tell me about Epic design"
-Bot: [Epic design info]
-You: "What about scheduling?"
-Bot: "💡 Based on our discussion about Epic, I'm providing Epic-specific guidance."
+# Build for production
+npm run build
 ```
 
-### Smart Fallback
-When the bot doesn't know:
-- Detects keywords you mentioned
-- Suggests related clarifying questions
-- Provides general help menu for very vague queries
+### Tech Stack
+- **React 18** - UI framework
+- **TypeScript** - Type safety
+- **Vite** - Build tool
+- **Tailwind CSS** - Styling
+- **Lucide React** - Icons
 
-## Database Schema
+---
 
-The application uses Supabase with the following tables:
+## 📁 Project Structure
 
-- **governance_processes**: Main process definitions
-- **process_steps**: Individual steps within each process
-- **user_progress**: Track user progress through processes
-- **chat_history**: Conversation history for context awareness
-
-## Getting Started
-
-1. Clone the repository
-2. Install dependencies: `npm install`
-3. Set up environment variables (`.env`)
-4. Run migrations to set up database schema
-5. Start dev server: `npm run dev`
-6. Build for production: `npm run build`
-
-## Environment Variables
-
-Create a `.env` file:
 ```
-VITE_SUPABASE_URL=your_supabase_url
-VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+src/
+├── components/
+│   ├── Header.tsx              # Search bar, role selector
+│   ├── PhaseTimeline.tsx       # Sticky phase navigation
+│   ├── PhaseDashboard.tsx      # Main content (4 tabs)
+│   └── QuickActions.tsx        # Fixed bottom action bar
+├── data/
+│   └── phasesData.ts           # All 7 phases data
+└── App.tsx                      # Main application
 ```
 
-## Color Scheme
+---
 
-The interface uses phase-specific colors throughout:
-- **Header**: Purple to Blue gradient
-- **User Messages**: Blue (#4169E1)
-- **Bot Messages**: Gray background with phase-colored left borders
-- **Navigation**: Blue highlights (#4169E1)
-- **Phase Cards**: Color-coded left borders matching phase colors
+## 🎨 Design System
 
-## Future Enhancements
+### Phase Colors
+```
+Intake:          Pink (#db2777)
+Vetting:         Blue (#2563eb)
+Prioritization:  Orange (#f97316)
+Define:          Purple (#9333ea)
+Design:          Indigo (#4f46e5)
+Build & Test:    Teal (#0d9488)
+Deploy & Close:  Green (#16a34a)
+```
 
-- Export conversation history
-- Bookmark favorite answers
-- Search across all conversations
-- Advanced filtering by phase/role/system
-- Integration with actual SPM system for real-time status updates
+### Role Colors
+```
+Clinical Informaticist:  Blue (#2563eb)
+CM Program Manager:      Pink (#ec4899)
+IT/Applications:         Green (#16a34a)
+System Leader:           Gray (#374151)
+Validator:               Purple (#9333ea)
+```
+
+---
+
+## 📖 User Guide
+
+### Finding Information
+
+**By Search:**
+```
+Type: "who updates prioritization"
+→ Navigates to Prioritization phase, Responsibilities tab
+```
+
+**By Phase:**
+```
+Click: "Design" in timeline
+→ View Design phase with all tabs
+```
+
+**By Role:**
+```
+Select: "Clinical Informaticist"
+→ See only CI actions across all phases
+```
+
+### Understanding Notifications
+
+Each phase's **Notifications tab** explains:
+- 📧 When you'll receive emails
+- 🔄 How status changes in SPW
+- ⏭️ When next phase automatically opens
+- 💡 How to manually check progress in SPW
+
+### Troubleshooting Issues
+
+Each phase's **Troubleshooting tab** provides:
+- Common problems encountered
+- Step-by-step solutions
+- Who to contact for help
+
+---
+
+## 🎯 Example Use Cases
+
+### Use Case 1: "How do I know my request was prioritized?"
+```
+1. Search "how am I notified prioritization"
+2. Auto-navigate to Prioritization phase
+3. Click "Notifications" tab
+4. See: Email, Status Change, Manual Check options
+```
+
+### Use Case 2: "What does 'Further Review Needed' mean?"
+```
+1. Search "further review needed"
+2. View phase where it appears
+3. Click "Overview" tab
+4. See outcome card with meaning and what happens next
+```
+
+### Use Case 3: "I'm a CI - what do I do in Design?"
+```
+1. Select role: "Clinical Informaticist"
+2. Click "Design" phase
+3. Overview tab shows ONLY CI actions
+4. Clear, focused guidance
+```
+
+---
+
+## 📱 Responsive Design
+
+- **Desktop**: Full layout with all features
+- **Tablet**: Optimized for touch
+- **Mobile**: Horizontal scrolling timeline, stacked layout
+
+---
+
+## 🔄 Updating Content
+
+### To Add/Edit Phase Information
+
+Edit `src/data/phasesData.ts`:
+
+```typescript
+intake: {
+  // Add new action
+  actions: {
+    ci: [
+      'Existing action',
+      'NEW ACTION HERE'
+    ]
+  },
+
+  // Add new troubleshooting
+  troubleshooting: [
+    {
+      problem: 'New problem',
+      solution: 'How to solve',
+      contactRole: 'Who to contact'
+    }
+  ]
+}
+```
+
+Then rebuild:
+```bash
+npm run build
+```
+
+---
+
+## 📚 Documentation
+
+- **[Complete Implementation Guide](./PROCESS_NAVIGATOR_GUIDE.md)** - Comprehensive documentation
+- **[Branding Guide](./BRANDING_UPDATE.md)** - Sophia branding and design
+- **[Sophia Proactive Guide](./SOPHIA_PROACTIVE_GUIDE.md)** - AI chat capabilities (legacy)
+
+---
+
+## 🎓 Key Principles
+
+1. **Everything answers "How will I know?"** at each step
+2. **Role-based filtering** shows only relevant information
+3. **Search-first design** for quick answers
+4. **Static reference** - not connected to live systems
+5. **Mobile-friendly** responsive design
+
+---
+
+## 🆘 Support
+
+### For Users
+- Use the search bar to find answers quickly
+- Check the Troubleshooting tab for your current phase
+- Click "Contact Help" in Quick Actions
+
+### For Developers
+- Review [Implementation Guide](./PROCESS_NAVIGATOR_GUIDE.md)
+- Check component TypeScript interfaces
+- Test with `npm run dev`
+
+---
+
+## ✅ Features Checklist
+
+- [x] 7 complete phases (Intake through Deploy)
+- [x] 4-tab dashboard (Overview, Notifications, Responsibilities, Troubleshooting)
+- [x] Role-based filtering
+- [x] Comprehensive search
+- [x] Sticky phase timeline navigation
+- [x] External SPW link
+- [x] Mobile responsive design
+- [x] Professional Sophia branding
+- [x] Quick Actions bar
+- [x] Print/download capability
+
+---
+
+## 🚧 Future Enhancements
+
+- [ ] Sophia AI chat integration (components ready)
+- [ ] Interactive process map visualization
+- [ ] Video tutorial embeds
+- [ ] User feedback collection
+- [ ] Bookmark favorite sections
+- [ ] Print-optimized CSS
+
+---
+
+## 📊 Success Metrics
+
+Target outcomes:
+- ✅ 50% reduction in "how do I know?" support questions
+- ✅ < 30 seconds to find any answer
+- ✅ > 80% search success rate
+- ✅ > 4/5 user satisfaction rating
+
+---
+
+## 🙏 Credits
+
+**Built with:**
+- React + TypeScript + Vite
+- Tailwind CSS
+- Lucide React Icons
+- Sophia branding by CommonSpirit Health
+
+**Powered by:**
+- Comprehensive EHR governance knowledge base
+- User-centered design principles
+- Iterative feedback and refinement
+
+---
+
+## 📄 License
+
+This project is proprietary to CommonSpirit Health.
+
+---
+
+**Ready to navigate the EHR governance process with confidence!** 🎉
