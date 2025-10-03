@@ -67,7 +67,153 @@ export const phasesData: Record<string, Phase> = {
     name: 'Intake',
     order: 1,
     color: 'bg-pink-600',
-    description: 'Request creation and internal market review (Draft State)',
+    description: `## **PHASE 1: INTAKE**
+
+### **Before You Begin**
+**Q: What do I need before starting an Intake request?**
+A: Make sure you have:
+- Your problem statement and proposed solution documented
+- Benefit score calculated
+- Clinical service line identified (if applicable)
+- Stakeholder information
+- Access to Google Drive and SPM
+
+---
+
+### **STEP 1: Submit the Request in SPM**
+
+**Q: How do I create a request?**
+A: Go to EmployeeCentral > Technology > Electronic Health Record > EHR Change > Optimization Request. Complete the form and click **Submit** (NOT "Save as Draft").
+
+**Q: Who can submit an optimization request?**
+A: Only these roles can submit:
+- Informaticist
+- LIS
+- Rev Cycle Resource
+- Governance Liaison
+
+**Q: What information do I need for the Intake form?**
+A: Required fields:
+- Service Line: Clinical
+- EHR system: Cerner, Epic, System, or System with Meditech
+- Requesting Region
+- Governance Type: Full Governance or Governance Templated
+- Short Description (becomes the title)
+- Primary User Affected
+- Primary Clinical Informaticist
+- Care Setting: Acute, Ambulatory, or Both
+- Impacted Solutions
+- Intake Slide link
+- Google Drive link
+- Benefit Score
+
+**Q: What happens when I click Submit?**
+A: The system **automatically creates**:
+- A Parent Demand with a DMND number (e.g., DMND0000123)
+- An Intake Task with Status: **New**
+
+---
+
+### **STEP 2: Set Up Your Project Workspace**
+
+**Q: What folders do I need to create?**
+A: Create two folders:
+
+1. **In Request Folder Shared Drive** - name it with your title (e.g., "System Valuables Policy Update")
+   - Create 5 subfolders:
+     - 01_Intake
+     - 02_Design
+     - 03_Build_Test
+     - 04_GoLive
+     - 05_Closeout
+
+2. **[SCI/System CI Only]** In System Clinical Informatics > System Policies/Initiatives - name it with title and date (e.g., "System Valuables Policy Update March 2023")
+
+**Q: When do I update the folder name with DMND number?**
+A: After submission, update both folder names to: "DMND####### Title" (e.g., "DMND0000123 System Valuables Policy Update")
+
+---
+
+### **STEP 2B: SCI/System CI Workbook Setup**
+**[SCI/System CI Only]**
+
+**Q: What do I do with the SCI Workbook?**
+A: As the **System CI**:
+1. Create a copy of the SCI Workbook template
+2. Save it in **both locations**:
+   - System Clinical Informatics > System Policies/Initiatives folder (DMND####### Title folder)
+   - **Request Folder Shared Drive** (DMND####### Title folder) - so all team members can access it
+
+---
+
+### **STEP 3: Create Intake Documentation**
+
+**Q: What are Intake Slides and who creates them?**
+A: The **Requesting Clinical Informaticist** creates Intake Slides from the template. This is a Google Slides presentation that summarizes:
+- Request overview
+- Clinical need/problem
+- Proposed solution
+- Benefit score
+- Impact assessment
+- Timeline estimate
+
+Save these in the 01_Intake folder and link to them in the Intake form.
+
+**Q: [SCI/System CI Only] Who do I partner with to gather intake details?**
+A: The **System CI** works with the **System Leader** to obtain information and complete the Intake Form. Document your discussions in the Intake Questions tab of the SCI Workbook.
+
+---
+
+### **STEP 4: Internal Review & Approval**
+
+**Q: Who reviews the Intake task?**
+A: The **System Informatics Leader** reviews the Draft Request for completeness and business alignment.
+
+**Q: What happens during the review?**
+A: The System Leader may:
+- Request clarifications or additional information
+- Approve the request to move forward
+- Ask you to update Intake Slides if needed
+
+**Q: What do I do during Market/System Internal Review?**
+A: Update the Status to **Approved** when ready to move forward. This is the internal review by your market/region/system informatics team.
+
+**Q: Who updates Intake status to Approved?**
+A: The **Requesting Clinical Informaticist** (you) updates to Approved after internal market review.
+
+**Q: Where do I add notes about internal approval discussions?**
+A: Add notes in the **Feedback Comments** section to track internal approval discussions.
+
+---
+
+### **What Happens Automatically After Approval**
+
+**Q: What happens when Status changes to Approved?**
+A: **Automatically**:
+- Intake Task closes (Complete)
+- Vetting Task opens with Status: New
+
+**Q: What if we need more information during Intake?**
+A: If Status is "Further Review Needed" from any later phase, it always moves the ticket back to Intake for review.
+
+---
+
+### **Tracking Your Request**
+
+**Q: How do I track my request?**
+A: In Strategic Planning Workspace (SPW):
+1. Go to IT Portal > Workspaces > Strategic Planning Workspace
+2. Search for your DMND number
+3. Check the Intake list
+
+**Q: How do I access Strategic Planning Workspace?**
+A: IT Portal > Workspaces tab > Strategic Planning Workspace. Click the star icon to add to Favorites.
+
+**Q: How do I view EHR Task Details?**
+A: When opening a Demand or Demand task for the first time:
+1. Click the three dots to the left of the Demand Task
+2. Scroll down
+3. Select **EHR** under View`,
 
     actions: {
       ci: [
