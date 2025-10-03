@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Bell, Users, AlertCircle, ClipboardList, CheckCircle, Mail, RefreshCw, AlertTriangle, XCircle } from 'lucide-react';
 import { Phase } from '../data/phasesData';
+import { FormattedOverview } from './FormattedOverview';
 
 interface PhaseDashboardProps {
   phase: Phase;
@@ -87,81 +88,7 @@ export function PhaseDashboard({ phase, selectedRole }: PhaseDashboardProps) {
       {/* Tab Content */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
         {activeTab === 'overview' && (
-          <div className="space-y-6">
-            {/* Action Items */}
-            <div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <CheckCircle className="text-green-600" size={24} />
-                Action Items for This Phase
-              </h3>
-              {selectedRole !== 'all' && (
-                <p className="text-sm text-gray-600 mb-4 bg-blue-50 border border-blue-200 rounded p-3">
-                  Showing actions for: <span className="font-semibold">{selectedRole === 'ci' ? 'Clinical Informaticist' : selectedRole === 'cmpgm' ? 'CM Program Manager' : selectedRole === 'it' ? 'IT / Applications Engineer' : selectedRole === 'systemLeader' ? 'System Leader' : 'Validator'}</span>
-                </p>
-              )}
-              <ul className="space-y-3">
-                {getFilteredActions().map((item, index) => (
-                  <li key={index} className="flex gap-3 items-start">
-                    <span className="text-purple-600 font-bold flex-shrink-0 mt-1">→</span>
-                    <span className="text-gray-700">{item.action}</span>
-                  </li>
-                ))}
-              </ul>
-              {getFilteredActions().length === 0 && (
-                <p className="text-gray-500 italic">No specific actions for the selected role in this phase.</p>
-              )}
-            </div>
-
-            {/* Possible Outcomes */}
-            {phase.outcomes.length > 0 && (
-              <div className="border-t border-gray-200 pt-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">
-                  Possible Outcomes
-                </h3>
-                <div className="grid gap-4">
-                  {phase.outcomes.map((outcome, index) => (
-                    <div
-                      key={index}
-                      className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow"
-                    >
-                      <div className="flex items-start gap-3">
-                        <div className="flex-shrink-0 mt-1">
-                          {outcomeIcons[outcome.icon] || <span className="text-2xl">{outcome.icon}</span>}
-                        </div>
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2 mb-2">
-                            <span className="font-bold text-gray-900">Status:</span>
-                            <span className={`font-semibold ${outcome.color}`}>"{outcome.status}"</span>
-                          </div>
-                          <p className="text-gray-700 mb-2">
-                            <span className="font-semibold">Meaning:</span> {outcome.meaning}
-                          </p>
-                          <p className="text-gray-600 text-sm">
-                            <span className="font-semibold">What happens:</span> {outcome.whatHappens}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Related Meetings */}
-            {phase.meetings.length > 0 && (
-              <div className="border-t border-gray-200 pt-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Related Meetings</h3>
-                <ul className="space-y-2">
-                  {phase.meetings.map((meeting, index) => (
-                    <li key={index} className="flex items-center gap-2 text-gray-700">
-                      <span className="w-2 h-2 bg-purple-600 rounded-full"></span>
-                      {meeting}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
+          <FormattedOverview content={phase.description} />
         )}
 
         {activeTab === 'notifications' && (
