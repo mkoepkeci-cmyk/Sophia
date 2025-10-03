@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Send, Loader2, FileText, Trash2 } from 'lucide-react';
+import { Send, Loader2, FileText, Trash2, Menu, X, BookOpen, Calendar, ListChecks, User, GitCompare } from 'lucide-react';
 import { useGovernanceAgent } from '../hooks/useGovernanceAgent';
 import { ChatMessage } from './ChatMessage';
 
@@ -14,6 +14,7 @@ export function GovernanceAgent() {
 
   const [inputMessage, setInputMessage] = useState('');
   const [showWelcome, setShowWelcome] = useState(true);
+  const [showSidebar, setShowSidebar] = useState(false);
   const chatEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -41,12 +42,72 @@ export function GovernanceAgent() {
 
   const handleClearChat = async () => {
     await clearChat();
+    setShowWelcome(true);
   };
 
+  const quickActions = [
+    { icon: BookOpen, label: 'Process Overview', query: 'Show me the full process overview' },
+    { icon: Calendar, label: 'Meeting Guide', query: 'Tell me about all the governance meetings' },
+    { icon: ListChecks, label: 'Status Lookup', query: 'Help me understand status updates' },
+    { icon: User, label: 'My Role', query: 'What are the responsibilities for Clinical Informaticists?' },
+    { icon: GitCompare, label: 'Epic vs Cerner', query: 'What are the differences between Epic and Cerner workflows?' },
+  ];
+
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-5xl mx-auto px-4 py-8">
+    <div className="min-h-screen bg-gray-50 flex">
+      {/* Sidebar */}
+      <div className={`fixed lg:static inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 transform transition-transform duration-300 ease-in-out ${
+        showSidebar ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+      }`}>
+        <div className="h-full flex flex-col">
+          <div className="p-4 border-b border-slate-200 flex items-center justify-between">
+            <h2 className="font-bold text-slate-800">Quick Actions</h2>
+            <button
+              onClick={() => setShowSidebar(false)}
+              className="lg:hidden p-1 hover:bg-slate-100 rounded"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+          <div className="flex-1 overflow-y-auto p-3">
+            <div className="space-y-2">
+              {quickActions.map((action, index) => {
+                const Icon = action.icon;
+                return (
+                  <button
+                    key={index}
+                    onClick={() => {
+                      handleQuickAction(action.query);
+                      setShowSidebar(false);
+                    }}
+                    className="w-full flex items-center gap-3 px-3 py-2.5 text-left text-sm font-medium text-slate-700 hover:bg-slate-100 rounded-lg transition-colors"
+                  >
+                    <Icon className="w-5 h-5 text-[#A7226E]" />
+                    {action.label}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Overlay for mobile */}
+      {showSidebar && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+          onClick={() => setShowSidebar(false)}
+        />
+      )}
+
+      <div className="flex-1 max-w-5xl mx-auto px-4 py-8 w-full">
         <div className="mb-6 flex items-center justify-between">
+          <button
+            onClick={() => setShowSidebar(true)}
+            className="lg:hidden mr-3 p-2 hover:bg-white rounded-lg transition-colors"
+          >
+            <Menu className="w-6 h-6 text-slate-600" />
+          </button>
           <div className="flex items-center gap-3">
             <div className="w-16 h-16 rounded-full shadow-md overflow-hidden flex-shrink-0">
               <img
@@ -85,8 +146,7 @@ export function GovernanceAgent() {
                       Hi, I'm Sophia!
                     </h2>
                     <p className="text-lg text-slate-600 max-w-md mb-8">
-                      Your personal EHR governance assistant. I'm here to guide you through the {selectedProcess?.name || 'process'} step by step.
-                      Ask me about your current phase, what's next, or any questions about the governance process.
+                      Ask me anything about the enhancement request process - what happens at meetings, who's responsible for tasks, what status updates mean, or how to navigate any phase.
                     </p>
                     <div className="flex flex-wrap gap-2 justify-center max-w-lg">
                       <button
