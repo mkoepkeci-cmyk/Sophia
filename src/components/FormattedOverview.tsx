@@ -1,4 +1,5 @@
-import { CheckCircle, HelpCircle } from 'lucide-react';
+import { useState } from 'react';
+import { CheckCircle, HelpCircle, ChevronDown, ChevronRight } from 'lucide-react';
 
 interface FormattedOverviewProps {
   content: string;
@@ -67,6 +68,19 @@ function parseContent(content: string): Section[] {
 
 export function FormattedOverview({ content }: FormattedOverviewProps) {
   const sections = parseContent(content);
+  const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
+
+  const toggleItem = (key: string) => {
+    setExpandedItems(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(key)) {
+        newSet.delete(key);
+      } else {
+        newSet.add(key);
+      }
+      return newSet;
+    });
+  };
 
   return (
     <div className="space-y-8">
@@ -77,15 +91,31 @@ export function FormattedOverview({ content }: FormattedOverviewProps) {
             <h3 className="text-xl font-bold text-gray-900">{section.title}</h3>
           </div>
 
-          <div className="space-y-6 ml-2">
-            {section.items.map((item, itemIdx) => (
-              <div key={itemIdx} className="bg-gradient-to-r from-gray-50 to-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
-                <div className="flex items-start gap-3 mb-3">
-                  <HelpCircle className="text-blue-500 flex-shrink-0 mt-1" size={20} />
-                  <h4 className="text-base font-semibold text-gray-900">{item.question}</h4>
-                </div>
+          <div className="space-y-3 ml-2">
+            {section.items.map((item, itemIdx) => {
+              const itemKey = `${sectionIdx}-${itemIdx}`;
+              const isExpanded = expandedItems.has(itemKey);
 
-                <div className="ml-8">
+              return (
+                <div key={itemIdx} className="bg-gradient-to-r from-gray-50 to-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition-shadow">
+                  <button
+                    onClick={() => toggleItem(itemKey)}
+                    className="w-full flex items-start gap-3 p-5 text-left hover:bg-gray-100 transition-colors"
+                  >
+                    <HelpCircle className="text-blue-500 flex-shrink-0 mt-1" size={20} />
+                    <h4 className="text-base font-semibold text-gray-900 flex-1">{item.question}</h4>
+                    {isExpanded ? (
+                      <ChevronDown className="text-gray-400 flex-shrink-0 mt-1" size={20} />
+                    ) : (
+                      <ChevronRight className="text-gray-400 flex-shrink-0 mt-1" size={20} />
+                    )}
+                  </button>
+
+                  <div
+                    className={`ml-8 mr-5 overflow-hidden transition-all duration-300 ease-in-out ${
+                      isExpanded ? 'max-h-[2000px] opacity-100 pb-5' : 'max-h-0 opacity-0'
+                    }`}
+                  >
                   {item.answer && (
                     <p
                       className="text-gray-700 leading-relaxed mb-2"
@@ -149,9 +179,10 @@ export function FormattedOverview({ content }: FormattedOverviewProps) {
                       })}
                     </ul>
                   )}
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       ))}
