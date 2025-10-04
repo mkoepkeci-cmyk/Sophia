@@ -73,7 +73,6 @@ export const phasesData: Record<string, Phase> = {
 **Q: What do I need before starting an Intake request?**
 A: Make sure you have:
 - Your problem statement and proposed solution documented
-- Benefit score calculated
 - Clinical service line identified (if applicable)
 - Stakeholder information
 - Access to Google Drive and SPM
@@ -117,32 +116,18 @@ A: The system **automatically creates**:
 ### **STEP 2: Set Up Your Project Workspace**
 
 **Q: What folders do I need to create?**
-A: Create two folders:
-
-1. **In Request Folder Shared Drive** - name it with your title (e.g., "System Valuables Policy Update")
-   - Create 5 subfolders:
-     - 01_Intake
-     - 02_Design
-     - 03_Build_Test
-     - 04_GoLive
-     - 05_Closeout
-
-2. **[SCI/System CI Only]** In System Clinical Informatics > System Policies/Initiatives - name it with title and date (e.g., "System Valuables Policy Update March 2023")
+A: In Request Folder Shared Drive - name it with your title (e.g., "System Valuables Policy Update")
+- Create 5 subfolders:
+  - 01_Intake
+  - 02_Design
+  - 03_Build_Test
+  - 04_GoLive
+  - 05_Closeout
+- [SCI/System CI Only] Add the request folder in System Clinical Informatics > System Policies/Initiatives - name it with title and date (e.g., "System Valuables Policy Update March 2023")
+- [SCI/System CI Only] Create a copy of the SCI Workbook template and save it in **both locations**: System Clinical Informatics > System Policies/Initiatives folder (DMND####### Title folder) and Request Folder Shared Drive (DMND####### Title folder) - so all team members can access it
 
 **Q: When do I update the folder name with DMND number?**
 A: After submission, update both folder names to: "DMND####### Title" (e.g., "DMND0000123 System Valuables Policy Update")
-
----
-
-### **STEP 2B: SCI/System CI Workbook Setup**
-**[SCI/System CI Only]**
-
-**Q: What do I do with the SCI Workbook?**
-A: As the **System CI**:
-1. Create a copy of the SCI Workbook template
-2. Save it in **both locations**:
-   - System Clinical Informatics > System Policies/Initiatives folder (DMND####### Title folder)
-   - **Request Folder Shared Drive** (DMND####### Title folder) - so all team members can access it
 
 ---
 
