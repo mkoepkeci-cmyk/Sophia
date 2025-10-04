@@ -1834,7 +1834,194 @@ A: SCI/DCIs/MCIs/Instructional Designers create education for EHR changes (tip s
     name: 'Deploy & Close',
     order: 7,
     color: 'bg-green-600',
-    description: 'Production deployment, communication, and request close-out',
+    description: `## **PHASE 6: DEPLOY & CLOSE**
+
+**Q: What happens during the Deploy & Close phase?**
+A: After production validation is complete, the enhancement goes live to end users. This phase includes:
+- End-user communication and training
+- Go-live support
+- Post-deployment monitoring
+- Issue tracking and resolution
+- Close-out documentation
+- Final metrics and lessons learned
+
+**Q: When does Deploy & Close start?**
+A: After Status = **Validated Successfully Prod** (all production validation is complete)
+
+---
+
+## **STEP 1: End-User Communication & Training**
+
+**Q: What communication do I need to create?**
+A: As the **Requesting Clinical Informaticist**, create and distribute end-user communication about the change, including:
+- What changed in the EHR
+- When the change goes live
+- How it impacts their workflow
+- Who to contact with questions
+
+**Q: Who needs to be informed during Deploy?**
+A: Communicate with:
+- **Clinical/Operational leaders** - About practice changes
+- **Regional Clinical Informatics leaders** - About EHR implementation
+- **IT Leaders** - About build and support needs
+- **Peers** - System Clinical Informaticists working on similar initiatives
+- **End users** - Before go-live about changes
+- **System policy team** (if policy-related): system-policysupport@commonspirit.org
+
+**Q: How do I communicate system-wide?**
+A:
+- **Quarterly Informatics Insider Webinar** - for broad announcements
+- Coordinate with SCI leadership for alternative methods if webinar timing doesn't work
+
+**Q: When should I communicate?**
+A:
+- **Before go-live**: Confirm changes are coming and go-live date
+- **At go-live**: Confirm changes are live
+- **Post go-live**: Gather feedback, address issues
+
+---
+
+## **STEP 2: Go-Live Support**
+
+**Q: What go-live support do I need to coordinate?**
+A: As the **Requesting Clinical Informaticist**:
+- Coordinate go-live support if needed (at-the-elbow support, super users, help desk briefing)
+- Be available to answer questions on go-live day
+- Work with regional teams to provide coverage
+- Ensure escalation paths are clear
+
+**Q: [IT Only] What is my role during go-live?**
+A: As **IT**:
+- Monitor production stability
+- Be available for technical issues
+- Support any post-deployment technical problems
+- Escalate critical issues as needed
+
+---
+
+## **STEP 3: Post-Deployment Monitoring**
+
+**Q: What do I monitor after deployment?**
+A: As the **Requesting Clinical Informaticist**:
+- Monitor for issues post-deployment
+- Track user questions and feedback
+- Identify any unexpected behaviors
+- Document issues and resolutions
+- Coordinate with IT on any technical problems
+
+**Q: [IT Only] What do I monitor after deployment?**
+A: As **IT**:
+- Monitor production stability
+- Track system performance
+- Support any post-deployment issues
+- Document technical issues and resolutions
+
+**Q: How long should I monitor post-deployment?**
+A: Typically monitor closely for:
+- **First 24-48 hours**: Intensive monitoring
+- **First 1-2 weeks**: Active monitoring and issue resolution
+- **First month**: Periodic check-ins and metric tracking
+
+---
+
+## **STEP 4: Issue Resolution**
+
+**Q: What if there's a production issue after go-live?**
+A: Log an incident ticket through normal IT support channels. This is separate from the governance process.
+
+**Q: Who supports post-deployment issues?**
+A:
+- **Technical issues**: IT supports and resolves
+- **Workflow/training issues**: Requesting CI and regional informatics support
+- **Critical issues**: Escalate through established channels
+
+---
+
+## **STEP 5: Close-Out Documentation**
+
+**Q: What close-out documentation do I need to complete?**
+A: As the **Requesting Clinical Informaticist**:
+- Complete close-out documentation in the Feature/Demand
+- Update final metrics (actual vs. expected outcomes)
+- Document lessons learned
+- Update the SCI Workbook with final status
+- Archive all documentation in Google Drive
+
+**Q: [IT Only] What technical close-out do I need to complete?**
+A: As **IT**:
+- Complete technical close-out documentation
+- Document final build specifications
+- Archive technical documentation
+- Update any technical knowledge bases
+
+**Q: What goes in lessons learned?**
+A: Document:
+- What went well
+- What could be improved
+- Unexpected challenges and how they were resolved
+- Recommendations for similar future projects
+- Actual timeline vs. estimated timeline
+
+---
+
+## **STEP 6: Close the Request**
+
+**Q: When can I close the request?**
+A: As the **Requesting Clinical Informaticist**, close the request when:
+- Production validation is complete
+- End-user communication is distributed
+- Go-live support is complete
+- Post-deployment monitoring period is complete
+- All issues are resolved or escalated
+- Close-out documentation is complete
+- Final metrics and lessons learned are documented
+
+**Q: How do I close the request?**
+A: Update the request status to indicate all activities are complete and close the Feature/Demand in SPW.
+
+**Q: What happens after the request is closed?**
+A: The EHR enhancement is fully implemented and the governance process is complete. The Feature/Demand remains in the system for historical tracking and reference.
+
+---
+
+## **SUMMARY: WHO DOES WHAT IN DEPLOY & CLOSE**
+
+### **Requesting Clinical Informaticist**
+- Create and distribute end-user communication
+- Coordinate go-live support
+- Monitor for issues post-deployment
+- Complete close-out documentation
+- Update final metrics and lessons learned
+- Close request when all activities complete
+
+### **IT**
+- Monitor production stability
+- Support any post-deployment issues
+- Complete technical close-out documentation
+
+### **Regional Informatics Teams**
+- Support go-live activities
+- Provide local end-user support
+- Escalate issues to Requesting CI or IT
+
+---
+
+## **COMMUNICATION TEMPLATES & RESOURCES**
+
+**Q: Are there templates for communication?**
+A: Yes, use Communication Templates as guides for:
+- Before go-live communication
+- During go-live updates
+- After go-live follow-up
+
+**Q: Where can I find additional documentation?**
+A:
+- System Initiative Process Guidebook
+- Cerner Governance Process Steps
+- Epic Governance Process Steps
+- CI/MI Guide to Draft Intake Questions
+- Regional EHR Resource Requests templates
+- Communication Templates`,
 
     actions: {
       ci: [
