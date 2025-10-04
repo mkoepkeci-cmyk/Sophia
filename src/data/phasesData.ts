@@ -69,7 +69,6 @@ export const phasesData: Record<string, Phase> = {
     color: 'bg-pink-600',
     description: `## **PHASE 1: INTAKE**
 
-### **Before You Begin**
 **Q: What do I need before starting an Intake request?**
 A: Make sure you have:
 - Your problem statement and proposed solution documented
@@ -79,7 +78,7 @@ A: Make sure you have:
 
 ---
 
-### **STEP 1: Submit the Request in SPM**
+## **STEP 1: Submit the Request in SPM**
 
 **Q: How do I create a request?**
 A: Go to EmployeeCentral > Technology > Electronic Health Record > EHR Change > Optimization Request. Complete the form and click **Submit** (NOT "Save as Draft").
@@ -113,7 +112,7 @@ A: The system **automatically creates**:
 
 ---
 
-### **STEP 2: Set Up Your Project Workspace**
+## **STEP 2: Set Up Your Project Workspace**
 
 **Q: What folders do I need to create?**
 A: In Request Folder Shared Drive - name it with your title (e.g., "System Valuables Policy Update")
@@ -131,7 +130,7 @@ A: After submission, update both folder names to: "DMND####### Title" (e.g., "DM
 
 ---
 
-### **STEP 3: Create Intake Documentation**
+## **STEP 3: Create Intake Documentation**
 
 **Q: What are Intake Slides and who creates them?**
 A: The **Requesting Clinical Informaticist** creates Intake Slides from the template. This is a Google Slides presentation that summarizes:
@@ -149,7 +148,7 @@ A: The **System CI** works with the **System Leader** to obtain information and 
 
 ---
 
-### **STEP 4: Internal Review & Approval**
+## **STEP 4: Internal Review & Approval**
 
 **Q: Who reviews the Intake task?**
 A: The **System Informatics Leader** reviews the Draft Request for completeness and business alignment.
@@ -171,7 +170,7 @@ A: Add notes in the **Feedback Comments** section to track internal approval dis
 
 ---
 
-### **What Happens Automatically After Approval**
+## **What Happens Automatically After Approval**
 
 **Q: What happens when Status changes to Approved?**
 A: **Automatically**:
@@ -183,7 +182,7 @@ A: If Status is "Further Review Needed" from any later phase, it always moves th
 
 ---
 
-### **Tracking Your Request**
+## **Tracking Your Request**
 
 **Q: How do I track my request?**
 A: In Strategic Planning Workspace (SPW):
@@ -308,8 +307,6 @@ A: When opening a Demand or Demand task for the first time:
     color: 'bg-blue-600',
     description: `## **PHASE 2: VETTING & PRIORITIZATION**
 
-### **VETTING PROCESS**
-
 **Q: What is Vetting?**
 A: The Vetting task is used during the **PeriSCOPE Meeting** to review requests for completeness and determine if they should move to prioritization. The CM PgM reviews all attached documentation and updates ticket status.
 
@@ -321,7 +318,7 @@ A: **PeriSCOPE Meeting**
 
 ---
 
-### **STEP 1: Prepare for PeriSCOPE**
+## **STEP 1: Prepare for PeriSCOPE**
 
 **Q: What do I do when my request enters Vetting?**
 A: As the **Requesting Clinical Informaticist**:
@@ -340,7 +337,7 @@ A: The **CM PgM**:
 
 ---
 
-### **STEP 2: PeriSCOPE Meeting & Decision**
+## **STEP 2: PeriSCOPE Meeting & Decision**
 
 **Q: [CM PgM Only] What happens at the PeriSCOPE meeting?**
 A: The **CM PgM**:
@@ -354,7 +351,7 @@ A: Set **Clinical Sponsorship Required = Yes** during Vetting if the request req
 
 ---
 
-### **STEP 3: Post-PeriSCOPE Actions**
+## **STEP 3: Post-PeriSCOPE Actions**
 
 **Q: [CM PgM Only] How do I update the status after PeriSCOPE?**
 A: The **CM PgM** updates status based on PeriSCOPE decision:
@@ -379,7 +376,7 @@ A: As the **Requesting Clinical Informaticist**:
 
 ---
 
-### **What Happens Automatically After Vetting**
+## **What Happens Automatically After Vetting**
 
 **Q: When does Vetting close?**
 A: When CM PgM updates Status to **Ready for Prioritization**, Vetting Task closes and **automatically opens**:
@@ -391,9 +388,9 @@ A: Yes, if "Clinical Sponsorship Required" is set to **Yes** during Vetting, a D
 
 ---
 
-### **PRIORITIZATION PROCESS**
+## **PRIORITIZATION PROCESS**
 
-### **STEP 1: Effort Scoring**
+## **STEP 1: Effort Scoring**
 
 **Q: What is Effort Scoring?**
 A: A meeting where **System Informaticists and IT** complete effort estimates for the request.
@@ -409,7 +406,7 @@ A: **SCOPE Meeting**
 
 ---
 
-### **STEP 2: Prepare for SCOPE**
+## **STEP 2: Prepare for SCOPE**
 
 **Q: [CM PgM Only] How do I prepare for SCOPE?**
 A: The **CM PgM**:
@@ -447,7 +444,7 @@ A: Possible statuses are:
 
 ---
 
-### **What Happens Automatically After Prioritization**
+## **What Happens Automatically After Prioritization**
 
 **Q: When does Prioritization close?**
 A: When CM PgM updates Status to **Ready for Design**, Prioritization closes and **automatically opens**:
@@ -619,7 +616,7 @@ A: Not typically - the **CM PgM** presents your prioritization information at SC
 
 ---
 
-### **STEP 3: SCOPE Meeting & Decision**
+## **STEP 3: SCOPE Meeting & Decision**
 
 **Q: What does SCOPE decide?**
 A: SCOPE determines:

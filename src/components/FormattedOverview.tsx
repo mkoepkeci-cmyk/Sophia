@@ -68,7 +68,20 @@ function parseContent(content: string): Section[] {
 
 export function FormattedOverview({ content }: FormattedOverviewProps) {
   const sections = parseContent(content);
+  const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set());
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
+
+  const toggleSection = (key: string) => {
+    setExpandedSections(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(key)) {
+        newSet.delete(key);
+      } else {
+        newSet.add(key);
+      }
+      return newSet;
+    });
+  };
 
   const toggleItem = (key: string) => {
     setExpandedItems(prev => {
@@ -84,14 +97,28 @@ export function FormattedOverview({ content }: FormattedOverviewProps) {
 
   return (
     <div className="space-y-8">
-      {sections.map((section, sectionIdx) => (
-        <div key={sectionIdx} className="space-y-4">
-          <div className="flex items-center gap-3 pb-3 border-b-2 border-blue-200">
-            <CheckCircle className="text-blue-600" size={24} />
-            <h3 className="text-xl font-bold text-gray-900">{section.title}</h3>
-          </div>
+      {sections.map((section, sectionIdx) => {
+        const sectionKey = `section-${sectionIdx}`;
+        const isSectionExpanded = expandedSections.has(sectionKey);
 
-          <div className="space-y-3 ml-2">
+        return (
+          <div key={sectionIdx} className="space-y-4">
+            <button
+              onClick={() => toggleSection(sectionKey)}
+              className="w-full flex items-center gap-3 pb-3 border-b-2 border-blue-200 hover:bg-blue-50 transition-colors px-2 py-1 rounded-t"
+            >
+              <CheckCircle className="text-blue-600 flex-shrink-0" size={24} />
+              <h3 className="text-xl font-bold text-gray-900 flex-1 text-left">{section.title}</h3>
+              {isSectionExpanded ? (
+                <ChevronDown className="text-blue-600 flex-shrink-0" size={24} />
+              ) : (
+                <ChevronRight className="text-blue-600 flex-shrink-0" size={24} />
+              )}
+            </button>
+
+            <div className={`space-y-3 ml-2 overflow-hidden transition-all duration-300 ease-in-out ${
+              isSectionExpanded ? 'max-h-[10000px] opacity-100' : 'max-h-0 opacity-0'
+            }`}>
             {section.items.map((item, itemIdx) => {
               const itemKey = `${sectionIdx}-${itemIdx}`;
               const isExpanded = expandedItems.has(itemKey);
@@ -183,9 +210,10 @@ export function FormattedOverview({ content }: FormattedOverviewProps) {
                 </div>
               );
             })}
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }
