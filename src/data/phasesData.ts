@@ -1596,7 +1596,7 @@ A: **Develop Phase closes**, **Deploy Phase opens** with Status: **Release Plann
 
 ## **DEPLOY PHASE - PRODUCTION BUILD & TESTING**
 
-### **STEP 1: Release Planning**
+### **STEP 5: Release Planning**
 
 **Q: What are the Deploy phase statuses?**
 A: In order:
@@ -1620,7 +1620,7 @@ A: An estimate cannot be provided until **Non-Prod build has started**. You must
 
 ---
 
-### **STEP 2: IT Builds in Production**
+### **STEP 6: IT Builds in Production**
 
 **Q: [IT Only] What do I do on release day?**
 A: As the **IT Analyst**:
@@ -1631,7 +1631,7 @@ A: As the **IT Analyst**:
 
 ---
 
-### **STEP 3: Validators Test in Production**
+### **STEP 7: Validators Test in Production**
 
 **Q: What do I do for Prod Validation?**
 A: As a **Validator**:
@@ -1648,7 +1648,7 @@ A: As the **IT Analyst**:
 
 ---
 
-### **STEP 4: COMPLETE!**
+### **STEP 8: COMPLETE!**
 
 **Q: When is the ticket complete?**
 A: When Status = **Validated Successfully Prod** - the EHR enhancement is now live and complete!
@@ -1657,45 +1657,7 @@ A: When Status = **Validated Successfully Prod** - the EHR enhancement is now li
 A: When the final validator updates Status to "Validated Successfully Prod" after all domains are validated in production.
 
 **Q: Who creates the training materials?**
-A: SCI/DCIs/MCIs/Instructional Designers create education for EHR changes (tip sheets addressing only EHR changes, not practice changes).
-
----
-
-## **SUMMARY: WHO DOES WHAT IN DEVELOP & TEST**
-
-### **Requesting Clinical Informaticist**
-- Monitor build progress
-- Coordinate with IT on build questions
-- Notify validators when testing is ready (if needed)
-- Create Change Communication (Cerner) or work with Instructional Designers (Epic)
-- Coordinate with IT on production deployment timing
-- Update Status to Ready for Release Planning
-- Support go-live activities
-
-### **IT Analyst (Builder)**
-- Build changes in Non-Prod
-- Update Status to Building
-- Update Status to Testing when ready
-- Email validators
-- Support validators with build questions
-- Deploy to production after validation complete
-- Update Status to Building in Prod
-- Update Status to Prod Validation when ready
-- Email validators for prod testing
-
-### **IT Process Owner**
-- Manage Feature
-- Assign release date
-- Update Status to Assigned Release
-- Coordinate release planning
-
-### **Validators**
-- Receive email notifications when testing is ready
-- Test in Non-Prod environment
-- Document validation results in Work Notes
-- Final validator updates Status to Validated Successfully Non Prod
-- Test in Production environment after deployment
-- Final validator updates Status to Validated Successfully Prod`,
+A: SCI/DCIs/MCIs/Instructional Designers create education for EHR changes (tip sheets addressing only EHR changes, not practice changes).`,
 
     actions: {
       ci: [
