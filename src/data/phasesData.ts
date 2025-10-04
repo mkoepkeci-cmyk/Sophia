@@ -796,7 +796,105 @@ A: Yes, if SCOPE decides Define is needed, the **CM PgM** updates Status to **Ne
     name: 'Define',
     order: 4,
     color: 'bg-purple-600',
-    description: 'Clinical Service Line approval and sponsorship (Optional Phase)',
+    description: `## **PHASE 3: DEFINE**
+
+**Q: What is the Define phase for?**
+A: Define is used when clinical sponsorship/service line approval is required. It allows **Clinical Service Lines** to review and approve the request before design begins.
+
+**Q: When is Define required?**
+A: Define is created when:
+- "Clinical Sponsorship Required" = Yes (during Vetting), OR
+- SCOPE selects "Needs Define" (during Prioritization)
+
+**Q: What meeting is Define associated with?**
+A: **Clinical Service Line (CLS) Define Body Meeting(s)** - the specific clinical committee that reviews clinical practice changes (e.g., Critical Care Council, Cardiovascular Committee)
+
+---
+
+### **STEP 1: CM PgM Sets Up Define**
+
+**Q: [CM PgM Only] What do I do when a Define task is created?**
+A: The **CM PgM**:
+- Enters the **Primary Define Body** (which Clinical Service Line will review - e.g., Critical Care, Cardiovascular, etc.)
+- Tracks Define progress
+- Coordinates if multiple CLS approvals are needed
+
+**Q: Who enters the Primary Define Body?**
+A: The **CM PgM** enters which Clinical Service Line will review (e.g., Critical Care, Cardiovascular, etc.)
+
+---
+
+### **STEP 2: Secure CLS Agenda Time**
+
+**Q: Who manages the Define task?**
+A: The **Requesting Clinical Informaticist** works with the Clinical Service Line representative to secure agenda time and present the request.
+
+**Q: What do I do to get started with Define?**
+A: As the **Requesting Clinical Informaticist**:
+- Work with your CLS group representative to secure agenda time
+- Update Status to **Ready for Agenda** once date is secured
+- Enter the **Primary Define Agenda Date** in the task
+
+**Q: What are the Define statuses I might use while scheduling?**
+A: As the **Requesting Clinical Informaticist**, use:
+- **In Progress** - While working with Define to secure agenda time
+- **Ready for Agenda** - Once agenda date is secured
+
+---
+
+### **STEP 3: Present to Clinical Service Line**
+
+**Q: Do I present at CLS?**
+A: Yes, as the **Requesting Clinical Informaticist**, you work with the CLS representative to present the request for approval.
+
+**Q: Who attends CLS meetings?**
+A: Varies by service line - physicians, advanced practice providers, nurse leaders, pharmacists, etc.
+
+**Q: What does CLS approve?**
+A: The **clinical practice change and workflow** - not the EHR technical design.
+
+---
+
+### **STEP 4: Document CLS Approval**
+
+**Q: What do I do after CLS approves?**
+A: As the **Requesting Clinical Informaticist**:
+- Enter the **Primary Define Approval Date** once approved by the Clinical Service Line
+- **DO NOT** update Status to "Approved" yet if multiple approval bodies are required
+
+**Q: What if multiple Clinical Service Lines need to approve?**
+A: As the **Requesting Clinical Informaticist**:
+- Repeat Steps 2-4 for each required CLS group:
+  - Secure agenda time with the next CLS
+  - Present to that CLS
+  - Document approval date
+- The **CM PgM** coordinates and tracks multiple CLS approvals
+- **ONLY** update Status to "Approved" after the **FINAL** approval from all required bodies
+
+---
+
+### **STEP 5: Complete Define**
+
+**Q: When do I update Status to "Approved"?**
+A: As the **Requesting Clinical Informaticist**, update Status to **Approved** ONLY when:
+- Single CLS: After that CLS approves
+- Multiple CLS: After the **FINAL** CLS approves (all required approvals obtained)
+
+**Q: What are the possible Define outcomes?**
+A: The **Requesting Clinical Informaticist** updates Status to:
+- **Approved** - CLS supports, moves to Design
+- **Further Review Needed** - Reopens Intake for additional information
+- **Dismissed** - Clinical Service Line does not support the change request (labeled as "CLS denied enhancement" - Demand Closed)
+
+---
+
+### **What Happens Automatically After Define**
+
+**Q: When does Define close?**
+A: When Status is updated to **Approved**, Define closes and **automatically opens** Design Task.
+
+**Q: What if the CLS rejects the request?**
+A: If Status is updated to **Dismissed**, the Demand is closed and no further work proceeds.`,
 
     actions: {
       ci: [
