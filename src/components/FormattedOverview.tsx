@@ -25,7 +25,7 @@ function parseContent(content: string): Section[] {
   let currentQA: QAItem | null = null;
 
   for (const line of lines) {
-    if (line.startsWith('### **')) {
+    if (line.match(/^##[#]?\s*\*\*/)) {
       if (currentSection && currentQA) {
         currentSection.items.push(currentQA);
         currentQA = null;
@@ -33,7 +33,7 @@ function parseContent(content: string): Section[] {
       if (currentSection) {
         sections.push(currentSection);
       }
-      const title = line.replace(/###\s*\*\*(.*?)\*\*/, '$1');
+      const title = line.replace(/^##[#]?\s*\*\*(.*?)\*\*/, '$1');
       currentSection = { title, items: [] };
     } else if (line.startsWith('**Q:')) {
       if (currentQA && currentSection) {
