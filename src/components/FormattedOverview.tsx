@@ -92,26 +92,61 @@ export function FormattedOverview({ content }: FormattedOverviewProps) {
                       dangerouslySetInnerHTML={{
                         __html: item.answer
                           .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-gray-900">$1</strong>')
-                          .replace(/\[([^\]]+)\]/g, '<span class="inline-block bg-blue-100 text-blue-800 text-xs font-medium px-2 py-1 rounded">$1</span>')
+                          .replace(/\[([^\]]+)\]/g, '<span class="inline-block bg-blue-100 text-blue-800 text-xs font-medium px-2 py-1 rounded mr-1">$1</span>')
                       }}
                     />
                   )}
 
                   {item.listItems && item.listItems.length > 0 && (
-                    <ul className="space-y-2 mt-3">
-                      {item.listItems.map((listItem, listIdx) => (
-                        <li key={listIdx} className="flex gap-3 items-start">
-                          <span className="text-blue-600 font-bold flex-shrink-0 mt-0.5">•</span>
-                          <span
-                            className="text-gray-700"
-                            dangerouslySetInnerHTML={{
-                              __html: listItem
-                                .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-gray-900">$1</strong>')
-                                .replace(/\[([^\]]+)\]/g, '<span class="inline-block bg-blue-100 text-blue-800 text-xs font-medium px-2 py-1 rounded mr-1">$1</span>')
-                            }}
-                          />
-                        </li>
-                      ))}
+                    <ul className="space-y-3 mt-3">
+                      {item.listItems.map((listItem, listIdx) => {
+                        const isRoleSpecific = listItem.trim().startsWith('[') && listItem.includes(']');
+                        const hasNestedList = listItem.includes('\n  -') || (listIdx + 1 < item.listItems!.length && item.listItems![listIdx + 1].startsWith('  -'));
+
+                        if (listItem.trim().startsWith('  -')) {
+                          return (
+                            <li key={listIdx} className="flex gap-3 items-start ml-6">
+                              <span className="text-gray-400 font-bold flex-shrink-0 mt-0.5">◦</span>
+                              <span
+                                className="text-gray-600 text-sm"
+                                dangerouslySetInnerHTML={{
+                                  __html: listItem.trim().replace(/^-\s*/, '')
+                                    .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-gray-900">$1</strong>')
+                                }}
+                              />
+                            </li>
+                          );
+                        }
+
+                        if (isRoleSpecific) {
+                          return (
+                            <li key={listIdx} className="bg-blue-50 border-l-4 border-blue-400 rounded-r p-3 -ml-3">
+                              <span
+                                className="text-gray-700"
+                                dangerouslySetInnerHTML={{
+                                  __html: listItem
+                                    .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-gray-900">$1</strong>')
+                                    .replace(/\[([^\]]+)\]/g, '<span class="inline-block bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded mr-2">$1</span>')
+                                }}
+                              />
+                            </li>
+                          );
+                        }
+
+                        return (
+                          <li key={listIdx} className="flex gap-3 items-start">
+                            <span className="text-blue-600 font-bold flex-shrink-0 mt-0.5">•</span>
+                            <span
+                              className="text-gray-700 flex-1"
+                              dangerouslySetInnerHTML={{
+                                __html: listItem
+                                  .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-gray-900">$1</strong>')
+                                  .replace(/\[([^\]]+)\]/g, '<span class="inline-block bg-blue-100 text-blue-800 text-xs font-medium px-2 py-1 rounded mr-1">$1</span>')
+                              }}
+                            />
+                          </li>
+                        );
+                      })}
                     </ul>
                   )}
                 </div>
