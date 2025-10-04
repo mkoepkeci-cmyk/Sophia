@@ -567,7 +567,7 @@ A: When the status updates to "Ready for Design," the prioritization task is mar
     name: 'Prioritization',
     order: 3,
     color: 'bg-orange-500',
-    description: `## **PRIORITIZATION PROCESS**
+    description: `## **PHASE 3: PRIORITIZATION**
 
 **Q: What happens during Prioritization?**
 A: System Informaticists and IT complete **Effort Scoring** to estimate the work required. Once scoring is complete, the request goes to the **SCOPE meeting** where it receives a priority ranking and decision on next steps.
