@@ -1008,7 +1008,309 @@ A: If Status is updated to **Dismissed**, the Demand is closed and no further wo
     name: 'Design',
     order: 5,
     color: 'bg-indigo-600',
-    description: 'Design sessions, approvals, and build preparation',
+    description: `## **PHASE 4: DESIGN**
+
+**Q: What happens during the Design phase?**
+A: Design sessions are held to develop the technical solution for the EHR changes. The process varies between Cerner and Epic but generally includes:
+- Reviewing EHR requirements
+- Documenting current state and future state workflows
+- Identifying affected applications
+- Creating design documentation
+- Obtaining design approvals
+
+**Q: How is the Design task created?**
+A: **Automatically created** when:
+- Prioritization Status = Ready for Design (if no Define needed), OR
+- Define Status = Approved
+
+**Q: What's the first thing that happens in Design?**
+A: The Design Task opens with Status: **New**. The **Requesting Clinical Informaticist** must answer: **"Is design already complete?"**
+
+**Q: What does "Is design already complete?" mean?**
+A: Select:
+- **Design is Complete** - No sessions needed, go straight to documentation
+- **Design Session Needed** - Need to schedule design sessions
+
+---
+
+## **CERNER DESIGN PROCESS**
+
+### **STEP 1: Indicate Design Status**
+
+**Q: What do I do when the Cerner Design task opens?**
+A: As the **Requesting Clinical Informaticist**:
+- Answer "Is design already complete?"
+  - Select **Design is Complete** OR **Design Session Needed**
+- Update Status to **Ready for Agenda**
+
+**Q: What meeting is Cerner Design associated with?**
+A: **Design Review Call** (happens twice - once for participant gathering, once for approval)
+
+---
+
+### **STEP 2: First Design Review Call - Gather Participants**
+**(If Design Session Needed)**
+
+**Q: [CM PgM Only] What happens at the first Design Review Call?**
+A: The **CM PgM**:
+- Reviews the Intake Slide with attendees
+- Identifies need for design participants
+- Updates Status to **Resources Needed** to open the 2-week participant window
+
+**Q: What is the "Resources Needed" window?**
+A: A **2-week period** where Regional and IT leaders add participants to design sessions.
+
+---
+
+### **STEP 3: Participants Added During 2-Week Window**
+
+**Q: Who adds design participants for Cerner?**
+A: During the 2-week **Resources Needed** window:
+- **Regional CIs**: Add themselves as Design Participants for their region
+- **IT Leaders**: Add Application Group and Assignee
+- **Requesting CI**: Can add additional regional participants as needed
+
+**Q: [CM PgM Only] What do I track during Resources Needed?**
+A: The **CM PgM**:
+- Tracks design progress
+- Ensures participants are being added
+- Supports with escalations if needed
+
+**Q: How long do regions have to add participants?**
+A: **2 weeks** after Status = Resources Needed
+
+---
+
+### **STEP 4: Schedule Cerner Design Sessions**
+
+**Q: Who schedules design sessions for Cerner?**
+A: The **Requesting Clinical Informaticist** schedules and facilitates design sessions.
+
+**Q: When can I schedule Cerner design sessions?**
+A: As the **Requesting Clinical Informaticist**, wait for the 2-week "Resources Needed" window to close before scheduling design sessions.
+
+**Q: What are the scheduling rules for Cerner design sessions?**
+A: As the **Requesting Clinical Informaticist**:
+- **Avoid Tuesday/Wednesday** (governance meeting days)
+- Schedule with **minimum 2 weeks notice**
+- Include all participants listed in the Design Participants section
+
+**Q: What Status do I use when sessions are scheduled?**
+A: Update Status to **In Design** once design sessions are scheduled.
+
+---
+
+### **STEP 5: Conduct Cerner Design Sessions**
+
+**Q: Who leads the design discussion?**
+A: The **Requesting Clinical Informaticist** leads the design discussion in all sessions.
+
+**Q: Who participates in Cerner design sessions?**
+A: Participants include:
+- **Requesting CI** (leads discussion)
+- **Regional participants** (added by regions)
+- **IT Application Groups and Assignees**
+- **SMEs** as needed
+
+**Q: [IT Only] What is my role in Cerner design sessions?**
+A: As **IT**:
+- Participate in design sessions
+- Provide technical guidance
+- Complete technical design documentation
+- Document application impacts
+
+---
+
+### **STEP 6: Complete Cerner Design Documentation**
+
+**Q: What do I document after Cerner design sessions?**
+A: As the **Requesting Clinical Informaticist**, complete:
+- **Design Document Link** (Cerner design/build documents)
+- **Affected Applications** (based on design)
+- **Release Type**
+- **Cerner Target Domain** (select appropriate PRD domain(s))
+- **Cerner Validators** (identified during design)
+- **Finalized Design Summary** (voting statement for approval)
+
+**Q: How do I identify Validators?**
+A: As the **Requesting Clinical Informaticist**, identify Validators during the Design phase based on who needs to test the build. Enter them in the Cerner Validator fields.
+
+---
+
+### **STEP 7: Cerner Design Approval**
+
+**Q: How do I get Cerner design approved?**
+A: As the **Requesting Clinical Informaticist**:
+- Update Status to **Ready for Agenda** (to present at second Design Review Call)
+- Select "**Design is Complete**"
+- Present design for approval at Design Review Call
+
+**Q: [CM PgM Only] What happens at the second Design Review Call?**
+A: The **CM PgM**:
+- Facilitates design approval discussion
+- Regions have **2 weeks** to provide Design Feedback
+- Documents all approvals in the Approval section
+- If provider impact: coordinates additional design approvals from provider groups
+
+**Q: Who approves Cerner designs?**
+A:
+- Design Review Call attendees approve
+- If provider impact: additional design approvals needed from provider groups
+- **CM PgM** documents all approvals
+
+**Q: [CM PgM Only] When do I update Status to Complete?**
+A: The **CM PgM** updates to **Complete** after all approvals are obtained.
+
+---
+
+## **EPIC DESIGN PROCESS**
+
+### **STEP 1: Indicate Design Status and Prepare for Refinement**
+
+**Q: What do I do when the Epic Design task opens?**
+A: As the **Requesting Clinical Informaticist**:
+- Answer "Is design already complete?"
+  - Select **Design is Complete** OR **Design Session Needed**
+- If **Design Session Needed**: Create the **Epic Optimization Form** from template and save in Google Drive
+- Update Status to **Ready for Agenda**
+
+**Q: What meeting is Epic Design associated with?**
+A: **Refinement** (also called Backlog Grooming)
+
+---
+
+### **STEP 2: Refinement Meeting**
+
+**Q: What happens at Refinement?**
+A: **Epic Process Owners** and **Requesting CI** review:
+- Intake Slide
+- Epic Optimization Form
+- Identify needed participants
+- Determine if design sessions are needed
+
+**Q: Who attends Refinement?**
+A: Epic Process Owners, Requesting CI, and IT representatives.
+
+**Q: Do I present at Refinement?**
+A: Yes, as the **Requesting Clinical Informaticist**, you present your request and answer questions.
+
+---
+
+### **STEP 3: IT Assigns Resources**
+
+**Q: Who updates status to Resources Needed for Epic?**
+A: The **Requesting Clinical Informaticist** updates to **Resources Needed** after Refinement (this triggers the need for IT resources).
+
+**Q: [IT Only] What do I do when Status = Resources Needed?**
+A: As **IT**:
+- Assign resources (Application Groups and Assignees)
+- **IT Process Owner** updates Status to **Assigned** once resources are confirmed
+
+---
+
+### **STEP 4: Epic Design Sessions Scheduled**
+
+**Q: Who schedules design sessions for Epic?**
+A: Depends on the type of request:
+- **Multi-team tickets**: Process Owner schedules initial session, then hands to Primary Applications Engineer for additional sessions
+- **Single application**: The Applications Engineer schedules design sessions
+
+**Q: [IT Only] When do I schedule Epic design sessions?**
+A: As **IT** (Applications Engineer or Process Owner):
+- Coordinate with the **Requesting CI** on scheduling
+- Avoid scheduling conflicts
+- **IT Process Owner** updates Status to **In Design** once sessions are scheduled
+
+---
+
+### **STEP 5: Conduct Epic Design Sessions**
+
+**Q: Who leads the Epic design discussion?**
+A: The **Requesting Clinical Informaticist** leads the design discussion in all sessions.
+
+**Q: Who participates in Epic design sessions?**
+A: Participants include:
+- **Requesting CI** (leads discussion)
+- **Design Participants** (identified at Refinement)
+- **IT Application Groups and Assignees**
+- **SMEs** as needed
+
+**Q: [IT Only] What is my role in Epic design sessions?**
+A: As **IT**:
+- Participate in design sessions
+- Provide technical guidance
+- Complete technical design documentation
+
+---
+
+### **STEP 6: Complete Epic Design Documentation**
+
+**Q: What do I document after Epic design sessions?**
+A: As the **Requesting Clinical Informaticist**, complete:
+- **Design Document Link** (Epic Optimization Form)
+- **Affected Applications** (based on design)
+- **Epic Validators** (identified during design)
+- **Finalized Design Summary** (voting statement)
+
+**Q: How do I complete Epic design?**
+A: As the **Requesting Clinical Informaticist**:
+- Work with **IT** to ensure all design documentation is complete
+- Both **Requesting CI and IT** update Status to **Complete** when all documentation is entered
+
+---
+
+## **VALIDATORS (BOTH CERNER AND EPIC)**
+
+### **Who Are Validators?**
+
+**Q: Who are Validators?**
+A: Validators are identified during the Design phase by the **Primary Clinical Informaticist**. They are the people who will test the build to ensure it works as designed.
+
+**Q: When are Validators identified?**
+A: During the Design phase, based on who needs to validate the functionality.
+
+**Q: How many Validators are there?**
+A: Typically:
+- **Cerner**: One validator per domain (e.g., ECISA/P0687, CAREB/P1284)
+- **Epic**: Validators per market or application area
+
+---
+
+### **Validator Responsibilities**
+
+**Q: What do Validators do?**
+A: Validators are responsible for:
+
+**During Develop:**
+- Receive email notification when Status = **Testing** (ready for non-prod validation)
+- Complete testing in **Non-Prod** environment
+- Add comments to **Work Notes** indicating validation is successful
+- **Final validator**: Update Status to **Validated Successfully Non Prod** (after all domains/markets are validated)
+
+**During Deploy:**
+- Receive email notification when Status = **Prod Validation** (ready for prod validation)
+- Complete testing in **Production** environment
+- Add comments to **Work Notes** indicating validation is successful
+- **Final validator**: Update Status to **Validated Successfully Prod** (after all domains/markets are validated)
+
+**Q: Who is the "final validator"?**
+A: The last person to complete validation. After all domains/markets are validated, this person updates the Status to move the request forward.
+
+---
+
+## **WHAT HAPPENS AUTOMATICALLY AFTER DESIGN**
+
+**Q: What happens when Design Status = Complete?**
+A: Design Task closes, Demand is complete, and a **FETR (Feature)** is **automatically opened** with Phase: **Develop**.
+
+**Q: What is a FETR?**
+A: FETR = Feature ticket. This is where IT builds the actual EHR changes. It's created automatically when Design is complete.
+
+**Q: How do I find my Feature ticket?**
+A: In Strategic Planning Workspace > Features List. Look for your DMND number. The Feature will have a FETR number.
+
+**Q: What view should I use to see Feature information?**
+A: Click the three dots next to Feature heading > View > **Release** (shows info relevant to Informatics)`,
 
     actions: {
       ci: [
