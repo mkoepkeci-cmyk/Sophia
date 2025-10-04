@@ -567,7 +567,107 @@ A: When the status updates to "Ready for Design," the prioritization task is mar
     name: 'Prioritization',
     order: 3,
     color: 'bg-orange-500',
-    description: 'SCOPE Meeting - Effort scoring and priority ranking',
+    description: `## **PRIORITIZATION PROCESS**
+
+**Q: What happens during Prioritization?**
+A: System Informaticists and IT complete **Effort Scoring** to estimate the work required. Once scoring is complete, the request goes to the **SCOPE meeting** where it receives a priority ranking and decision on next steps.
+
+**Q: What meeting is Prioritization associated with?**
+A: **SCOPE Meeting** (but Effort Scoring happens first)
+
+---
+
+### **STEP 1: Effort Scoring Meeting**
+
+**Q: What is Effort Scoring?**
+A: A meeting where **System Informaticists and IT** estimate the effort required for the request.
+
+**Q: Who attends Effort Scoring?**
+A:
+- System Informaticists
+- IT representatives
+- Requesting Clinical Informaticist
+
+**Q: What do I do during Effort Scoring?**
+A: As the **Requesting Clinical Informaticist**:
+- Participate in the Effort Scoring meeting
+- Answer questions about the request
+- Complete the CI effort scoring section
+- Coordinate with IT to ensure both sections are complete before updating status
+
+**Q: [IT Only] What do I do for Effort Scoring?**
+A: As **IT**:
+- Participate in the Effort Scoring meeting
+- Complete the IT effort scoring section
+- Coordinate with the CI before updating Status to Ready for Agenda
+
+---
+
+### **STEP 2: Prepare for SCOPE**
+
+**Q: When do I update Status to "Ready for Agenda"?**
+A: As the **Requesting Clinical Informaticist**, update Status to **Ready for Agenda** only after **BOTH** CI and IT complete their scoring sections. This signals the CM PgM that the request is ready for SCOPE.
+
+**Q: [CM PgM Only] How do I know a request is ready for SCOPE?**
+A: When Status = **Ready for Agenda**, add the request to the SCOPE agenda.
+
+**Q: What do I do while waiting for SCOPE?**
+A: As the **Requesting Clinical Informaticist**, wait for the SCOPE meeting decision. No action needed until after SCOPE meets.
+
+**Q: Do I present at SCOPE?**
+A: Not typically - the **CM PgM** presents your prioritization information at SCOPE.
+
+---
+
+### **STEP 3: SCOPE Meeting & Decision**
+
+**Q: What does SCOPE decide?**
+A: SCOPE determines:
+- **Priority ranking** (1-10 scale)
+- Whether to proceed to Design
+- Whether Define is needed
+- Whether to dismiss or deny
+
+**Q: [CM PgM Only] What do I do at the SCOPE meeting?**
+A: As the **CM PgM**:
+- Present the request at SCOPE meeting
+- Facilitate discussion
+- Document the ranked priority (1-10 scale) in the task
+- Document any additional notes or requirements
+
+---
+
+### **STEP 4: Post-SCOPE Actions**
+
+**Q: [CM PgM Only] How do I update status after SCOPE?**
+A: The **CM PgM** updates Prioritization status based on SCOPE decision:
+- **Ready for Design** - Approved, moves forward
+- **Needs Define** - Requires Clinical Service Line review
+- **Further Review Needed** - Needs more information
+- **Denied** - Demand closed
+- **Dismissed** - Demand closed
+
+**Q: What are the possible outcomes of Prioritization?**
+A: Possible statuses are:
+- **Ready for Design** - Ticket moves forward (Prioritization closes, Design task created)
+- **Further Review Needed** - Reopens Intake task; ticket returns to market
+- **Dismissed** - Ticket was dismissed at SCOPE and is closed
+- **Needs Define** - Creates a Define Task (if not already created) for additional Clinical Service Line review
+
+**Q: How do I know my request has been prioritized?**
+A: As the **Requesting Clinical Informaticist**, review the ranked priority assigned by SCOPE. When the status updates to "Ready for Design," the prioritization task is marked "Closed Complete" and a Design task is created.
+
+---
+
+### **What Happens Automatically After Prioritization**
+
+**Q: When does Prioritization close?**
+A: When CM PgM updates Status to **Ready for Design**, Prioritization closes and **automatically opens**:
+- **Define Task** (if needed and not already created)
+- **Design Intake Task** (always)
+
+**Q: Can SCOPE create a Define task?**
+A: Yes, if SCOPE decides Define is needed, the **CM PgM** updates Status to **Needs Define** and a Define task is created (if not already done after PeriSCOPE).`,
 
     actions: {
       ci: [
