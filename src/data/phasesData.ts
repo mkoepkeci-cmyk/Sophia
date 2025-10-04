@@ -306,7 +306,159 @@ A: When opening a Demand or Demand task for the first time:
     name: 'Vetting',
     order: 2,
     color: 'bg-blue-600',
-    description: 'PeriSCOPE Meeting - Initial governance review for completeness and feasibility',
+    description: `## **PHASE 2: VETTING & PRIORITIZATION**
+
+### **VETTING PROCESS**
+
+**Q: What is Vetting?**
+A: The Vetting task is used during the **PeriSCOPE Meeting** to review requests for completeness and determine if they should move to prioritization. The CM PgM reviews all attached documentation and updates ticket status.
+
+**Q: Who manages the Vetting phase?**
+A: The **Change Management Program Manager (CM PgM)** manages the Vetting task. Documentation is visible to all informatics team members in Workspace.
+
+**Q: What meeting is Vetting associated with?**
+A: **PeriSCOPE Meeting**
+
+---
+
+### **STEP 1: Prepare for PeriSCOPE**
+
+**Q: What do I do when my request enters Vetting?**
+A: As the **Requesting Clinical Informaticist**:
+- Monitor for any additional information requests from the CM PgM
+- Be available to answer questions
+- Ensure all required Vetting documentation is attached
+
+**Q: Do I need to attend PeriSCOPE?**
+A: Attendance is **optional** for the Requesting CI. The CM PgM will present your Intake documentation. You may attend to answer questions if desired.
+
+**Q: [CM PgM Only] How do I prepare requests for PeriSCOPE?**
+A: The **CM PgM**:
+- Reviews all attached required Vetting documentation
+- Updates Status to **Ready for Agenda** once placed on the PeriSCOPE agenda
+- Prepares to present the Intake slides and documentation
+
+---
+
+### **STEP 2: PeriSCOPE Meeting & Decision**
+
+**Q: [CM PgM Only] What happens at the PeriSCOPE meeting?**
+A: The **CM PgM**:
+- Presents the request using the Intake documentation
+- Facilitates discussion among PeriSCOPE attendees
+- Documents the PeriSCOPE decision in the task notes
+- Determines if Clinical Sponsorship is required
+
+**Q: [CM PgM Only] When do I set "Clinical Sponsorship Required" to Yes?**
+A: Set **Clinical Sponsorship Required = Yes** during Vetting if the request requires Clinical Service Line review. This automatically creates a Define Task.
+
+---
+
+### **STEP 3: Post-PeriSCOPE Actions**
+
+**Q: [CM PgM Only] How do I update the status after PeriSCOPE?**
+A: The **CM PgM** updates status based on PeriSCOPE decision:
+- **Ready for Prioritization** - Moves forward to SCOPE
+- **Further Review Needed** - Returns to Requesting CI for more information
+- **Dismissed** - Request rejected and closed
+
+**Q: What are the possible outcomes of Vetting?**
+A: Possible statuses are:
+- **Ready for Prioritization** - Ticket is ready for SCOPE (Vetting task closes and Prioritization task opens)
+- **Further Review Needed** - Reopens Intake task; ticket goes back to market for further review
+- **Dismissed** - Ticket was dismissed in Vetting and can be closed
+
+**Q: What do I do if my request gets "Further Review Needed"?**
+A: As the **Requesting Clinical Informaticist**:
+- Review the feedback in the task notes
+- Gather the requested additional information
+- Update Intake Slides if necessary
+- Update any required fields in the Intake task
+- Work with your System Leader to address concerns
+- Update Status back to **Approved** when ready to return to Vetting
+
+---
+
+### **What Happens Automatically After Vetting**
+
+**Q: When does Vetting close?**
+A: When CM PgM updates Status to **Ready for Prioritization**, Vetting Task closes and **automatically opens**:
+- **Prioritization Task** (always)
+- **Define Task** (if Clinical Sponsorship Required = Yes)
+
+**Q: Can Define be created during Vetting?**
+A: Yes, if "Clinical Sponsorship Required" is set to **Yes** during Vetting, a Define Task is created immediately.
+
+---
+
+### **PRIORITIZATION PROCESS**
+
+### **STEP 1: Effort Scoring**
+
+**Q: What is Effort Scoring?**
+A: A meeting where **System Informaticists and IT** complete effort estimates for the request.
+
+**Q: Who attends Effort Scoring?**
+A: System Informaticists and IT representatives.
+
+**Q: What do I need to do for Effort Scoring?**
+A: As the **Requesting Clinical Informaticist**, complete the scoring and update Status to **Ready for Agenda** when done.
+
+**Q: What meeting is Prioritization associated with?**
+A: **SCOPE Meeting**
+
+---
+
+### **STEP 2: Prepare for SCOPE**
+
+**Q: [CM PgM Only] How do I prepare for SCOPE?**
+A: The **CM PgM**:
+- Confirms Effort Scoring is complete (Status = Ready for Agenda)
+- Adds the request to the SCOPE agenda
+- Prepares prioritization information for presentation
+
+**Q: Do I present at SCOPE?**
+A: Not typically - the **CM PgM** presents your prioritization information at SCOPE.
+
+---
+
+### **STEP 3: SCOPE Meeting & Decision**
+
+**Q: What happens at SCOPE?**
+A: The **CM PgM** presents and SCOPE decides:
+- Priority ranking (1-10 scale)
+- Whether to proceed to Design
+- Whether Define is needed
+- Whether to dismiss or deny
+
+**Q: [CM PgM Only] How do I update status after SCOPE?**
+A: The **CM PgM** updates Prioritization status after SCOPE meetings to:
+- **Ready for Design** - Approved, moves forward
+- **Needs Define** - Requires Clinical Service Line review
+- **Denied** - Demand closed
+- **Dismissed** - Demand closed
+
+**Q: What are the possible outcomes of Prioritization?**
+A: Possible statuses are:
+- **Ready for Design** - Ticket moves forward (Prioritization closes, Design task created)
+- **Further Review Needed** - Reopens Intake task; ticket returns to market
+- **Dismissed** - Ticket was dismissed at SCOPE and is closed
+- **Needs Define** - Creates a Define Task (if not already created) for additional Clinical Service Line review
+
+---
+
+### **What Happens Automatically After Prioritization**
+
+**Q: When does Prioritization close?**
+A: When CM PgM updates Status to **Ready for Design**, Prioritization closes and **automatically opens**:
+- **Define Task** (if needed and not already created)
+- **Design Intake Task** (always)
+
+**Q: Can SCOPE create a Define task?**
+A: Yes, if SCOPE decides Define is needed, the **CM PgM** updates Status to **Needs Define** and a Define task is created (if not already done after PeriSCOPE).
+
+**Q: How do I know my request has been prioritized?**
+A: When the status updates to "Ready for Design," the prioritization task is marked "Closed Complete" and a Design task is created. You'll see the ranked priority documented in the task.`,
 
     actions: {
       ci: [
