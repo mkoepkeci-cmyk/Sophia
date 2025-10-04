@@ -1946,28 +1946,6 @@ A: The EHR enhancement is fully implemented and the governance process is comple
 
 ---
 
-## **SUMMARY: WHO DOES WHAT IN DEPLOY & CLOSE**
-
-### **Requesting Clinical Informaticist**
-- Create and distribute end-user communication
-- Coordinate go-live support
-- Monitor for issues post-deployment
-- Complete close-out documentation
-- Update final metrics and lessons learned
-- Close request when all activities complete
-
-### **IT**
-- Monitor production stability
-- Support any post-deployment issues
-- Complete technical close-out documentation
-
-### **Regional Informatics Teams**
-- Support go-live activities
-- Provide local end-user support
-- Escalate issues to Requesting CI or IT
-
----
-
 ## **COMMUNICATION TEMPLATES & RESOURCES**
 
 **Q: Are there templates for communication?**
