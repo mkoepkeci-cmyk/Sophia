@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
-import { Send, MessageCircle, X } from 'lucide-react';
+import { Send, MessageCircle, X, Loader2 } from 'lucide-react';
 import { phasesData } from '../data/phasesData';
+import { askSophia, isClaudeConfigured } from '../services/claudeService';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -19,6 +20,8 @@ export function SophiaChat({ onClose }: SophiaChatProps) {
     }
   ]);
   const [inputMessage, setInputMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [useClaudeAI, setUseClaudeAI] = useState(isClaudeConfigured());
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -126,21 +129,53 @@ export function SophiaChat({ onClose }: SophiaChatProps) {
     return "I can help you with questions like:\n\n• 'Who updates prioritization?'\n• 'What happens at SCOPE?'\n• 'How am I notified?'\n• 'What does Further Review Needed mean?'\n• 'Who is responsible for design?'\n• 'What is effort scoring?'\n\nTry asking about specific phases, meetings, statuses, or roles!";
   };
 
-  const handleSend = () => {
-    if (!inputMessage.trim()) return;
+  const handleSend = async () => {
+    if (!inputMessage.trim() || isLoading) return;
 
     const userMessage: Message = { role: 'user', content: inputMessage };
+    const currentInput = inputMessage;
+
     setMessages(prev => [...prev, userMessage]);
-
-    const answer = answerQuestion(inputMessage);
-    const assistantMessage: Message = { role: 'assistant', content: answer };
-
-    setTimeout(() => {
-      setMessages(prev => [...prev, assistantMessage]);
-    }, 500);
-
     setInputMessage('');
-    inputRef.current?.focus();
+    setIsLoading(true);
+
+    try {
+      let answer: string;
+
+      if (useClaudeAI) {
+        // Use Claude AI for enhanced responses
+        const conversationHistory = messages.slice(1); // Exclude initial greeting
+        answer = await askSophia(currentInput, conversationHistory);
+      } else {
+        // Fallback to pattern matching
+        answer = answerQuestion(currentInput);
+        // Simulate network delay for consistency
+        await new Promise(resolve => setTimeout(resolve, 500));
+      }
+
+      const assistantMessage: Message = { role: 'assistant', content: answer };
+      setMessages(prev => [...prev, assistantMessage]);
+    } catch (error) {
+      console.error('Error getting response:', error);
+
+      // Fallback to pattern matching on error
+      const fallbackAnswer = answerQuestion(currentInput);
+      const assistantMessage: Message = {
+        role: 'assistant',
+        content: useClaudeAI
+          ? `I'm having trouble connecting to my enhanced AI system. Here's what I can tell you using my basic knowledge:\n\n${fallbackAnswer}`
+          : fallbackAnswer
+      };
+      setMessages(prev => [...prev, assistantMessage]);
+
+      // Disable Claude AI if there was an API error
+      if (useClaudeAI) {
+        setUseClaudeAI(false);
+      }
+    } finally {
+      setIsLoading(false);
+      inputRef.current?.focus();
+    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -190,6 +225,16 @@ export function SophiaChat({ onClose }: SophiaChatProps) {
             </div>
           </div>
         ))}
+        {isLoading && (
+          <div className="flex justify-start">
+            <div className="max-w-[80%] rounded-lg px-4 py-2 bg-gray-100 text-gray-900">
+              <div className="flex items-center gap-2">
+                <Loader2 size={16} className="animate-spin" />
+                <p className="text-sm">Sophia is thinking...</p>
+              </div>
+            </div>
+          </div>
+        )}
         <div ref={messagesEndRef} />
       </div>
 
@@ -207,9 +252,10 @@ export function SophiaChat({ onClose }: SophiaChatProps) {
           />
           <button
             onClick={handleSend}
-            className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+            disabled={isLoading || !inputMessage.trim()}
+            className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <Send size={18} />
+            {isLoading ? <Loader2 size={18} className="animate-spin" /> : <Send size={18} />}
           </button>
         </div>
       </div>
