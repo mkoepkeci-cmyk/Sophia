@@ -143,12 +143,23 @@ export function SophiaChat({ onClose }: SophiaChatProps) {
     try {
       let answer: string;
 
-      if (useClaudeAI) {
+      // Always check if Claude is configured (in case .env was updated)
+      const claudeIsConfigured = isClaudeConfigured();
+      console.log('Claude configured:', claudeIsConfigured, 'useClaudeAI state:', useClaudeAI);
+
+      if (claudeIsConfigured) {
         // Use Claude AI for enhanced responses
+        console.log('Using Claude AI for response');
         const conversationHistory = messages.slice(1); // Exclude initial greeting
         answer = await askSophia(currentInput, conversationHistory);
+
+        // Enable Claude AI for future messages if it worked
+        if (!useClaudeAI) {
+          setUseClaudeAI(true);
+        }
       } else {
         // Fallback to pattern matching
+        console.log('Using pattern matching fallback');
         answer = answerQuestion(currentInput);
         // Simulate network delay for consistency
         await new Promise(resolve => setTimeout(resolve, 500));
