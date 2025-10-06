@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { Send, MessageCircle, X, Loader2 } from 'lucide-react';
 import { phasesData } from '../data/phasesData';
 import { askSophia, isClaudeConfigured } from '../services/claudeService';
+import { logQuestion } from '../services/analyticsService';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -155,6 +156,13 @@ export function SophiaChat({ onClose }: SophiaChatProps) {
 
       const assistantMessage: Message = { role: 'assistant', content: answer };
       setMessages(prev => [...prev, assistantMessage]);
+
+      // Log question and response to analytics (non-blocking)
+      logQuestion({
+        question: currentInput,
+        response: answer,
+        used_claude_ai: useClaudeAI
+      }).catch(err => console.error('Failed to log analytics:', err));
     } catch (error) {
       console.error('Error getting response:', error);
 
