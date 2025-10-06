@@ -171,15 +171,12 @@ export function SophiaChat({ onClose }: SophiaChatProps) {
       const assistantMessage: Message = {
         role: 'assistant',
         content: useClaudeAI
-          ? `I'm having trouble connecting to my enhanced AI system. Here's what I can tell you using my basic knowledge:\n\n${fallbackAnswer}`
+          ? `I'm having trouble connecting to my enhanced AI system right now. Here's what I can tell you:\n\n${fallbackAnswer}\n\n(I'll try using AI again for your next question)`
           : fallbackAnswer
       };
       setMessages(prev => [...prev, assistantMessage]);
 
-      // Disable Claude AI if there was an API error
-      if (useClaudeAI) {
-        setUseClaudeAI(false);
-      }
+      // Don't permanently disable Claude AI - let it retry on next message
     } finally {
       setIsLoading(false);
       inputRef.current?.focus();
