@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Bell, Users, AlertCircle, ClipboardList, CheckCircle, Mail, RefreshCw, AlertTriangle, XCircle, HelpCircle, BookOpen } from 'lucide-react';
 import { Phase } from '../data/phasesData';
 import { FormattedOverview } from './FormattedOverview';
+import { PlainOverview } from './PlainOverview';
 
 interface PhaseDashboardProps {
   phase: Phase;
@@ -88,7 +89,7 @@ export function PhaseDashboard({ phase, selectedRole }: PhaseDashboardProps) {
       {/* Tab Content */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
         {activeTab === 'overview' && (
-          <FormattedOverview content={phase.overview} />
+          <PlainOverview content={phase.overview} />
         )}
 
         {activeTab === 'faq' && (
