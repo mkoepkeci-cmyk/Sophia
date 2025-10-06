@@ -3,6 +3,7 @@ import { Send, MessageCircle, X, Loader2 } from 'lucide-react';
 import { phasesData } from '../data/phasesData';
 import { askSophia, isClaudeConfigured } from '../services/claudeService';
 import { logQuestion } from '../services/analyticsService';
+import { analyzeGovernanceType, governanceTypeGuidance } from '../utils/governanceTypeHelper';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -48,7 +49,36 @@ export function SophiaChat({ onClose }: SophiaChatProps) {
     ];
 
     if (greetingPatterns.some(pattern => pattern.test(lowerQuestion))) {
-      return "Hello! I'm here to help with EHR governance process questions. Ask me about phases, meetings, statuses, or responsibilities!";
+      return "Hello! I'm here to help with EHR governance process questions. Ask me about phases, meetings, statuses, responsibilities, or which governance pathway is right for your request!";
+    }
+
+    // Question: Governance Type Selection
+    if (lowerQuestion.includes('governance type') || lowerQuestion.includes('which pathway') || lowerQuestion.includes('full governance') || lowerQuestion.includes('governance templated')) {
+      if (lowerQuestion.includes('difference') || lowerQuestion.includes('compare') || lowerQuestion.includes('comparison')) {
+        return "**Full Governance vs Governance Templated:**\n\n🟠 **Full Governance** (weeks to months):\n• All phases: Intake → Vetting → Prioritization → Define → Design → Develop → Deploy\n• Includes PeriSCOPE and SCOPE meetings\n• Required for new enhancements, practice changes, system-wide initiatives\n\n🟢 **Governance Templated** (days to weeks):\n• Fast track: Intake → Design → Develop → Deploy\n• Skips Vetting and Prioritization\n• For pre-approved items: CSH Triage Guidelines, EPSR list, Radiology/Lab templates, Pharmacy maintenance\n\n💡 When in doubt, choose Full Governance!";
+      }
+
+      if (lowerQuestion.includes('how do i choose') || lowerQuestion.includes('which should i') || lowerQuestion.includes('help me decide')) {
+        return "**Choosing Your Governance Pathway:**\n\n✅ Choose **Governance Templated** if:\n• Request is in CSH Triage Guidelines (Cerner)\n• Request is on EPSR list (Epic)\n• Radiology or Lab maintenance\n• Pharmacy maintenance (SCI Team only)\n• Routine maintenance with pre-approval\n\n✅ Choose **Full Governance** if:\n• New or not previously approved\n• Clinical practice changes\n• Impacts multiple regions/markets\n• Requires clinical service line review\n• System-wide policy/initiative\n• **When unsure - default to Full Governance**\n\nDescribe your request and I can help analyze which pathway fits best!";
+      }
+
+      return "I can help you understand governance pathways! Ask me:\n• 'What's the difference between Full Governance and Governance Templated?'\n• 'How do I choose the right pathway?'\n• Or describe your request and I'll suggest which pathway might fit!";
+    }
+
+    // Analyze request description for governance type
+    if (lowerQuestion.includes('my request is') || lowerQuestion.includes('i need to') || lowerQuestion.includes('i want to') ||
+        (lowerQuestion.includes('request') && (lowerQuestion.includes('update') || lowerQuestion.includes('change') ||
+         lowerQuestion.includes('add') || lowerQuestion.includes('create')))) {
+      const analysis = analyzeGovernanceType(question);
+
+      if (analysis.suggestedType !== 'unclear') {
+        const pathway = analysis.suggestedType === 'templated' ? '🟢 Governance Templated' : '🟠 Full Governance';
+        const guidance = governanceTypeGuidance[analysis.suggestedType];
+
+        return `Based on your description, I'd suggest the **${pathway}** pathway.\n\n${analysis.reasoning}\n\n**${guidance.title}:**\n• Timeline: ${guidance.timeline}\n• Phases: ${guidance.phases.join(' → ')}\n${analysis.suggestedType === 'templated' ? '• Benefits: ' + governanceTypeGuidance.templated.keyBenefits.join(', ') : ''}\n\n💡 Confidence: ${analysis.confidence.toUpperCase()}\n\nWould you like more details about this pathway?`;
+      }
+
+      return analysis.reasoning + "\n\nCan you tell me more about whether this request is:\n• In CSH Triage Guidelines or EPSR list?\n• A new enhancement or routine maintenance?\n• Impacting multiple regions or just one?";
     }
 
     // Question: Who updates [something]

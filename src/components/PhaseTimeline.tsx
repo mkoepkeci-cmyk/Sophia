@@ -1,35 +1,68 @@
 import { Phase } from '../data/phasesData';
+import { Zap } from 'lucide-react';
 
 interface PhaseTimelineProps {
   phases: Phase[];
   selectedPhaseId: string;
   onPhaseSelect: (phaseId: string) => void;
+  governanceType?: 'full' | 'templated' | null;
 }
 
-export function PhaseTimeline({ phases, selectedPhaseId, onPhaseSelect }: PhaseTimelineProps) {
+export function PhaseTimeline({ phases, selectedPhaseId, onPhaseSelect, governanceType = null }: PhaseTimelineProps) {
+  const skippedPhases = governanceType === 'templated' ? ['vetting', 'prioritization'] : [];
+  const isPhaseSkipped = (phaseId: string) => skippedPhases.includes(phaseId);
   return (
     <div className="sticky top-0 z-10 bg-white border-b border-gray-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        {governanceType && (
+          <div className="mb-3 flex items-center justify-center">
+            <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium ${
+              governanceType === 'templated'
+                ? 'bg-green-100 text-green-800 border border-green-300'
+                : 'bg-orange-100 text-orange-800 border border-orange-300'
+            }`}>
+              {governanceType === 'templated' && <Zap size={16} />}
+              <span>
+                {governanceType === 'templated' ? 'Governance Templated' : 'Full Governance'} Pathway
+              </span>
+              {governanceType === 'templated' && (
+                <span className="text-xs bg-green-200 px-2 py-0.5 rounded">Fast Track</span>
+              )}
+            </div>
+          </div>
+        )}
         <div className="flex items-center justify-between overflow-x-auto pb-2">
           {phases.map((phase, index) => {
             const isSelected = phase.id === selectedPhaseId;
-            const isCompleted = false; // This is a reference guide, not a tracker
+            const isCompleted = false;
+            const isSkipped = isPhaseSkipped(phase.id);
 
             return (
               <div key={phase.id} className="flex items-center flex-shrink-0">
                 {/* Phase Button */}
                 <button
-                  onClick={() => onPhaseSelect(phase.id)}
-                  className={`flex flex-col items-center gap-2 px-4 py-2 rounded-lg transition-all ${
-                    isSelected
+                  onClick={() => !isSkipped && onPhaseSelect(phase.id)}
+                  disabled={isSkipped}
+                  className={`relative flex flex-col items-center gap-2 px-4 py-2 rounded-lg transition-all ${
+                    isSkipped
+                      ? 'bg-gray-100 text-gray-400 opacity-50 cursor-not-allowed'
+                      : isSelected
                       ? `${phase.color} text-white shadow-lg scale-105`
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
+                  title={isSkipped ? 'This phase is skipped in Governance Templated pathway' : ''}
                 >
+                  {isSkipped && (
+                    <div className="absolute -top-1 -right-1 w-5 h-5 bg-yellow-400 rounded-full flex items-center justify-center">
+                      <span className="text-xs font-bold text-gray-800">⚡</span>
+                    </div>
+                  )}
                   {/* Phase Number Circle */}
                   <div
                     className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
-                      isSelected
+                      isSkipped
+                        ? 'bg-gray-200 text-gray-400 line-through'
+                        : isSelected
                         ? 'bg-white bg-opacity-30'
                         : 'bg-gray-300 text-gray-700'
                     }`}
@@ -38,7 +71,7 @@ export function PhaseTimeline({ phases, selectedPhaseId, onPhaseSelect }: PhaseT
                   </div>
 
                   {/* Phase Name */}
-                  <span className="text-xs font-semibold whitespace-nowrap">
+                  <span className={`text-xs font-semibold whitespace-nowrap ${isSkipped ? 'line-through' : ''}`}>
                     {phase.name}
                   </span>
                 </button>

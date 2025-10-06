@@ -49,3 +49,36 @@ export interface ChatMessage {
   is_user: boolean;
   created_at: string;
 }
+
+export interface GovernanceType {
+  id: string;
+  name: string;
+  description: string;
+  phases_included: string[];
+  phases_skipped: string[];
+  estimated_duration: string | null;
+  created_at: string;
+}
+
+export interface PreApprovedItem {
+  id: string;
+  title: string;
+  description: string;
+  category: string;
+  system_type: string;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface UserRequest {
+  id: string;
+  user_id: string;
+  dmnd_number: string | null;
+  title: string;
+  governance_type_id: string | null;
+  current_phase: string;
+  status: string;
+  created_at: string;
+  updated_at: string;
+}
