@@ -34,6 +34,19 @@ export function SophiaChat({ onClose }: SophiaChatProps) {
     const lowerQuestion = question.toLowerCase();
     const phases = Object.values(phasesData);
 
+    // Handle greetings and personal messages - Don't give governance info
+    const greetingPatterns = [
+      /^(hi|hello|hey|good morning|good afternoon|good evening)/i,
+      /my name is/i,
+      /i am |i'm /i,
+      /^(thanks|thank you|thx)/i,
+      /^(ok|okay|sure|cool|great)/i
+    ];
+
+    if (greetingPatterns.some(pattern => pattern.test(lowerQuestion))) {
+      return "Hello! I'm here to help with EHR governance process questions. Ask me about phases, meetings, statuses, or responsibilities!";
+    }
+
     // Question: Who updates [something]
     if (lowerQuestion.includes('who updates') || lowerQuestion.includes('who changes')) {
       if (lowerQuestion.includes('prioritization') || lowerQuestion.includes('priority')) {
@@ -73,13 +86,7 @@ export function SophiaChat({ onClose }: SophiaChatProps) {
       return "**'Ready for Design'** means your request has been approved and prioritized! Next steps:\n\n✅ Prioritization task closes\n✅ Design task automatically opens\n📊 You have a priority ranking (1-10)\n🎨 Time to schedule design sessions";
     }
 
-    // Question: What is [phase]
-    for (const phase of phases) {
-      if (lowerQuestion.includes(phase.name.toLowerCase())) {
-        const actionsText = phase.actions.ci ? `\n\n**Your Actions (CI)**:\n${phase.actions.ci.slice(0, 3).map(a => `• ${a}`).join('\n')}` : '';
-        return `**${phase.name} Phase**: ${phase.description}${actionsText}`;
-      }
-    }
+    // Removed broad phase matching - was returning 500-line descriptions inappropriately
 
     // Question: Who is responsible
     if (lowerQuestion.includes('responsible') || lowerQuestion.includes('who does')) {
