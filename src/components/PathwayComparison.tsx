@@ -40,7 +40,7 @@ export function PathwayComparison({ className = '' }: PathwayComparisonProps) {
 
   return (
     <div className={`bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden ${className}`}>
-      <div className="bg-gradient-to-r from-orange-500 to-green-500 p-6">
+      <div className="bg-slate-700 p-6">
         <h3 className="text-2xl font-bold text-white mb-2">Governance Pathway Comparison</h3>
         <p className="text-white text-opacity-90">
           Understanding the differences between Full Governance and Governance Templated processes
