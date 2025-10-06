@@ -64,7 +64,7 @@ function App() {
 
       <main className="flex-1">
         {/* Compact Governance Type Selector Hero */}
-        <div className="bg-gradient-to-r from-orange-500 to-green-500 border-b border-gray-200">
+        <div className="bg-slate-700 border-b border-gray-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <GovernanceTypeSelector
               selectedTypeId={selectedGovernanceTypeId}
@@ -72,19 +72,17 @@ function App() {
               governanceTypes={governanceTypes}
               showComparison={false}
             />
-          </div>
-        </div>
 
-        {/* Comparison Toggle Button */}
-        <div className="bg-white border-b border-gray-200 py-3">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
-            <button
-              onClick={() => setShowComparison(!showComparison)}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-orange-500 to-green-500 text-white rounded-lg text-sm font-medium hover:shadow-lg transition-all"
-            >
-              <GitCompare size={16} />
-              {showComparison ? 'Hide' : 'Show'} Detailed Pathway Comparison
-            </button>
+            {/* Comparison Toggle Button */}
+            <div className="mt-3 flex justify-center">
+              <button
+                onClick={() => setShowComparison(!showComparison)}
+                className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 hover:bg-white/30 text-white rounded-lg text-xs font-medium transition-all border border-white/30"
+              >
+                <GitCompare size={14} />
+                {showComparison ? 'Hide' : 'Show'} Detailed Pathway Comparison
+              </button>
+            </div>
           </div>
         </div>
 
