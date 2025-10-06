@@ -65,7 +65,7 @@ function App() {
       <main className="flex-1">
         {/* Compact Governance Type Selector Hero */}
         <div className="bg-slate-700 border-b border-gray-200">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
             <GovernanceTypeSelector
               selectedTypeId={selectedGovernanceTypeId}
               onSelect={setSelectedGovernanceTypeId}
@@ -74,12 +74,12 @@ function App() {
             />
 
             {/* Comparison Toggle Button */}
-            <div className="mt-3 flex justify-center">
+            <div className="mt-2 flex justify-center">
               <button
                 onClick={() => setShowComparison(!showComparison)}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 hover:bg-white/30 text-white rounded-lg text-xs font-medium transition-all border border-white/30"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/20 hover:bg-white/30 text-white rounded-lg text-xs font-medium transition-all border border-white/30"
               >
-                <GitCompare size={14} />
+                <GitCompare size={12} />
                 {showComparison ? 'Hide' : 'Show'} Detailed Pathway Comparison
               </button>
             </div>
