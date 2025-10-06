@@ -50,6 +50,8 @@ export interface Phase {
   name: string;
   order: number;
   color: string;
+  overview: string;
+  faqContent: string;
   description: string;
   actions: PhaseAction;
   notifications: Notification;
@@ -67,7 +69,25 @@ export const phasesData: Record<string, Phase> = {
     name: 'Intake',
     order: 1,
     color: 'bg-pink-600',
-    description: `## **PHASE 1: INTAKE**
+    overview: `## **PHASE 1: INTAKE**
+
+### **Getting Started**
+Submit your EHR Optimization Request via EmployeeCentral > Technology > Electronic Health Record > EHR Change > Optimization Request. Only Informaticists, LIS, Rev Cycle Resources, or Governance Liaisons can submit requests.
+
+**Key Actions:**
+1. **Submit the form** (click Submit, NOT "Save as Draft") - System creates a DMND number and Intake Task
+2. **Set up your workspace:**
+   - Create optimization folder in Request Folder Shared Drive with 5 subfolders (01_Intake, 02_Design, 03_Build_Test, 04_GoLive, 05_Closeout)
+   - **[SCI/System CI Only]** Create folder in System Clinical Informatics > System Policies/Initiatives
+   - **[SCI/System CI Only]** Create and save SCI Workbook copy in BOTH folders
+   - Rename folders to "DMND####### Title" after submission
+3. **Create Intake Slides** from template
+4. **Internal Review:** Update Status to "Approved" after your market/system team reviews
+
+**What Happens Next:** Intake Task closes automatically and Vetting Task opens.
+
+**Key Players:** Requesting CI leads; System Informatics Leader approves`,
+    faqContent: `## **PHASE 1: INTAKE**
 
 **Q: What do I need before starting an Intake request?**
 A: Make sure you have:
@@ -305,7 +325,34 @@ A: When opening a Demand or Demand task for the first time:
     name: 'Vetting',
     order: 2,
     color: 'bg-blue-600',
-    description: `## **PHASE 2: VETTING & PRIORITIZATION**
+    overview: `## **PHASE 2: VETTING & PRIORITIZATION**
+
+### **Vetting (PeriSCOPE Meeting)**
+The CM PgM manages Vetting and presents your request at PeriSCOPE for initial review.
+
+**Key Actions:**
+- **Requesting CI:** Be available for questions; respond to any information requests
+- **[CM PgM Only]:** Updates Status to "Ready for Agenda" → presents at PeriSCOPE → updates Status based on decision
+- If "Clinical Sponsorship Required" = Yes, a Define Task is automatically created
+
+**Possible Outcomes:** Ready for Prioritization | Further Review Needed | Dismissed
+
+---
+
+### **Prioritization (SCOPE Meeting)**
+System Informaticists and IT estimate effort, then SCOPE assigns priority ranking.
+
+**Key Actions:**
+1. **Effort Scoring Meeting:** Requesting CI and IT complete effort estimates
+2. **Update Status to "Ready for Agenda"** after BOTH CI and IT complete scoring
+3. **[CM PgM Only]:** Adds to SCOPE agenda → presents request → documents priority (1-10) → updates Status
+
+**Possible Outcomes:** Ready for Design | Needs Define | Further Review Needed | Dismissed
+
+**What Happens Next:** Prioritization closes and Design Task opens (Define Task also opens if needed)
+
+**Key Players:** Requesting CI and IT do effort scoring; CM PgM manages SCOPE`,
+    faqContent: `## **PHASE 2: VETTING & PRIORITIZATION**
 
 **Q: What is Vetting?**
 A: The Vetting task is used during the **PeriSCOPE Meeting** to review requests for completeness and determine if they should move to prioritization. The CM PgM reviews all attached documentation and updates ticket status.
@@ -564,7 +611,21 @@ A: When the status updates to "Ready for Design," the prioritization task is mar
     name: 'Prioritization',
     order: 3,
     color: 'bg-orange-500',
-    description: `## **PHASE 3: PRIORITIZATION**
+    overview: `## **PRIORITIZATION PROCESS**
+
+System Informaticists and IT estimate effort, then SCOPE assigns priority ranking.
+
+**Key Actions:**
+1. **Effort Scoring Meeting:** Requesting CI and IT complete effort estimates
+2. **Update Status to "Ready for Agenda"** after BOTH CI and IT complete scoring
+3. **[CM PgM Only]:** Adds to SCOPE agenda → presents request → documents priority (1-10) → updates Status
+
+**Possible Outcomes:** Ready for Design | Needs Define | Further Review Needed | Dismissed
+
+**What Happens Next:** Prioritization closes and Design Task opens (Define Task also opens if needed)
+
+**Key Players:** Requesting CI and IT do effort scoring; CM PgM manages SCOPE`,
+    faqContent: `## **PHASE 3: PRIORITIZATION**
 
 **Q: What happens during Prioritization?**
 A: System Informaticists and IT complete **Effort Scoring** to estimate the work required. Once scoring is complete, the request goes to the **SCOPE meeting** where it receives a priority ranking and decision on next steps.
@@ -793,7 +854,26 @@ A: Yes, if SCOPE decides Define is needed, the **CM PgM** updates Status to **Ne
     name: 'Define',
     order: 4,
     color: 'bg-purple-600',
-    description: `## **PHASE 3: DEFINE**
+    overview: `## **PHASE 3: DEFINE** (If Required)
+
+### **Clinical Service Line Approval**
+Secure Clinical Service Line approval before moving to design.
+
+**Key Actions:**
+1. **[CM PgM Only]:** Enters Primary Define Body (which CLS will review)
+2. **Requesting CI:**
+   - Secure agenda time with CLS representative
+   - Enter Primary Define Agenda Date
+   - Update Status to "Ready for Agenda"
+   - Present to Clinical Service Line
+   - Enter Primary Define Approval Date after approval
+3. **If multiple CLS approvals needed:** Repeat for each CLS group
+4. **Update Status to "Approved"** ONLY after FINAL approval
+
+**What Happens Next:** Define closes and Design Task opens
+
+**Key Players:** Requesting CI presents; CLS approves; CM PgM tracks progress`,
+    faqContent: `## **PHASE 3: DEFINE**
 
 **Q: What is the Define phase for?**
 A: Define is used when clinical sponsorship/service line approval is required. It allows **Clinical Service Lines** to review and approve the request before design begins.
@@ -1005,7 +1085,65 @@ A: If Status is updated to **Dismissed**, the Demand is closed and no further wo
     name: 'Design',
     order: 5,
     color: 'bg-indigo-600',
-    description: `## **PHASE 4: DESIGN**
+    overview: `## **PHASE 4: DESIGN**
+
+### **Design Task Opens**
+Answer: "Is design already complete?" → **Design is Complete** OR **Design Session Needed**
+
+---
+
+### **CERNER DESIGN PROCESS**
+
+**Key Actions:**
+1. **Update Status to "Ready for Agenda"** for first Design Review Call
+2. **If Design Session Needed:**
+   - **[CM PgM Only]:** Updates Status to "Resources Needed" (opens 2-week window)
+   - **Regional CIs and IT:** Add design participants within 2 weeks
+   - **Requesting CI:** Wait for 2-week window to close, then schedule design sessions (avoid Tue/Wed, minimum 2 weeks notice)
+   - Update Status to "In Design"
+3. **Conduct design sessions** (Requesting CI leads; IT participates)
+4. **Complete design documentation:**
+   - Design Document Link, Affected Applications, Release Type
+   - Cerner Target Domain, Cerner Validators
+   - Finalized Design Summary
+5. **Update Status to "Ready for Agenda"** + select "Design is Complete" for second Design Review Call
+6. **[CM PgM Only]:** Facilitates approval (regions have 2 weeks for feedback) → updates Status to "Complete"
+
+**Meetings:** Design Review Call (twice - participant gathering, then approval)
+
+---
+
+### **EPIC DESIGN PROCESS**
+
+**Key Actions:**
+1. **Create Epic Optimization Form** from template (if Design Session Needed)
+2. **Update Status to "Ready for Agenda"** for Refinement
+3. **Refinement Meeting:** Present request; IT identifies participants
+4. **Update Status to "Resources Needed"**
+5. **[IT Only]:** Assigns resources → updates Status to "Assigned"
+6. **[IT Only]:** Schedules design sessions:
+   - Multi-team: Process Owner schedules initial, then hands to Applications Engineer
+   - Single app: Applications Engineer schedules
+   - Updates Status to "In Design"
+7. **Conduct design sessions** (Requesting CI leads; IT participates)
+8. **Complete design documentation:**
+   - Design Document Link, Affected Applications
+   - Epic Validators, Finalized Design Summary
+9. **Requesting CI and IT:** Update Status to "Complete"
+
+**Meetings:** Refinement (Backlog Grooming)
+
+---
+
+### **Validators Identified**
+During Design, Requesting CI identifies who will test the build in non-prod and production.
+
+**What Happens Next:** Design closes and a FETR (Feature) automatically opens in Phase: Develop
+
+**Key Players:**
+- **Cerner:** Requesting CI schedules/leads; CM PgM manages approvals; Regional CIs and IT add participants
+- **Epic:** Requesting CI leads; IT schedules; both update to Complete`,
+    faqContent: `## **PHASE 4: DESIGN**
 
 **Q: What happens during the Design phase?**
 A: Design sessions are held to develop the technical solution for the EHR changes. The process varies between Cerner and Epic but generally includes:
@@ -1463,7 +1601,52 @@ A: Click the three dots next to Feature heading > View > **Release** (shows info
     name: 'Develop & Test',
     order: 6,
     color: 'bg-teal-600',
-    description: `## **PHASE 5: DEVELOP & TEST**
+    overview: `## **PHASE 5: DEVELOP & TEST**
+
+### **Non-Prod Build & Testing**
+
+**Key Actions:**
+1. **[IT Analyst]:**
+   - Builds in non-prod environment
+   - Updates Status: Assigned → Building → Testing
+   - Emails validators when Status = Testing
+2. **Validators:**
+   - Test in non-prod environment
+   - Document results in Work Notes
+   - Final validator updates Status to "Validated Successfully Non Prod"
+3. **Requesting CI:**
+   - Monitor build progress
+   - Coordinate with IT on questions
+   - Create education materials:
+     - **Cerner:** Change Communication document → update "Change Communication Phase" to "Attached"
+     - **Epic:** Work with IT Instructional Designers on tip sheets
+4. **Update Status to "Ready for Release Planning"** (moves to Deploy Phase)
+
+**Key Players:** IT builds; Validators test; Requesting CI creates education
+
+---
+
+## **PHASE 5: DEPLOY (Production)**
+
+### **Production Build & Testing**
+
+**Key Actions:**
+1. **[IT Process Owner]:** Assigns release date → updates Status to "Assigned Release"
+2. **[IT Analyst]:**
+   - Deploys to production on release day
+   - Updates Status: Building in Prod → Prod Validation
+   - Emails validators
+3. **Validators:**
+   - Test in production environment
+   - Document results in Work Notes
+   - Final validator updates Status to "Validated Successfully Prod"
+
+**Timeline:** Release date assigned after non-prod testing complete (estimates only until then)
+
+**What Happens Next:** Enhancement is live!
+
+**Key Players:** IT deploys; Validators test in production`,
+    faqContent: `## **PHASE 5: DEVELOP & TEST**
 
 **Q: What happens during the Develop & Test phase?**
 A: IT builds the EHR changes in a **non-production environment**. The Primary Informaticist and Validators work primarily in the **O&M Optimization section** of the Feature. The phase includes:
@@ -1793,7 +1976,27 @@ A: SCI/DCIs/MCIs/Instructional Designers create education for EHR changes (tip s
     name: 'Deploy & Close',
     order: 7,
     color: 'bg-green-600',
-    description: `## **PHASE 6: DEPLOY & CLOSE**
+    overview: `## **PHASE 6: DEPLOY & CLOSE**
+
+### **Go-Live Support & Close-Out**
+
+**Key Actions:**
+1. **Requesting CI:**
+   - Create and distribute end-user communication
+   - Coordinate go-live support
+   - Monitor for issues post-deployment (intensive for 24-48 hours, active for 1-2 weeks)
+   - Complete close-out documentation
+   - Update final metrics and lessons learned
+   - Close request when all activities complete
+2. **[IT]:**
+   - Monitor production stability
+   - Support post-deployment issues
+   - Complete technical close-out documentation
+
+**Communication:** Notify Clinical/Operational leaders, Regional CI leaders, IT Leaders, End users, System policy team (if applicable)
+
+**Key Players:** Requesting CI leads close-out; IT supports production stability`,
+    faqContent: `## **PHASE 6: DEPLOY & CLOSE**
 
 **Q: What happens during the Deploy & Close phase?**
 A: After production validation is complete, the enhancement goes live to end users. This phase includes:

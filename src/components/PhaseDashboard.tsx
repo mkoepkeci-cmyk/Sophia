@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Bell, Users, AlertCircle, ClipboardList, CheckCircle, Mail, RefreshCw, AlertTriangle, XCircle } from 'lucide-react';
+import { Bell, Users, AlertCircle, ClipboardList, CheckCircle, Mail, RefreshCw, AlertTriangle, XCircle, HelpCircle, BookOpen } from 'lucide-react';
 import { Phase } from '../data/phasesData';
 import { FormattedOverview } from './FormattedOverview';
 
@@ -8,13 +8,14 @@ interface PhaseDashboardProps {
   selectedRole: string;
 }
 
-type TabType = 'overview' | 'notifications' | 'responsibilities' | 'troubleshooting';
+type TabType = 'overview' | 'faq' | 'notifications' | 'responsibilities' | 'troubleshooting';
 
 export function PhaseDashboard({ phase, selectedRole }: PhaseDashboardProps) {
   const [activeTab, setActiveTab] = useState<TabType>('overview');
 
   const tabs = [
-    { id: 'overview' as TabType, label: 'Overview', icon: ClipboardList },
+    { id: 'overview' as TabType, label: 'Overview', icon: BookOpen },
+    { id: 'faq' as TabType, label: 'FAQ', icon: HelpCircle },
     { id: 'notifications' as TabType, label: 'Notifications', icon: Bell },
     { id: 'responsibilities' as TabType, label: 'Responsibilities', icon: Users },
     { id: 'troubleshooting' as TabType, label: 'Troubleshooting', icon: AlertCircle },
@@ -87,7 +88,11 @@ export function PhaseDashboard({ phase, selectedRole }: PhaseDashboardProps) {
       {/* Tab Content */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
         {activeTab === 'overview' && (
-          <FormattedOverview content={phase.description} />
+          <FormattedOverview content={phase.overview} />
+        )}
+
+        {activeTab === 'faq' && (
+          <FormattedOverview content={phase.faqContent} />
         )}
 
         {activeTab === 'notifications' && (
