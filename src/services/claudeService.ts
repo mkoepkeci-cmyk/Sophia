@@ -1,7 +1,5 @@
 import knowledgeBase from '../../knowledge/Comprehensive FAQ for EHR Governance Process.md?raw';
-
-const CLAUDE_API_KEY = import.meta.env.VITE_CLAUDE_API_KEY;
-const CLAUDE_API_URL = 'https://api.anthropic.com/v1/messages';
+import { supabase } from '../lib/supabase';
 
 const SOPHIA_SYSTEM_PROMPT = `You are Sophia, an EHR Governance Process Assistant with expert knowledge of the CommonSpirit Health EHR governance workflow. Your primary goal is to provide SPECIFIC, ACTIONABLE answers with EXACT details from your knowledge base.
 
@@ -64,62 +62,36 @@ export async function askSophia(
   userMessage: string,
   conversationHistory: Message[] = []
 ): Promise<string> {
-  if (!CLAUDE_API_KEY) {
-    throw new Error('Claude API key not configured. Please add VITE_CLAUDE_API_KEY to your .env file.');
+  if (!supabase) {
+    throw new Error('Supabase client not configured. AI features are unavailable.');
   }
 
   try {
-    // Build conversation messages for Claude API
-    const messages = [
-      ...conversationHistory.map(msg => ({
-        role: msg.role,
-        content: msg.content
-      })),
-      {
-        role: 'user' as const,
-        content: userMessage
+    // Call the Supabase Edge Function that proxies to Claude API
+    const { data, error } = await supabase.functions.invoke('ask-sophia', {
+      body: {
+        userMessage,
+        conversationHistory,
+        systemPrompt: SOPHIA_SYSTEM_PROMPT
       }
-    ];
-
-    const response = await fetch(CLAUDE_API_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': CLAUDE_API_KEY,
-        'anthropic-version': '2023-06-01'
-      },
-      body: JSON.stringify({
-        model: 'claude-3-5-sonnet-20241022',
-        max_tokens: 4096,
-        system: SOPHIA_SYSTEM_PROMPT,
-        messages
-      })
     });
 
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
-      console.error('Claude API error:', errorData);
-
-      if (response.status === 401) {
-        throw new Error('Invalid Claude API key. Please check your VITE_CLAUDE_API_KEY in .env file.');
-      }
-
-      throw new Error(`Claude API error: ${response.status} ${response.statusText}`);
+    if (error) {
+      console.error('Edge function error:', error);
+      throw new Error(`Failed to get AI response: ${error.message}`);
     }
 
-    const data = await response.json();
-
-    if (!data.content || !data.content[0] || !data.content[0].text) {
-      throw new Error('Unexpected response format from Claude API');
+    if (!data || !data.response) {
+      throw new Error('Unexpected response format from AI service');
     }
 
-    return data.content[0].text;
+    return data.response;
   } catch (error) {
-    console.error('Error calling Claude API:', error);
+    console.error('Error calling Sophia AI:', error);
     throw error;
   }
 }
 
 export function isClaudeConfigured(): boolean {
-  return !!CLAUDE_API_KEY;
+  return !!supabase;
 }
