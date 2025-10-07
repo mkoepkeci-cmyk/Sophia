@@ -20,6 +20,31 @@ function App() {
   // Fetch governance types from database
   useEffect(() => {
     const fetchGovernanceTypes = async () => {
+      if (!supabase) {
+        // Use fallback data if Supabase is not available
+        setGovernanceTypes([
+          {
+            id: '1',
+            name: 'Full Governance',
+            description: 'Complete governance process for all new or complex requests',
+            phases_included: ['intake', 'vetting', 'prioritization', 'define', 'design', 'develop', 'deploy'],
+            phases_skipped: [],
+            estimated_duration: 'Weeks to months',
+            created_at: new Date().toISOString()
+          },
+          {
+            id: '2',
+            name: 'Governance Templated',
+            description: 'Expedited process for pre-approved maintenance and routine requests',
+            phases_included: ['intake', 'design', 'develop', 'deploy'],
+            phases_skipped: ['vetting', 'prioritization'],
+            estimated_duration: 'Days to weeks',
+            created_at: new Date().toISOString()
+          }
+        ]);
+        return;
+      }
+
       const { data, error } = await supabase
         .from('governance_types')
         .select('*')

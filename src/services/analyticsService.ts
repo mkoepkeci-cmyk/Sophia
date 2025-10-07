@@ -18,6 +18,8 @@ interface Feedback {
  * Log a question and response to analytics
  */
 export async function logQuestion(data: QuestionLog): Promise<string | null> {
+  if (!supabase) return null;
+
   try {
     const { data: result, error } = await supabase
       .from('sophia_questions')
@@ -47,6 +49,8 @@ export async function logQuestion(data: QuestionLog): Promise<string | null> {
  * Submit feedback for a response
  */
 export async function submitFeedback(data: Feedback): Promise<boolean> {
+  if (!supabase) return false;
+
   try {
     const { error } = await supabase
       .from('sophia_feedback')
@@ -72,6 +76,8 @@ export async function submitFeedback(data: Feedback): Promise<boolean> {
  * Track potential knowledge gap
  */
 export async function trackKnowledgeGap(question: string, responseLength: number): Promise<void> {
+  if (!supabase) return;
+
   try {
     // Check if response seems generic (short responses might indicate lack of good answer)
     const isLikelyGap = responseLength < 200;
@@ -118,6 +124,8 @@ export async function trackKnowledgeGap(question: string, responseLength: number
  * Get analytics summary
  */
 export async function getAnalyticsSummary() {
+  if (!supabase) return null;
+
   try {
     const { data, error } = await supabase
       .from('sophia_analytics')
@@ -141,6 +149,8 @@ export async function getAnalyticsSummary() {
  * Get top knowledge gaps
  */
 export async function getKnowledgeGaps() {
+  if (!supabase) return null;
+
   try {
     const { data, error } = await supabase
       .from('sophia_knowledge_gaps')
