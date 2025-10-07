@@ -68,7 +68,7 @@ export const phasesData: Record<string, Phase> = {
     id: 'intake',
     name: 'Intake',
     order: 1,
-    color: 'bg-[#BA4B9C]',
+    color: 'bg-[#BA4896]',
     overview: `## **PHASE 1: INTAKE**
 
 ### **Getting Started**
@@ -324,7 +324,7 @@ A: When opening a Demand or Demand task for the first time:
     id: 'vetting',
     name: 'Vetting',
     order: 2,
-    color: 'bg-[#F3781E]',
+    color: 'bg-[#565658]',
     overview: `## **PHASE 2: VETTING & PRIORITIZATION**
 
 ### **Vetting (PeriSCOPE Meeting)**
@@ -610,7 +610,7 @@ A: When the status updates to "Ready for Design," the prioritization task is mar
     id: 'prioritization',
     name: 'Prioritization',
     order: 3,
-    color: 'bg-[#00A3E0]',
+    color: 'bg-[#00615A]',
     overview: `## **PRIORITIZATION PROCESS**
 
 System Informaticists and IT estimate effort, then SCOPE assigns priority ranking.
@@ -853,7 +853,7 @@ A: Yes, if SCOPE decides Define is needed, the **CM PgM** updates Status to **Ne
     id: 'define',
     name: 'Define',
     order: 4,
-    color: 'bg-[#7DE0A7]',
+    color: 'bg-[#953309]',
     overview: `## **PHASE 3: DEFINE** (If Required)
 
 ### **Clinical Service Line Approval**
@@ -1084,7 +1084,7 @@ A: If Status is updated to **Dismissed**, the Demand is closed and no further wo
     id: 'design',
     name: 'Design',
     order: 5,
-    color: 'bg-[#FFB81C]',
+    color: 'bg-[#6F457D]',
     overview: `## **PHASE 4: DESIGN**
 
 ### **Design Task Opens**
@@ -1600,7 +1600,7 @@ A: Click the three dots next to Feature heading > View > **Release** (shows info
     id: 'develop',
     name: 'Develop & Test',
     order: 6,
-    color: 'bg-[#56565B]',
+    color: 'bg-[#00AE9D]',
     overview: `## **PHASE 5: DEVELOP & TEST**
 
 ### **Non-Prod Build & Testing**
@@ -1975,7 +1975,7 @@ A: SCI/DCIs/MCIs/Instructional Designers create education for EHR changes (tip s
     id: 'deploy',
     name: 'Deploy & Close',
     order: 7,
-    color: 'bg-[#00A3E0]',
+    color: 'bg-[#F47A4B]',
     overview: `## **PHASE 6: DEPLOY & CLOSE**
 
 ### **Go-Live Support & Close-Out**

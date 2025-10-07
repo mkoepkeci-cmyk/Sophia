@@ -110,14 +110,6 @@ export function GovernanceTypeSelector({
             </div>
           </button>
         )}
-
-        <button
-          onClick={() => setShowHelper(!showHelper)}
-          className="flex items-center gap-1 text-xs text-white hover:text-white/80 font-medium bg-white/20 px-3 py-2 rounded-lg transition-colors whitespace-nowrap"
-        >
-          <HelpCircle size={12} />
-          Need help?
-        </button>
       </div>
     </div>
   );

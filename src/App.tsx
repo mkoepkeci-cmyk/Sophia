@@ -132,7 +132,7 @@ function App() {
       {!isChatOpen && (
         <button
           onClick={() => setIsChatOpen(true)}
-          className="fixed bottom-6 right-6 w-16 h-16 bg-gradient-to-r from-[#00A3E0] to-[#0088CC] text-white rounded-full shadow-lg hover:shadow-xl transition-all flex items-center justify-center z-40 hover:scale-110"
+          className="fixed bottom-6 right-6 w-16 h-16 bg-[#BA4896] hover:bg-[#A03D7F] text-white rounded-full shadow-lg hover:shadow-xl transition-all flex items-center justify-center z-40 hover:scale-110"
           aria-label="Open Sophia Chat"
         >
           <MessageCircle size={28} />
