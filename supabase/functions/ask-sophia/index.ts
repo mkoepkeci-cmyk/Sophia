@@ -64,38 +64,44 @@ Deno.serve(async (req: Request) => {
       );
     }
 
-    // Query vault for Claude API key
-    const vaultQuery = await fetch(`${supabaseUrl}/rest/v1/rpc/get_claude_api_key`, {
-      method: 'POST',
-      headers: {
-        'apikey': supabaseServiceKey,
-        'Authorization': `Bearer ${supabaseServiceKey}`,
-        'Content-Type': 'application/json',
-      },
-    });
+    // Try to get Claude API key from multiple sources
+    // 1. Check Edge Function secrets (from Supabase Dashboard)
+    let claudeApiKey = Deno.env.get('CLAUDE_API_KEY');
 
-    let claudeApiKey: string;
+    // 2. If not in env, try to get from vault via database function
+    if (!claudeApiKey) {
+      try {
+        const vaultQuery = await fetch(`${supabaseUrl}/rest/v1/rpc/get_claude_api_key`, {
+          method: 'POST',
+          headers: {
+            'apikey': supabaseServiceKey,
+            'Authorization': `Bearer ${supabaseServiceKey}`,
+            'Content-Type': 'application/json',
+          },
+        });
 
-    if (!vaultQuery.ok) {
-      // Fallback: check for environment variable (for development/testing)
-      claudeApiKey = Deno.env.get('CLAUDE_API_KEY') || '';
-
-      if (!claudeApiKey) {
-        console.error('Claude API key not found in vault or environment');
-        return new Response(
-          JSON.stringify({ error: 'API key not configured' }),
-          {
-            status: 500,
-            headers: {
-              ...corsHeaders,
-              'Content-Type': 'application/json',
-            },
-          }
-        );
+        if (vaultQuery.ok) {
+          const vaultData = await vaultQuery.json();
+          claudeApiKey = vaultData.key;
+        }
+      } catch (vaultError) {
+        console.error('Error querying vault:', vaultError);
       }
-    } else {
-      const vaultData = await vaultQuery.json();
-      claudeApiKey = vaultData.key || Deno.env.get('CLAUDE_API_KEY') || '';
+    }
+
+    // If still no key found, return error
+    if (!claudeApiKey) {
+      console.error('Claude API key not found in environment or vault');
+      return new Response(
+        JSON.stringify({ error: 'API key not configured. Please add CLAUDE_API_KEY to Edge Function secrets.' }),
+        {
+          status: 500,
+          headers: {
+            ...corsHeaders,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
     }
 
     // Build conversation messages for Claude API
