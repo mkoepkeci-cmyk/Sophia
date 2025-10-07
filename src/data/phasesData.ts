@@ -68,7 +68,7 @@ export const phasesData: Record<string, Phase> = {
     id: 'intake',
     name: 'Intake',
     order: 1,
-    color: 'bg-pink-600',
+    color: 'bg-[#BA4B9C]',
     overview: `## **PHASE 1: INTAKE**
 
 ### **Getting Started**
@@ -248,7 +248,7 @@ A: When opening a Demand or Demand task for the first time:
     responsibilities: [
       {
         role: 'Clinical Informaticist (You)',
-        roleColor: 'text-blue-600',
+        roleColor: 'text-[#00A3E0]',
         actions: [
           'Submit Intake form',
           'Create all required folders and documentation',
@@ -259,7 +259,7 @@ A: When opening a Demand or Demand task for the first time:
       },
       {
         role: 'System Informatics Leader',
-        roleColor: 'text-gray-700',
+        roleColor: 'text-[#8F939F]',
         actions: [
           'Reviews Draft Request for completeness',
           'Validates scope and priority alignment',
@@ -269,7 +269,7 @@ A: When opening a Demand or Demand task for the first time:
       },
       {
         role: 'System (Automated)',
-        roleColor: 'text-green-600',
+        roleColor: 'text-[#00A3E0]',
         actions: [
           'Creates DMND number upon submission',
           'Sends confirmation email',
@@ -284,7 +284,7 @@ A: When opening a Demand or Demand task for the first time:
         meaning: 'Ready for governance review',
         whatHappens: 'Intake task closes as "Closed Complete" and Vetting task automatically opens',
         icon: '✅',
-        color: 'text-green-600'
+        color: 'text-[#00A3E0]'
       }
     ],
 
@@ -324,7 +324,7 @@ A: When opening a Demand or Demand task for the first time:
     id: 'vetting',
     name: 'Vetting',
     order: 2,
-    color: 'bg-blue-600',
+    color: 'bg-[#00A3E0]',
     overview: `## **PHASE 2: VETTING & PRIORITIZATION**
 
 ### **Vetting (PeriSCOPE Meeting)**
@@ -530,7 +530,7 @@ A: When the status updates to "Ready for Design," the prioritization task is mar
     responsibilities: [
       {
         role: 'CM Program Manager (Lead)',
-        roleColor: 'text-pink-600',
+        roleColor: 'text-[#BA4B9C]',
         actions: [
           'Reviews request for completeness',
           'Adds to PeriSCOPE agenda',
@@ -542,7 +542,7 @@ A: When the status updates to "Ready for Design," the prioritization task is mar
       },
       {
         role: 'Clinical Informaticist (Attendee)',
-        roleColor: 'text-blue-600',
+        roleColor: 'text-[#00A3E0]',
         actions: [
           'Attends PeriSCOPE (optional)',
           'Available to answer questions',
@@ -551,7 +551,7 @@ A: When the status updates to "Ready for Design," the prioritization task is mar
       },
       {
         role: 'PeriSCOPE Committee',
-        roleColor: 'text-gray-700',
+        roleColor: 'text-[#8F939F]',
         actions: [
           'Reviews request alignment with governance',
           'Validates scope and feasibility',
@@ -567,21 +567,21 @@ A: When the status updates to "Ready for Design," the prioritization task is mar
         meaning: 'Approved - moving to SCOPE',
         whatHappens: 'Vetting task closes, Prioritization task opens automatically',
         icon: '✅',
-        color: 'text-green-600'
+        color: 'text-[#00A3E0]'
       },
       {
         status: 'Further Review Needed',
         meaning: 'Additional information required',
         whatHappens: 'Intake task reopens. CI provides missing details, then resubmits to Vetting.',
         icon: '⚠️',
-        color: 'text-yellow-600'
+        color: 'text-[#F3781E]'
       },
       {
         status: 'Dismissed',
         meaning: 'Request rejected at PeriSCOPE',
         whatHappens: 'Request closes permanently. No further action.',
         icon: '❌',
-        color: 'text-red-600'
+        color: 'text-[#BA4B9C]'
       }
     ],
 
@@ -610,7 +610,7 @@ A: When the status updates to "Ready for Design," the prioritization task is mar
     id: 'prioritization',
     name: 'Prioritization',
     order: 3,
-    color: 'bg-orange-500',
+    color: 'bg-[#F3781E]',
     overview: `## **PRIORITIZATION PROCESS**
 
 System Informaticists and IT estimate effort, then SCOPE assigns priority ranking.
@@ -757,7 +757,7 @@ A: Yes, if SCOPE decides Define is needed, the **CM PgM** updates Status to **Ne
     responsibilities: [
       {
         role: 'Clinical Informaticist (You)',
-        roleColor: 'text-blue-600',
+        roleColor: 'text-[#00A3E0]',
         actions: [
           'Completes Effort Scoring with System Informaticists',
           'Coordinates with IT on effort scoring',
@@ -767,7 +767,7 @@ A: Yes, if SCOPE decides Define is needed, the **CM PgM** updates Status to **Ne
       },
       {
         role: 'IT Process Owner / IT Analyst',
-        roleColor: 'text-green-600',
+        roleColor: 'text-[#00A3E0]',
         actions: [
           'Completes IT Effort Scoring',
           'Participates in scoring discussion',
@@ -777,7 +777,7 @@ A: Yes, if SCOPE decides Define is needed, the **CM PgM** updates Status to **Ne
       },
       {
         role: 'CM Program Manager',
-        roleColor: 'text-pink-600',
+        roleColor: 'text-[#BA4B9C]',
         actions: [
           'Adds to SCOPE agenda when Ready',
           'Presents at SCOPE meeting',
@@ -787,7 +787,7 @@ A: Yes, if SCOPE decides Define is needed, the **CM PgM** updates Status to **Ne
       },
       {
         role: 'SCOPE Committee',
-        roleColor: 'text-gray-700',
+        roleColor: 'text-[#8F939F]',
         actions: [
           'Reviews effort score',
           'Assigns priority ranking (1-10)',
@@ -803,28 +803,28 @@ A: Yes, if SCOPE decides Define is needed, the **CM PgM** updates Status to **Ne
         meaning: 'Approved - proceeding to design',
         whatHappens: 'Prioritization task closes, Design task opens. Ranked priority documented.',
         icon: '✅',
-        color: 'text-green-600'
+        color: 'text-[#00A3E0]'
       },
       {
         status: 'Further Review Needed',
         meaning: 'More information required',
         whatHappens: 'Intake task reopens. CI provides additional details.',
         icon: '⚠️',
-        color: 'text-yellow-600'
+        color: 'text-[#F3781E]'
       },
       {
         status: 'Dismissed',
         meaning: 'Request rejected at SCOPE',
         whatHappens: 'Request closes permanently.',
         icon: '❌',
-        color: 'text-red-600'
+        color: 'text-[#BA4B9C]'
       },
       {
         status: 'Needs Define',
         meaning: 'Requires Clinical Service Line approval',
         whatHappens: 'Define task created (if not already existing from Vetting)',
         icon: '🔄',
-        color: 'text-purple-600'
+        color: 'text-[#7DE0A7]'
       }
     ],
 
@@ -853,7 +853,7 @@ A: Yes, if SCOPE decides Define is needed, the **CM PgM** updates Status to **Ne
     id: 'define',
     name: 'Define',
     order: 4,
-    color: 'bg-purple-600',
+    color: 'bg-[#7DE0A7]',
     overview: `## **PHASE 3: DEFINE** (If Required)
 
 ### **Clinical Service Line Approval**
@@ -998,7 +998,7 @@ A: If Status is updated to **Dismissed**, the Demand is closed and no further wo
     responsibilities: [
       {
         role: 'Clinical Informaticist (You - Lead)',
-        roleColor: 'text-blue-600',
+        roleColor: 'text-[#00A3E0]',
         actions: [
           'Secures agenda time with CLS',
           'Presents request to Clinical Service Line',
@@ -1009,7 +1009,7 @@ A: If Status is updated to **Dismissed**, the Demand is closed and no further wo
       },
       {
         role: 'Clinical Service Line Representative',
-        roleColor: 'text-teal-600',
+        roleColor: 'text-[#00A3E0]',
         actions: [
           'Reviews clinical impact and alignment',
           'Provides clinical sponsorship',
@@ -1019,7 +1019,7 @@ A: If Status is updated to **Dismissed**, the Demand is closed and no further wo
       },
       {
         role: 'CM Program Manager',
-        roleColor: 'text-pink-600',
+        roleColor: 'text-[#BA4B9C]',
         actions: [
           'Enters Primary Define Body name',
           'Tracks Define progress',
@@ -1034,28 +1034,28 @@ A: If Status is updated to **Dismissed**, the Demand is closed and no further wo
         meaning: 'Clinical Service Line has approved',
         whatHappens: 'Define task closes. You can proceed to Design phase.',
         icon: '✅',
-        color: 'text-green-600'
+        color: 'text-[#00A3E0]'
       },
       {
         status: 'Further Review Needed',
         meaning: 'CLS requests additional information',
         whatHappens: 'Intake task reopens for more details. Re-present to CLS after updates.',
         icon: '⚠️',
-        color: 'text-yellow-600'
+        color: 'text-[#F3781E]'
       },
       {
         status: 'Dismissed',
         meaning: 'Clinical Service Line does not support',
         whatHappens: 'Request closes permanently. No clinical sponsorship.',
         icon: '❌',
-        color: 'text-red-600'
+        color: 'text-[#BA4B9C]'
       },
       {
         status: 'In Progress',
         meaning: 'Working to secure CLS agenda time',
         whatHappens: 'CI continues coordinating with CLS for meeting slot.',
         icon: '🔄',
-        color: 'text-blue-600'
+        color: 'text-[#00A3E0]'
       }
     ],
 
@@ -1084,7 +1084,7 @@ A: If Status is updated to **Dismissed**, the Demand is closed and no further wo
     id: 'design',
     name: 'Design',
     order: 5,
-    color: 'bg-indigo-600',
+    color: 'bg-[#8F939F]',
     overview: `## **PHASE 4: DESIGN**
 
 ### **Design Task Opens**
@@ -1489,7 +1489,7 @@ A: Click the three dots next to Feature heading > View > **Release** (shows info
     responsibilities: [
       {
         role: 'Clinical Informaticist (You - Lead)',
-        roleColor: 'text-blue-600',
+        roleColor: 'text-[#00A3E0]',
         actions: [
           'For Cerner: Schedules design sessions after Resources Needed closes',
           'For Epic: Coordinates with IT on scheduling',
@@ -1501,7 +1501,7 @@ A: Click the three dots next to Feature heading > View > **Release** (shows info
       },
       {
         role: 'IT Applications Engineer',
-        roleColor: 'text-green-600',
+        roleColor: 'text-[#00A3E0]',
         actions: [
           'For Epic single-app: Schedules all design sessions',
           'For Epic multi-team: Schedules follow-up sessions (after PO initial)',
@@ -1511,7 +1511,7 @@ A: Click the three dots next to Feature heading > View > **Release** (shows info
       },
       {
         role: 'IT Process Owner',
-        roleColor: 'text-green-700',
+        roleColor: 'text-[#00A3E0]',
         actions: [
           'For Epic multi-team: Schedules initial design session',
           'Reviews and approves design',
@@ -1520,7 +1520,7 @@ A: Click the three dots next to Feature heading > View > **Release** (shows info
       },
       {
         role: 'Regional Clinical Informaticists',
-        roleColor: 'text-blue-500',
+        roleColor: 'text-[#00A3E0]',
         actions: [
           'For Cerner: Add themselves as Design Participants during Resources Needed',
           'Attend design sessions for their region',
@@ -1529,7 +1529,7 @@ A: Click the three dots next to Feature heading > View > **Release** (shows info
       },
       {
         role: 'Validators',
-        roleColor: 'text-purple-600',
+        roleColor: 'text-[#7DE0A7]',
         actions: [
           'Selected by Primary CI during Design',
           'Test in non-prod when notified',
@@ -1545,28 +1545,28 @@ A: Click the three dots next to Feature heading > View > **Release** (shows info
         meaning: 'Cerner only: 2-week window for participants to add themselves',
         whatHappens: 'Regional CIs and IT add themselves as Design Participants. Wait 2 weeks before scheduling sessions.',
         icon: '👥',
-        color: 'text-blue-600'
+        color: 'text-[#00A3E0]'
       },
       {
         status: 'Design Sessions',
         meaning: 'Active design work in progress',
         whatHappens: 'Sessions scheduled and completed. Design documented.',
         icon: '🎨',
-        color: 'text-purple-600'
+        color: 'text-[#7DE0A7]'
       },
       {
         status: 'Signatures',
         meaning: 'Design complete, awaiting approvals',
         whatHappens: 'Collecting required approvals from stakeholders.',
         icon: '✍️',
-        color: 'text-indigo-600'
+        color: 'text-[#8F939F]'
       },
       {
         status: 'Ready for Build',
         meaning: 'Design approved, ready for development',
         whatHappens: 'Design task closes, Build task opens.',
         icon: '✅',
-        color: 'text-green-600'
+        color: 'text-[#00A3E0]'
       }
     ],
 
@@ -1600,7 +1600,7 @@ A: Click the three dots next to Feature heading > View > **Release** (shows info
     id: 'develop',
     name: 'Develop & Test',
     order: 6,
-    color: 'bg-teal-600',
+    color: 'bg-[#00A3E0]',
     overview: `## **PHASE 5: DEVELOP & TEST**
 
 ### **Non-Prod Build & Testing**
@@ -1874,7 +1874,7 @@ A: SCI/DCIs/MCIs/Instructional Designers create education for EHR changes (tip s
     responsibilities: [
       {
         role: 'IT Applications Engineer',
-        roleColor: 'text-green-600',
+        roleColor: 'text-[#00A3E0]',
         actions: [
           'Builds enhancement in non-prod',
           'Updates Status to "Testing" when ready',
@@ -1885,7 +1885,7 @@ A: SCI/DCIs/MCIs/Instructional Designers create education for EHR changes (tip s
       },
       {
         role: 'Clinical Informaticist (You)',
-        roleColor: 'text-blue-600',
+        roleColor: 'text-[#00A3E0]',
         actions: [
           'Monitors build progress',
           'Confirms validators received notification',
@@ -1896,7 +1896,7 @@ A: SCI/DCIs/MCIs/Instructional Designers create education for EHR changes (tip s
       },
       {
         role: 'Validators',
-        roleColor: 'text-purple-600',
+        roleColor: 'text-[#7DE0A7]',
         actions: [
           'Tests in non-prod when Status = Testing',
           'Documents results in Work Notes',
@@ -1913,35 +1913,35 @@ A: SCI/DCIs/MCIs/Instructional Designers create education for EHR changes (tip s
         meaning: 'IT is actively building in non-prod',
         whatHappens: 'Wait for IT to complete build and update Status to Testing',
         icon: '🔨',
-        color: 'text-orange-600'
+        color: 'text-[#F3781E]'
       },
       {
         status: 'Testing',
         meaning: 'Ready for non-prod validation',
         whatHappens: 'Validators receive email. Begin testing in non-prod environment.',
         icon: '🧪',
-        color: 'text-blue-600'
+        color: 'text-[#00A3E0]'
       },
       {
         status: 'Validated Successfully Non Prod',
         meaning: 'Non-prod testing passed',
         whatHappens: 'IT deploys to production. Then updates Status to Prod Validation.',
         icon: '✅',
-        color: 'text-green-600'
+        color: 'text-[#00A3E0]'
       },
       {
         status: 'Prod Validation',
         meaning: 'Deployed to prod, ready for prod testing',
         whatHappens: 'Validators receive email. Begin testing in production environment.',
         icon: '🚀',
-        color: 'text-purple-600'
+        color: 'text-[#7DE0A7]'
       },
       {
         status: 'Validated Successfully Prod',
         meaning: 'Production testing passed',
         whatHappens: 'Enhancement is live. Proceed to close-out activities.',
         icon: '✅',
-        color: 'text-green-600'
+        color: 'text-[#00A3E0]'
       }
     ],
 
@@ -1975,7 +1975,7 @@ A: SCI/DCIs/MCIs/Instructional Designers create education for EHR changes (tip s
     id: 'deploy',
     name: 'Deploy & Close',
     order: 7,
-    color: 'bg-green-600',
+    color: 'bg-[#00A3E0]',
     overview: `## **PHASE 6: DEPLOY & CLOSE**
 
 ### **Go-Live Support & Close-Out**
@@ -2189,7 +2189,7 @@ A:
     responsibilities: [
       {
         role: 'Clinical Informaticist (You - Lead)',
-        roleColor: 'text-blue-600',
+        roleColor: 'text-[#00A3E0]',
         actions: [
           'Creates end-user communication',
           'Distributes change notification',
@@ -2201,7 +2201,7 @@ A:
       },
       {
         role: 'IT Applications Engineer',
-        roleColor: 'text-green-600',
+        roleColor: 'text-[#00A3E0]',
         actions: [
           'Monitors production',
           'Supports post-deployment issues',
@@ -2210,7 +2210,7 @@ A:
       },
       {
         role: 'End Users',
-        roleColor: 'text-gray-600',
+        roleColor: 'text-[#8F939F]',
         actions: [
           'Receive change communication',
           'Adopt new enhancement',
@@ -2225,7 +2225,7 @@ A:
         meaning: 'Enhancement successfully deployed and closed',
         whatHappens: 'Request lifecycle complete. Enhancement live in production.',
         icon: '✅',
-        color: 'text-green-600'
+        color: 'text-[#00A3E0]'
       }
     ],
 

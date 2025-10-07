@@ -18,15 +18,15 @@ export function PhaseTimeline({ phases, selectedPhaseId, onPhaseSelect, governan
           <div className="mb-3 flex items-center justify-center">
             <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium ${
               governanceType === 'templated'
-                ? 'bg-green-100 text-green-800 border border-green-300'
-                : 'bg-orange-100 text-orange-800 border border-orange-300'
+                ? 'bg-[#00A3E0]/10 text-[#00A3E0] border border-[#00A3E0]/30'
+                : 'bg-[#BA4B9C]/10 text-[#BA4B9C] border border-[#BA4B9C]/30'
             }`}>
               {governanceType === 'templated' && <Zap size={16} />}
               <span>
                 {governanceType === 'templated' ? 'Governance Templated' : 'Full Governance'} Pathway
               </span>
               {governanceType === 'templated' && (
-                <span className="text-xs bg-green-200 px-2 py-0.5 rounded">Fast Track</span>
+                <span className="text-xs bg-[#00A3E0]/20 px-2 py-0.5 rounded">Fast Track</span>
               )}
             </div>
           </div>
@@ -53,7 +53,7 @@ export function PhaseTimeline({ phases, selectedPhaseId, onPhaseSelect, governan
                   title={isSkipped ? 'This phase is skipped in Governance Templated pathway' : ''}
                 >
                   {isSkipped && (
-                    <div className="absolute -top-1 -right-1 w-5 h-5 bg-yellow-400 rounded-full flex items-center justify-center">
+                    <div className="absolute -top-1 -right-1 w-5 h-5 bg-[#F3781E] rounded-full flex items-center justify-center">
                       <span className="text-xs font-bold text-gray-800">⚡</span>
                     </div>
                   )}

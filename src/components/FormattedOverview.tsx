@@ -105,14 +105,14 @@ export function FormattedOverview({ content }: FormattedOverviewProps) {
           <div key={sectionIdx} className="space-y-4">
             <button
               onClick={() => toggleSection(sectionKey)}
-              className="w-full flex items-center gap-3 pb-3 border-b-2 border-blue-200 hover:bg-blue-50 transition-colors px-2 py-1 rounded-t"
+              className="w-full flex items-center gap-3 pb-3 border-b-2 border-[#00A3E0]/20 hover:bg-[#00A3E0]/5 transition-colors px-2 py-1 rounded-t"
             >
-              <CheckCircle className="text-blue-600 flex-shrink-0" size={24} />
+              <CheckCircle className="text-[#00A3E0] flex-shrink-0" size={24} />
               <h3 className="text-xl font-bold text-gray-900 flex-1 text-left">{section.title}</h3>
               {isSectionExpanded ? (
-                <ChevronDown className="text-blue-600 flex-shrink-0" size={24} />
+                <ChevronDown className="text-[#00A3E0] flex-shrink-0" size={24} />
               ) : (
-                <ChevronRight className="text-blue-600 flex-shrink-0" size={24} />
+                <ChevronRight className="text-[#00A3E0] flex-shrink-0" size={24} />
               )}
             </button>
 
@@ -129,7 +129,7 @@ export function FormattedOverview({ content }: FormattedOverviewProps) {
                     onClick={() => toggleItem(itemKey)}
                     className="w-full flex items-start gap-3 p-5 text-left hover:bg-gray-100 transition-colors"
                   >
-                    <HelpCircle className="text-blue-500 flex-shrink-0 mt-1" size={20} />
+                    <HelpCircle className="text-[#00A3E0] flex-shrink-0 mt-1" size={20} />
                     <h4 className="text-base font-semibold text-gray-900 flex-1">{item.question}</h4>
                     {isExpanded ? (
                       <ChevronDown className="text-gray-400 flex-shrink-0 mt-1" size={20} />
@@ -149,7 +149,7 @@ export function FormattedOverview({ content }: FormattedOverviewProps) {
                       dangerouslySetInnerHTML={{
                         __html: item.answer
                           .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-gray-900">$1</strong>')
-                          .replace(/\[([^\]]+)\]/g, '<span class="inline-block bg-blue-100 text-blue-800 text-xs font-medium px-2 py-1 rounded mr-1">$1</span>')
+                          .replace(/\[([^\]]+)\]/g, '<span class="inline-block bg-[#00A3E0]/10 text-[#00A3E0] text-xs font-medium px-2 py-1 rounded mr-1">$1</span>')
                       }}
                     />
                   )}
@@ -177,13 +177,13 @@ export function FormattedOverview({ content }: FormattedOverviewProps) {
 
                         if (isRoleSpecific) {
                           return (
-                            <li key={listIdx} className="bg-blue-50 border-l-4 border-blue-400 rounded-r p-3 -ml-3">
+                            <li key={listIdx} className="bg-[#00A3E0]/10 border-l-4 border-[#00A3E0] rounded-r p-3 -ml-3">
                               <span
                                 className="text-gray-700"
                                 dangerouslySetInnerHTML={{
                                   __html: listItem
                                     .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-gray-900">$1</strong>')
-                                    .replace(/\[([^\]]+)\]/g, '<span class="inline-block bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded mr-2">$1</span>')
+                                    .replace(/\[([^\]]+)\]/g, '<span class="inline-block bg-[#00A3E0] text-white text-xs font-bold px-2 py-1 rounded mr-2">$1</span>')
                                 }}
                               />
                             </li>
@@ -192,13 +192,13 @@ export function FormattedOverview({ content }: FormattedOverviewProps) {
 
                         return (
                           <li key={listIdx} className="flex gap-3 items-start">
-                            <span className="text-blue-600 font-bold flex-shrink-0 mt-0.5">•</span>
+                            <span className="text-[#00A3E0] font-bold flex-shrink-0 mt-0.5">•</span>
                             <span
                               className="text-gray-700 flex-1"
                               dangerouslySetInnerHTML={{
                                 __html: listItem
                                   .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-gray-900">$1</strong>')
-                                  .replace(/\[([^\]]+)\]/g, '<span class="inline-block bg-blue-100 text-blue-800 text-xs font-medium px-2 py-1 rounded mr-1">$1</span>')
+                                  .replace(/\[([^\]]+)\]/g, '<span class="inline-block bg-[#00A3E0]/10 text-[#00A3E0] text-xs font-medium px-2 py-1 rounded mr-1">$1</span>')
                               }}
                             />
                           </li>

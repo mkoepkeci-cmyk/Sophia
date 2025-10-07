@@ -32,7 +32,7 @@ export function PlainOverview({ content }: PlainOverviewProps) {
                 dangerouslySetInnerHTML={{
                   __html: text
                     .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-gray-900">$1</strong>')
-                    .replace(/\[([^\]]+)\]/g, '<span class="inline-block bg-blue-100 text-blue-800 text-xs font-medium px-2 py-1 rounded">$1</span>')
+                    .replace(/\[([^\]]+)\]/g, '<span class="inline-block bg-[#00A3E0]/10 text-[#00A3E0] text-xs font-medium px-2 py-1 rounded">$1</span>')
                 }}
               />
             </div>
@@ -43,13 +43,13 @@ export function PlainOverview({ content }: PlainOverviewProps) {
           const text = line.trim().replace(/^-\s*/, '');
           return (
             <div key={index} className="flex gap-3 ml-6 mb-2">
-              <span className="text-blue-600 font-bold flex-shrink-0">•</span>
+              <span className="text-[#00A3E0] font-bold flex-shrink-0">•</span>
               <span
                 className="text-gray-700"
                 dangerouslySetInnerHTML={{
                   __html: text
                     .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-gray-900">$1</strong>')
-                    .replace(/\[([^\]]+)\]/g, '<span class="inline-block bg-blue-100 text-blue-800 text-xs font-medium px-2 py-1 rounded">$1</span>')
+                    .replace(/\[([^\]]+)\]/g, '<span class="inline-block bg-[#00A3E0]/10 text-[#00A3E0] text-xs font-medium px-2 py-1 rounded">$1</span>')
                 }}
               />
             </div>

@@ -37,7 +37,7 @@ export function GovernanceTypeSelector({
         <div className="bg-white/95 backdrop-blur rounded-lg p-2 text-xs space-y-1.5">
           <div className="grid md:grid-cols-2 gap-2">
             <div>
-              <p className="font-semibold text-green-700 mb-0.5">✓ Governance Templated if:</p>
+              <p className="font-semibold text-[#00A3E0] mb-0.5">✓ Governance Templated if:</p>
               <ul className="space-y-0 list-disc pl-4 text-gray-700 text-xs">
                 <li>CSH Triage Guidelines (Cerner)</li>
                 <li>EPSR list (Epic)</li>
@@ -45,7 +45,7 @@ export function GovernanceTypeSelector({
               </ul>
             </div>
             <div>
-              <p className="font-semibold text-orange-700 mb-0.5">✓ Full Governance if:</p>
+              <p className="font-semibold text-[#BA4B9C] mb-0.5">✓ Full Governance if:</p>
               <ul className="space-y-0 list-disc pl-4 text-gray-700 text-xs">
                 <li>New or not pre-approved</li>
                 <li>Clinical practice changes</li>

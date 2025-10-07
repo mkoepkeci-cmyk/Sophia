@@ -167,7 +167,7 @@ export function GovernanceAgent() {
             <button
               key={idx}
               onClick={() => handleQuickAction(action.text)}
-              className="text-left p-2 bg-white border border-gray-200 rounded hover:bg-blue-50 text-sm transition-colors flex items-start gap-2"
+              className="text-left p-2 bg-white border border-gray-200 rounded hover:bg-[#00A3E0]/5 text-sm transition-colors flex items-start gap-2"
             >
               <IconComponent size={16} className="mt-0.5 flex-shrink-0 text-gray-600" />
               <span className="flex-1">{action.text.length > 25 ? action.text.substring(0, 25) + '...' : action.text}</span>
@@ -187,12 +187,12 @@ export function GovernanceAgent() {
           <div key={idx} className="border-l-4 pl-4 py-2" style={{ borderColor: phase.color }}>
             <h3 className="font-bold text-lg" style={{ color: phase.color }}>{phase.name}</h3>
             <p className="text-gray-700 text-sm mt-1">{phase.description}</p>
-            {phase.optional && <p className="text-orange-600 text-sm mt-1">⚠️ Optional phase</p>}
+            {phase.optional && <p className="text-[#F3781E] text-sm mt-1">⚠️ Optional phase</p>}
           </div>
         ))}
       </div>
 
-      <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+      <div className="mt-6 p-4 bg-[#00A3E0]/10 rounded-lg">
         <h3 className="font-bold mb-2 text-gray-800">Process Flow:</h3>
         <div className="text-sm text-gray-700">
           Intake → Vetting & Prioritization → Define (optional) → Design → Develop & Deploy
@@ -208,7 +208,7 @@ export function GovernanceAgent() {
       <div className="space-y-4">
         {meetings.map((meeting, idx) => (
           <div key={idx} className="border border-gray-200 rounded-lg p-4 hover:shadow-lg transition-shadow">
-            <h3 className="font-bold text-lg text-blue-600">{meeting.name}</h3>
+            <h3 className="font-bold text-lg text-[#00A3E0]">{meeting.name}</h3>
             <p className="text-sm text-gray-500 mt-1">Phase: {meeting.phase}</p>
             <p className="text-gray-700 mt-2">{meeting.purpose}</p>
             {meeting.attendees && (
@@ -307,7 +307,7 @@ export function GovernanceAgent() {
             <button
               onClick={() => setActiveView('chat')}
               className={`w-full text-left p-3 flex items-center gap-3 transition-colors ${
-                activeView === 'chat' ? 'bg-blue-50 border-l-4 border-blue-600 text-blue-600' : 'hover:bg-gray-50 text-gray-700'
+                activeView === 'chat' ? 'bg-[#00A3E0]/10 border-l-4 border-[#00A3E0] text-[#00A3E0]' : 'hover:bg-gray-50 text-gray-700'
               }`}
             >
               <Send size={20} />
@@ -317,7 +317,7 @@ export function GovernanceAgent() {
             <button
               onClick={() => setActiveView('overview')}
               className={`w-full text-left p-3 flex items-center gap-3 transition-colors ${
-                activeView === 'overview' ? 'bg-blue-50 border-l-4 border-blue-600 text-blue-600' : 'hover:bg-gray-50 text-gray-700'
+                activeView === 'overview' ? 'bg-[#00A3E0]/10 border-l-4 border-[#00A3E0] text-[#00A3E0]' : 'hover:bg-gray-50 text-gray-700'
               }`}
             >
               <GitBranch size={20} />
@@ -327,7 +327,7 @@ export function GovernanceAgent() {
             <button
               onClick={() => setActiveView('meetings')}
               className={`w-full text-left p-3 flex items-center gap-3 transition-colors ${
-                activeView === 'meetings' ? 'bg-blue-50 border-l-4 border-blue-600 text-blue-600' : 'hover:bg-gray-50 text-gray-700'
+                activeView === 'meetings' ? 'bg-[#00A3E0]/10 border-l-4 border-[#00A3E0] text-[#00A3E0]' : 'hover:bg-gray-50 text-gray-700'
               }`}
             >
               <Calendar size={20} />
@@ -337,7 +337,7 @@ export function GovernanceAgent() {
             <button
               onClick={() => setActiveView('roles')}
               className={`w-full text-left p-3 flex items-center gap-3 transition-colors ${
-                activeView === 'roles' ? 'bg-blue-50 border-l-4 border-blue-600 text-blue-600' : 'hover:bg-gray-50 text-gray-700'
+                activeView === 'roles' ? 'bg-[#00A3E0]/10 border-l-4 border-[#00A3E0] text-[#00A3E0]' : 'hover:bg-gray-50 text-gray-700'
               }`}
             >
               <Users size={20} />
@@ -359,9 +359,9 @@ export function GovernanceAgent() {
                     <img
                       src="/Cheerful Woman with Voluminous Curls.png"
                       alt="Sophia"
-                      className="w-32 h-32 rounded-full border-4 border-purple-200 shadow-xl mb-6"
+                      className="w-32 h-32 rounded-full border-4 border-[#BA4B9C]/20 shadow-xl mb-6"
                     />
-                    <h2 className="text-3xl font-bold text-purple-600 mb-4">
+                    <h2 className="text-3xl font-bold text-[#BA4B9C] mb-4">
                       Hi! I'm Sophia, your SPM Governance Assistant
                     </h2>
                     <p className="text-lg text-gray-700 max-w-2xl mb-6">
@@ -381,7 +381,7 @@ export function GovernanceAgent() {
                   chatHistory.map((msg, idx) => (
                     <div key={idx} className={`flex ${msg.is_user ? 'justify-end' : 'justify-start'}`}>
                       <div className={`max-w-2xl ${
-                        msg.is_user ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-800'
+                        msg.is_user ? 'bg-[#BA4B9C] text-white' : 'bg-gray-100 text-gray-800'
                       } rounded-lg p-4 shadow`}>
                         <div className="whitespace-pre-line text-sm leading-relaxed">{msg.message}</div>
                       </div>
@@ -416,7 +416,7 @@ export function GovernanceAgent() {
                   <button
                     onClick={handleSend}
                     disabled={isLoading || !inputMessage.trim()}
-                    className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed flex items-center gap-2 font-medium transition-colors"
+                    className="px-6 py-3 bg-[#BA4B9C] text-white rounded-lg hover:bg-[#a4428b] disabled:bg-gray-300 disabled:cursor-not-allowed flex items-center gap-2 font-medium transition-colors"
                   >
                     <Send size={20} />
                     Send

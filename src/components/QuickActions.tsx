@@ -14,7 +14,7 @@ export function QuickActions({ onOpenSophia }: QuickActionsProps) {
             href="https://commonspirit.service-now.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors font-medium text-sm"
+            className="flex items-center gap-2 px-4 py-2 bg-[#7DE0A7] hover:bg-[#6fc796] text-white rounded-lg transition-colors font-medium text-sm"
           >
             <ExternalLink size={16} />
             Open SPW
@@ -23,7 +23,7 @@ export function QuickActions({ onOpenSophia }: QuickActionsProps) {
           {/* Download Guide */}
           <button
             onClick={() => window.print()}
-            className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors font-medium text-sm"
+            className="flex items-center gap-2 px-4 py-2 bg-[#00A3E0] hover:bg-[#0092c9] text-white rounded-lg transition-colors font-medium text-sm"
           >
             <Download size={16} />
             Download Guide
@@ -31,7 +31,7 @@ export function QuickActions({ onOpenSophia }: QuickActionsProps) {
 
           {/* View Process Map */}
           <button
-            className="flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors font-medium text-sm"
+            className="flex items-center gap-2 px-4 py-2 bg-[#00A3E0] hover:bg-[#0092c9] text-white rounded-lg transition-colors font-medium text-sm"
           >
             <Map size={16} />
             Process Map
@@ -40,7 +40,7 @@ export function QuickActions({ onOpenSophia }: QuickActionsProps) {
           {/* Contact Help */}
           <a
             href="mailto:support@commonspirit.org"
-            className="flex items-center gap-2 px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg transition-colors font-medium text-sm"
+            className="flex items-center gap-2 px-4 py-2 bg-[#F3781E] hover:bg-[#db6a1a] text-white rounded-lg transition-colors font-medium text-sm"
           >
             <Phone size={16} />
             Contact Help
@@ -50,7 +50,7 @@ export function QuickActions({ onOpenSophia }: QuickActionsProps) {
           {onOpenSophia && (
             <button
               onClick={onOpenSophia}
-              className="flex items-center gap-2 px-4 py-2 bg-pink-600 hover:bg-pink-700 text-white rounded-lg transition-colors font-medium text-sm"
+              className="flex items-center gap-2 px-4 py-2 bg-[#BA4B9C] hover:bg-[#a4428b] text-white rounded-lg transition-colors font-medium text-sm"
             >
               <MessageCircle size={16} />
               Ask Sophia

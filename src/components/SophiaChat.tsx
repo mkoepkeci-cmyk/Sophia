@@ -263,7 +263,7 @@ export function SophiaChat({ onClose }: SophiaChatProps) {
             <div
               className={`max-w-[80%] rounded-lg px-4 py-2 ${
                 message.role === 'user'
-                  ? 'bg-purple-600 text-white'
+                  ? 'bg-[#BA4B9C] text-white'
                   : 'bg-gray-100 text-gray-900'
               }`}
             >
@@ -294,12 +294,12 @@ export function SophiaChat({ onClose }: SophiaChatProps) {
             onChange={(e) => setInputMessage(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Ask me anything..."
-            className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+            className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#BA4B9C]"
           />
           <button
             onClick={handleSend}
             disabled={isLoading || !inputMessage.trim()}
-            className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="px-4 py-2 bg-[#BA4B9C] text-white rounded-lg hover:bg-[#a4428b] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isLoading ? <Loader2 size={18} className="animate-spin" /> : <Send size={18} />}
           </button>
