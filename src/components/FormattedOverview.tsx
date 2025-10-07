@@ -68,7 +68,11 @@ function parseContent(content: string): Section[] {
 
 export function FormattedOverview({ content }: FormattedOverviewProps) {
   const sections = parseContent(content);
-  const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set());
+  // Initialize with all sections expanded by default
+  const [expandedSections, setExpandedSections] = useState<Set<string>>(() => {
+    const allSectionKeys = sections.map((_, idx) => `section-${idx}`);
+    return new Set(allSectionKeys);
+  });
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
 
   const toggleSection = (key: string) => {

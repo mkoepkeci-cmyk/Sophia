@@ -9,6 +9,10 @@ export function PlainOverview({ content }: PlainOverviewProps) {
       .map((line, index) => {
         if (line.startsWith('## ')) {
           const title = line.replace(/^##\s*\*\*(.*?)\*\*/, '$1').replace(/^##\s*/, '');
+          // Skip rendering phase title headers like "PHASE X: NAME"
+          if (title.match(/^PHASE\s+\d+:/i)) {
+            return null;
+          }
           return <h2 key={index} className="text-2xl font-bold text-gray-900 mt-6 mb-4">{title}</h2>;
         }
 

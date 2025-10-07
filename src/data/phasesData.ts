@@ -324,7 +324,7 @@ A: When opening a Demand or Demand task for the first time:
     id: 'vetting',
     name: 'Vetting',
     order: 2,
-    color: 'bg-[#00A3E0]',
+    color: 'bg-[#F3781E]',
     overview: `## **PHASE 2: VETTING & PRIORITIZATION**
 
 ### **Vetting (PeriSCOPE Meeting)**
@@ -610,7 +610,7 @@ A: When the status updates to "Ready for Design," the prioritization task is mar
     id: 'prioritization',
     name: 'Prioritization',
     order: 3,
-    color: 'bg-[#F3781E]',
+    color: 'bg-[#00A3E0]',
     overview: `## **PRIORITIZATION PROCESS**
 
 System Informaticists and IT estimate effort, then SCOPE assigns priority ranking.
@@ -1084,7 +1084,7 @@ A: If Status is updated to **Dismissed**, the Demand is closed and no further wo
     id: 'design',
     name: 'Design',
     order: 5,
-    color: 'bg-[#8F939F]',
+    color: 'bg-[#FFB81C]',
     overview: `## **PHASE 4: DESIGN**
 
 ### **Design Task Opens**
@@ -1600,7 +1600,7 @@ A: Click the three dots next to Feature heading > View > **Release** (shows info
     id: 'develop',
     name: 'Develop & Test',
     order: 6,
-    color: 'bg-[#00A3E0]',
+    color: 'bg-[#56565B]',
     overview: `## **PHASE 5: DEVELOP & TEST**
 
 ### **Non-Prod Build & Testing**
@@ -1975,7 +1975,7 @@ A: SCI/DCIs/MCIs/Instructional Designers create education for EHR changes (tip s
     id: 'deploy',
     name: 'Deploy & Close',
     order: 7,
-    color: 'bg-[#008B8B]',
+    color: 'bg-[#00A3E0]',
     overview: `## **PHASE 6: DEPLOY & CLOSE**
 
 ### **Go-Live Support & Close-Out**

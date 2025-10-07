@@ -91,7 +91,7 @@ function App() {
         {/* Compact Governance Type Selector Hero */}
         <div className="bg-[#56565B] border-b border-gray-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center justify-center gap-4">
               <div className="flex-1">
                 <GovernanceTypeSelector
                   selectedTypeId={selectedGovernanceTypeId}
@@ -132,7 +132,7 @@ function App() {
       {!isChatOpen && (
         <button
           onClick={() => setIsChatOpen(true)}
-          className="fixed bottom-6 right-6 w-16 h-16 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all flex items-center justify-center z-40 hover:scale-110"
+          className="fixed bottom-6 right-6 w-16 h-16 bg-gradient-to-r from-[#00A3E0] to-[#0088CC] text-white rounded-full shadow-lg hover:shadow-xl transition-all flex items-center justify-center z-40 hover:scale-110"
           aria-label="Open Sophia Chat"
         >
           <MessageCircle size={28} />
