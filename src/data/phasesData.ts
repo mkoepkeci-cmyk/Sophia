@@ -1975,7 +1975,7 @@ A: SCI/DCIs/MCIs/Instructional Designers create education for EHR changes (tip s
     id: 'deploy',
     name: 'Deploy & Close',
     order: 7,
-    color: 'bg-[#00A3E0]',
+    color: 'bg-[#008B8B]',
     overview: `## **PHASE 6: DEPLOY & CLOSE**
 
 ### **Go-Live Support & Close-Out**
