@@ -68,7 +68,7 @@ export async function askSophia(
 
   try {
     // Call the Supabase Edge Function that proxies to Claude API
-    const { data, error } = await supabase.functions.invoke('clever-service', {
+    const { data, error } = await supabase.functions.invoke('ask-sophia', {
       body: {
         userMessage,
         conversationHistory,
