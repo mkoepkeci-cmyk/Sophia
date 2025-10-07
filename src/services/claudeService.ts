@@ -78,10 +78,18 @@ export async function askSophia(
 
     if (error) {
       console.error('Edge function error:', error);
-      throw new Error(`Failed to get AI response: ${error.message}`);
+      console.error('Error details:', JSON.stringify(error, null, 2));
+      throw new Error(`Failed to get AI response: ${error.message || JSON.stringify(error)}`);
+    }
+
+    // Check if the response contains an error
+    if (data && data.error) {
+      console.error('Edge function returned error:', data.error);
+      throw new Error(`AI service error: ${data.error}`);
     }
 
     if (!data || !data.response) {
+      console.error('Unexpected data format:', data);
       throw new Error('Unexpected response format from AI service');
     }
 
