@@ -22,17 +22,6 @@ export function GovernanceTypeSelector({
 
   return (
     <div className="space-y-2">
-      <div className="flex items-center justify-between">
-        <h3 className="text-sm font-semibold text-white">Select Governance Pathway</h3>
-        <button
-          onClick={() => setShowHelper(!showHelper)}
-          className="flex items-center gap-1 text-xs text-white hover:text-white/80 font-medium bg-white/20 px-2 py-1 rounded-full transition-colors"
-        >
-          <HelpCircle size={12} />
-          Need help?
-        </button>
-      </div>
-
       {showHelper && (
         <div className="bg-white/95 backdrop-blur rounded-lg p-2 text-xs space-y-1.5">
           <div className="grid md:grid-cols-2 gap-2">
@@ -56,11 +45,11 @@ export function GovernanceTypeSelector({
         </div>
       )}
 
-      <div className="grid md:grid-cols-2 gap-2">
+      <div className="flex items-center gap-2">
         {fullGov && (
           <button
             onClick={() => onSelect(fullGov.id)}
-            className={`relative p-2 rounded-lg border-2 transition-all text-left ${
+            className={`flex-1 relative p-2 rounded-lg border-2 transition-all text-left ${
               selectedTypeId === fullGov.id
                 ? 'border-white bg-white/20 shadow-lg'
                 : 'border-white/30 bg-white/10 hover:border-white/50 hover:bg-white/15'
@@ -90,7 +79,7 @@ export function GovernanceTypeSelector({
         {templatedGov && (
           <button
             onClick={() => onSelect(templatedGov.id)}
-            className={`relative p-2 rounded-lg border-2 transition-all text-left ${
+            className={`flex-1 relative p-2 rounded-lg border-2 transition-all text-left ${
               selectedTypeId === templatedGov.id
                 ? 'border-white bg-white/20 shadow-lg'
                 : 'border-white/30 bg-white/10 hover:border-white/50 hover:bg-white/15'
@@ -121,6 +110,14 @@ export function GovernanceTypeSelector({
             </div>
           </button>
         )}
+
+        <button
+          onClick={() => setShowHelper(!showHelper)}
+          className="flex items-center gap-1 text-xs text-white hover:text-white/80 font-medium bg-white/20 px-3 py-2 rounded-lg transition-colors whitespace-nowrap"
+        >
+          <HelpCircle size={12} />
+          Need help?
+        </button>
       </div>
     </div>
   );

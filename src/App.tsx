@@ -91,21 +91,23 @@ function App() {
         {/* Compact Governance Type Selector Hero */}
         <div className="bg-[#56565B] border-b border-gray-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
-            <GovernanceTypeSelector
-              selectedTypeId={selectedGovernanceTypeId}
-              onSelect={setSelectedGovernanceTypeId}
-              governanceTypes={governanceTypes}
-              showComparison={false}
-            />
+            <div className="flex items-center gap-2">
+              <div className="flex-1">
+                <GovernanceTypeSelector
+                  selectedTypeId={selectedGovernanceTypeId}
+                  onSelect={setSelectedGovernanceTypeId}
+                  governanceTypes={governanceTypes}
+                  showComparison={false}
+                />
+              </div>
 
-            {/* Comparison Toggle Button */}
-            <div className="mt-2 flex justify-center">
+              {/* Comparison Toggle Button */}
               <button
                 onClick={() => setShowComparison(!showComparison)}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/20 hover:bg-white/30 text-white rounded-lg text-xs font-medium transition-all border border-white/30"
+                className="flex items-center gap-1.5 px-3 py-2 bg-white/20 hover:bg-white/30 text-white rounded-lg text-xs font-medium transition-all border border-white/30 whitespace-nowrap"
               >
                 <GitCompare size={12} />
-                {showComparison ? 'Hide' : 'Show'} Detailed Pathway Comparison
+                Compare Full vs Templated Governance
               </button>
             </div>
           </div>
